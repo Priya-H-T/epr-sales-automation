@@ -406,6 +406,25 @@ async function selectCat2Row(page, plasticTypeText) {
     await page.waitForSelector('input[name="qty_product_sold"]', { timeout: 30000 });
 }
 
+async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
+    let lastErr = null;
+    for (let i = 0; i < attempts; i++) {
+        try {
+            await selectCat2Row(page, plasticTypeText);
+            return true;
+        } catch (e) {
+            lastErr = e;
+            await waitForLoaderToFinish(page);
+            const didReset = await clickResetAndConfirm(page);
+            if (!didReset) {
+                await clickAddNewIfVisible(page);
+            }
+            await page.waitForTimeout(1500);
+        }
+    }
+    throw lastErr || new Error("Failed to select CAT-II row");
+}
+
 // Step 2: ng-select by label text (no need formcontrolname)
 async function selectNgSelectByLabel(page, labelText, optionText) {
     const text = cellText(optionText);
@@ -748,7 +767,7 @@ async function waitEntityAutofill(page) {
             console.log(`Row ${r} starting...`);
 
             // âœ… Then select CAT-II checkbox (to reveal forms)
-            await selectCat2Row(page, "PP");
+            await selectCat2RowWithRetry(page, "PP");
 
             // âœ… Qty Sold
             await fillBySelector(page, 'input[name="qty_product_sold"]', formatQty(qtySold));
@@ -771,7 +790,25 @@ async function waitEntityAutofill(page) {
                 // âœ… Unregistered: manual entity fields, no entity-type wait
                 await fillBySelector(page, 'input[formcontrolname="entity_name"]', entityName);
                 await fillBySelector(page, 'input[formcontrolname="entity_address"]', entityAddress);
-                await selectNgSelectByLabel(page, "State", entityState);
+                const stateOk = await selectNgSelectByLabelIfExists(page, "State", entityState);
+                if (!stateOk) {
+                    const msg = `State not found: ${cellText(entityState)}`;
+                    console.log(`Row ${r}: ${msg}`);
+                    setVal(row, headerMap, "Status", "Failed: " + msg);
+                    row.commit();
+                    await safeWriteWorkbook(wb);
+                    await syncInputWorkbook(wb);
+                    appendLogRow(row, headerMap, {
+                        status: "Failed",
+                        eprInvoiceNumber: "",
+                        message: msg,
+                    });
+                    appendFilledRow(row, headerMap, headerList, {
+                        message: msg,
+                    });
+                    await clickResetAndConfirm(page).catch(() => { });
+                    continue;
+                }
                 const districtOk = await selectNgSelectByLabelIfExists(page, "District", entityDistrict);
                 if (!districtOk) {
                     const msg = `District not found: ${cellText(entityDistrict)}`;
