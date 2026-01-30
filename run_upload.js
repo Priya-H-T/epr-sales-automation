@@ -383,11 +383,8 @@ async function uploadInvoiceFileWithRetry(page, opts) {
     const ensureUploadReady = async () => {
         console.log("ensureUploadReady: start");
         if (!(await modal.isVisible().catch(() => false))) {
-            console.log("ensureUploadReady: modal not visible, reopening");
-            await prep.redIcon.click();
-            modal = page.locator('.modal-dialog:has-text("Upload Invoice")').first();
-            await modal.waitFor({ state: "visible", timeout: 5000 }).catch(() => { });
-            uploadBtn = modal.locator("button.btn.btn-primary", { hasText: "Upload" }).first();
+            console.log("ensureUploadReady: modal not visible");
+            return false;
         }
         await waitForLoaderToFinish(page);
         await page.locator("#loader-wrapper").first().waitFor({ state: "hidden", timeout: 2000 }).catch(() => { });
@@ -396,13 +393,18 @@ async function uploadInvoiceFileWithRetry(page, opts) {
             await page.waitForFunction((el) => !el.disabled, uploadHandle, { timeout: 2000 }).catch(() => { });
         }
         console.log("ensureUploadReady: upload enabled");
+        return true;
     };
 
     let lastToast = "";
     let lastStatus = "error";
     for (let attempt = 1; attempt <= 2; attempt++) {
         console.log(`Upload attempt ${attempt} for ${opts.eprInvoiceNumber}`);
-        await ensureUploadReady();
+        const ready = await ensureUploadReady();
+        if (!ready) {
+            console.log("Upload skipped: modal not visible");
+            break;
+        }
         try {
             await uploadBtn.click();
         } catch {
@@ -418,22 +420,24 @@ async function uploadInvoiceFileWithRetry(page, opts) {
         if (lastStatus === "success") break;
     }
 
-    // Close modal after attempts
+    // Close modal after attempts only if still visible (auto-closes on success)
     try {
-        const closeBtn = modal.locator("button", { hasText: "Close" }).first();
-        if (await closeBtn.count()) {
-            await closeBtn.click();
-            console.log("Modal close button clicked");
-        } else {
-            const closeIcon = modal.locator("#closeInvoiceUploadPopup, .close").first();
-            if (await closeIcon.count()) {
-                await closeIcon.click();
-                console.log("Modal close icon clicked");
+        if (await modal.isVisible().catch(() => false)) {
+            const closeBtn = modal.locator("button", { hasText: "Close" }).first();
+            if (await closeBtn.count()) {
+                await closeBtn.click();
+                console.log("Modal close button clicked");
+            } else {
+                const closeIcon = modal.locator("#closeInvoiceUploadPopup, .close").first();
+                if (await closeIcon.count()) {
+                    await closeIcon.click();
+                    console.log("Modal close icon clicked");
+                }
             }
+            // Keep this short so success doesn't stall
+            await modal.waitFor({ state: "hidden", timeout: 2000 }).catch(() => { });
+            console.log("Modal hidden");
         }
-        // Keep this short so success doesn't stall
-        await modal.waitFor({ state: "hidden", timeout: 3000 }).catch(() => { });
-        console.log("Modal hidden");
     } catch { }
 
     return { status: lastStatus, toast: lastToast, attempts: 2 };
