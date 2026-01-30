@@ -113,6 +113,11 @@ function csvEscape(v) {
     return s;
 }
 
+function logStep(message, level = 0) {
+    const indent = "  ".repeat(level);
+    console.log(`${indent}${message}`);
+}
+
 function ensureLogHeader() {
     if (fs.existsSync(LOG_PATH)) return;
     const header = [
@@ -381,6 +386,25 @@ async function clickAddNewIfVisible(page) {
     return true;
 }
 
+async function ensureSalesFormReady(page) {
+    const qtyInput = page.locator('input[name="qty_product_sold"]').first();
+    if (await qtyInput.count()) {
+        try {
+            await qtyInput.waitFor({ state: "visible", timeout: 2000 });
+            return true;
+        } catch { }
+    }
+
+    const resetBtn = page.locator("button", { hasText: /\bReset\b/i }).first();
+    if (await resetBtn.count()) {
+        await clickResetAndConfirm(page).catch(() => { });
+        await page.waitForTimeout(1500);
+    } else {
+        await clickAddNewIfVisible(page);
+    }
+    return false;
+}
+
 // Step 1: Select CAT-II row checkbox in top table (optionally by Plastic Type)
 async function selectCat2Row(page, plasticTypeText) {
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
@@ -410,15 +434,22 @@ async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
     let lastErr = null;
     for (let i = 0; i < attempts; i++) {
         try {
+            logStep(`selectCat2RowWithRetry: attempt ${i + 1}`, 1);
+            await ensureSalesFormReady(page);
             await selectCat2Row(page, plasticTypeText);
             return true;
         } catch (e) {
             lastErr = e;
+            logStep(`selectCat2RowWithRetry: failed ${i + 1} -> ${String(e?.message || e)}`, 1);
             await waitForLoaderToFinish(page);
             await page.locator("#refersh_data").first().click().catch(() => { });
             const didReset = await clickResetAndConfirm(page);
             if (!didReset) {
                 await clickAddNewIfVisible(page);
+            }
+            if (i === 1) {
+                logStep("selectCat2RowWithRetry: reload page", 1);
+                await page.goto(URL, { waitUntil: "domcontentloaded" }).catch(() => { });
             }
             await page.waitForTimeout(1500);
         }
@@ -477,6 +508,7 @@ async function clickSubmitAndConfirm(page) {
 }
 
 async function clickResetAndConfirm(page) {
+    logStep("clickResetAndConfirm: start", 1);
     const reset = page.locator("button", { hasText: /\\bReset\\b/i }).first();
     if (!(await reset.count())) return false;
     await reset.waitFor({ state: "visible", timeout: 20000 });
@@ -493,6 +525,7 @@ async function clickResetAndConfirm(page) {
             }
         } catch { }
     }
+    logStep("clickResetAndConfirm: done", 1);
     return true;
 }
 
@@ -504,6 +537,7 @@ async function waitForToast(page) {
 }
 
 async function selectNgSelectByLabelIfExists(page, labelText, optionText) {
+    logStep(`selectNgSelectByLabelIfExists: ${labelText} -> ${cellText(optionText)}`, 1);
     const text = cellText(optionText);
     if (!text) return false;
 
@@ -530,6 +564,7 @@ async function selectNgSelectByLabelIfExists(page, labelText, optionText) {
 
     const opt = panel.locator(".ng-option", { hasText: text }).first();
     if (!(await opt.count())) {
+        logStep(`selectNgSelectByLabelIfExists: ${labelText} option not found`, 2);
         await ng.click().catch(() => { });
         await panel.waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
         return false;
@@ -539,11 +574,13 @@ async function selectNgSelectByLabelIfExists(page, labelText, optionText) {
         await opt.scrollIntoViewIfNeeded().catch(() => { });
         await opt.click({ timeout: 5000 });
     } catch {
+        logStep(`selectNgSelectByLabelIfExists: ${labelText} click failed`, 2);
         await ng.click().catch(() => { });
         await panel.waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
         return false;
     }
     await panel.waitFor({ state: "hidden", timeout: 20000 }).catch(() => { });
+    logStep(`selectNgSelectByLabelIfExists: ${labelText} selected`, 2);
     return true;
 }
 
@@ -920,6 +957,7 @@ async function waitEntityAutofill(page) {
                 console.log("Page closed. Stopping.");
                 break;
             }
+            logStep(`Row ${r}: reset phase`, 1);
             if (successThisRow) {
                 await page.waitForTimeout(1000);
             }
@@ -929,6 +967,7 @@ async function waitEntityAutofill(page) {
                 await clickAddNewIfVisible(page);
             }
             await page.waitForTimeout(2000);
+            logStep(`Row ${r}: reset done`, 1);
         }
     }
 
