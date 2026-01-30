@@ -472,7 +472,10 @@ async function selectCat2Row(page, plasticTypeText) {
 
     const checkbox = catRow.locator('input[type="checkbox"][name="check-box"]').first();
     await checkbox.scrollIntoViewIfNeeded();
-    await checkbox.click({ force: true });
+    const alreadyChecked = await checkbox.isChecked().catch(() => false);
+    if (!alreadyChecked) {
+        await checkbox.click({ force: true });
+    }
     const checked = await checkbox.isChecked().catch(() => false);
     logStep(`selectCat2Row: checkbox checked=${checked}`, 2);
     if (!checked) {
@@ -565,7 +568,7 @@ async function clickSubmitAndConfirm(page) {
 
 async function clickResetAndConfirm(page) {
     logStep("clickResetAndConfirm: start", 1);
-    const reset = page.locator("button", { hasText: /\\bReset\\b/i }).first();
+    const reset = page.locator("button", { hasText: /\bReset\b/i }).first();
     if (!(await reset.count())) return false;
     await reset.waitFor({ state: "visible", timeout: 20000 });
     await reset.scrollIntoViewIfNeeded();
