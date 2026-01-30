@@ -418,19 +418,23 @@ async function resetToFreshPage(page) {
 }
 
 async function ensureSalesFormReady(page) {
+    logStep("ensureSalesFormReady: start", 1);
     const qtyInput = page.locator('input[name="qty_product_sold"]').first();
     if (await qtyInput.count()) {
         try {
             await qtyInput.waitFor({ state: "visible", timeout: 2000 });
+            logStep("ensureSalesFormReady: qty visible", 1);
             return true;
         } catch { }
     }
 
     const resetBtn = page.locator("button", { hasText: /\bReset\b/i }).first();
     if (await resetBtn.count()) {
+        logStep("ensureSalesFormReady: reset", 1);
         await clickResetAndConfirm(page).catch(() => { });
         await page.waitForTimeout(1500);
     } else {
+        logStep("ensureSalesFormReady: add new", 1);
         await clickAddNewIfVisible(page);
     }
     return false;
@@ -456,9 +460,14 @@ async function selectCat2Row(page, plasticTypeText) {
     const checkbox = catRow.locator('input[type="checkbox"][name="check-box"]').first();
     await checkbox.scrollIntoViewIfNeeded();
     await checkbox.click({ force: true });
+    const checked = await checkbox.isChecked().catch(() => false);
+    logStep(`selectCat2Row: checkbox checked=${checked}`, 2);
+    if (!checked) {
+        throw new Error("cat2 checkbox not checked");
+    }
 
     // After selecting CAT-II, the form fields appear
-    await page.waitForSelector('input[name="qty_product_sold"]', { timeout: 30000 });
+    await page.waitForSelector('input[name="qty_product_sold"]', { timeout: 5000 });
 }
 
 async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
@@ -471,6 +480,9 @@ async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
             return true;
         } catch (e) {
             lastErr = e;
+            if (/qty_product_sold|cat2 checkbox/i.test(String(e?.message || e))) {
+                throw e;
+            }
             logStep(`selectCat2RowWithRetry: failed ${i + 1} -> ${String(e?.message || e)}`, 1);
             await waitForLoaderToFinish(page);
             await page.locator("#refersh_data").first().click().catch(() => { });
@@ -849,33 +861,44 @@ async function waitEntityAutofill(page) {
         try {
             console.log(`Row ${r} starting...`);
 
-            // âœ… Then select CAT-II checkbox (to reveal forms)
+            logStep("select CAT-II: start", 1);
             await selectCat2RowWithRetry(page, CONFIG.plasticType || "PP");
+            logStep("select CAT-II: done", 1);
 
-            // âœ… Qty Sold
+            logStep("fill qty: start", 1);
             if (!(await ensureQtyInputVisible(page, CONFIG.plasticType || "PP"))) {
                 throw new Error("qty_product_sold not visible");
             }
             await fillBySelector(page, 'input[name="qty_product_sold"]', formatQty(qtySold));
+            logStep("fill qty: done", 1);
 
-            // âœ… Registration Type
+            logStep("select registration type: start", 1);
             await selectNgSelectByLabel(page, "Registration Type", regType);
+            logStep("select registration type: done", 1);
 
             const regTypeNorm = cellText(regType).toLowerCase();
             if (regTypeNorm === "registered") {
                 // âœ… Entity Type (only for Registered)
+                logStep("select entity type: start", 1);
                 await selectNgSelectByLabel(page, "Entity Type", entityType);
+                logStep("select entity type: done", 1);
                 await waitForLoaderToFinish(page);
 
                 // âœ… Entity Name search + select (autocomplete)
+                logStep("pick entity name: start", 1);
                 await pickEntityName(page, entityName);
+                logStep("pick entity name: done", 1);
 
                 // âœ… Wait for autofill
+                logStep("wait autofill: start", 1);
                 await waitEntityAutofill(page);
+                logStep("wait autofill: done", 1);
             } else if (regTypeNorm === "unregistered") {
                 // âœ… Unregistered: manual entity fields, no entity-type wait
+                logStep("fill entity name/address: start", 1);
                 await fillBySelector(page, 'input[formcontrolname="entity_name"]', entityName);
                 await fillBySelector(page, 'input[formcontrolname="entity_address"]', entityAddress);
+                logStep("fill entity name/address: done", 1);
                 const stateOk = await selectNgSelectByLabelIfExists(page, "State", entityState);
                 if (!stateOk) {
                     const msg = `State not found: ${cellText(entityState)}`;
@@ -918,7 +941,7 @@ async function waitEntityAutofill(page) {
                 throw new Error(`Unsupported Registration Type: ${cellText(regType)}`);
             }
 
-            // âœ… Fill remaining fields
+            logStep("fill remaining fields: start", 1);
             await fillById(page, "sellerGst", sellerGst);
             await fillById(page, "buyerGst", buyerGst);
             await fillById(page, "hsnCode", hsn);
@@ -927,13 +950,14 @@ async function waitEntityAutofill(page) {
             await fillById(page, "ifsc_code", ifsc);
             await fillById(page, "amount", principal);
             await fillById(page, "gst", gstOther);
+            logStep("fill remaining fields: done", 1);
 
             // âœ… Sales date (keyboard blocked -> JS set)
             const salesDateISO = excelDateToISO(salesDateRaw);
             await setAngularDateById(page, "salesDate", salesDateISO);
 
 
-            // âœ… Submit and confirm
+            logStep("submit: start", 1);
             await clickSubmitAndConfirm(page);
             await page.waitForTimeout(1000);
             await waitForToast(page);
@@ -941,13 +965,15 @@ async function waitEntityAutofill(page) {
             if (toastText) {
                 console.log(`Row ${r}: Toast -> ${toastText}`);
             }
+            logStep("submit: done", 1);
 
-
+            logStep("read EPR invoice: start", 1);
             const eprInvoice = await waitForEprInvoiceNumber(page);
             console.log(eprInvoice)
             if (!eprInvoice) {
                 throw new Error("EPR Invoice Number not found after submit.");
             }
+            logStep("read EPR invoice: done", 1);
 
             // âœ… Update Excel status
             setVal(row, headerMap, "Status", "Filled");
@@ -975,6 +1001,7 @@ async function waitEntityAutofill(page) {
             console.log(`Row ${r}: delay end ${endTs}`);
         } catch (e) {
             const msg = String(e?.message || e);
+            logStep(`error: ${msg}`, 1);
             console.log(`Row ${r}: Failed âŒ ->`, msg);
             if (/qty_product_sold|ng-option/i.test(msg)) {
                 hardRefresh = true;
