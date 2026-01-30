@@ -371,6 +371,16 @@ async function clickAddNew(page) {
     await page.waitForTimeout(300); // small UI settle
 }
 
+async function clickAddNewIfVisible(page) {
+    const addNewBtn = page.getByRole("button", { name: "Add New", exact: true }).first();
+    if (!(await addNewBtn.count())) return false;
+    await addNewBtn.waitFor({ state: "visible", timeout: 5000 }).catch(() => { });
+    await addNewBtn.scrollIntoViewIfNeeded().catch(() => { });
+    await addNewBtn.click().catch(() => { });
+    await page.waitForTimeout(300);
+    return true;
+}
+
 // Step 1: Select CAT-II row checkbox in top table (optionally by Plastic Type)
 async function selectCat2Row(page, plasticTypeText) {
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
@@ -505,8 +515,14 @@ async function selectNgSelectByLabelIfExists(page, labelText, optionText) {
         return false;
     }
 
-    await opt.waitFor({ state: "visible", timeout: 20000 });
-    await opt.click();
+    try {
+        await opt.scrollIntoViewIfNeeded().catch(() => { });
+        await opt.click({ timeout: 5000 });
+    } catch {
+        await ng.click().catch(() => { });
+        await panel.waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
+        return false;
+    }
     await panel.waitFor({ state: "hidden", timeout: 20000 }).catch(() => { });
     return true;
 }
@@ -857,7 +873,7 @@ async function waitEntityAutofill(page) {
             await waitForLoaderToFinish(page);
             const didReset = await clickResetAndConfirm(page);
             if (!didReset) {
-                await clickAddNew(page);
+                await clickAddNewIfVisible(page);
             }
             await page.waitForTimeout(2000);
         }

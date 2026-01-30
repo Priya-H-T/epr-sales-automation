@@ -557,6 +557,7 @@ async function readEprInvoiceNumber(page) {
             if (!didReset) {
                 await clickAddNew(page);
             }
+            await page.waitForTimeout(2000);
         }
     }
 

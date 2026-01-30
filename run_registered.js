@@ -291,6 +291,16 @@ async function clickAddNew(page) {
     await page.waitForTimeout(300);
 }
 
+async function clickAddNewIfVisible(page) {
+    const addNewBtn = page.getByRole("button", { name: "Add New", exact: true }).first();
+    if (!(await addNewBtn.count())) return false;
+    await addNewBtn.waitFor({ state: "visible", timeout: 5000 }).catch(() => { });
+    await addNewBtn.scrollIntoViewIfNeeded().catch(() => { });
+    await addNewBtn.click().catch(() => { });
+    await page.waitForTimeout(300);
+    return true;
+}
+
 async function selectCat2Row(page, plasticTypeText) {
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
     let catRow = page.locator("tbody#ScrollableSimpleTableBody tr", {
@@ -636,7 +646,7 @@ async function waitEntityAutofill(page) {
             await waitForLoaderToFinish(page);
             const didReset = await clickResetAndConfirm(page);
             if (!didReset) {
-                await clickAddNew(page);
+                await clickAddNewIfVisible(page);
             }
             await page.waitForTimeout(2000);
         }
