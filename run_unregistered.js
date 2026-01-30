@@ -73,6 +73,11 @@ function cellText(v) {
     return String(v).trim();
 }
 
+function normalizeLocation(v) {
+    const s = cellText(v);
+    return s.replace(/[,\s]+$/g, "").replace(/\s+/g, " ").trim();
+}
+
 function excelDateToISO(v) {
     if (!v) throw new Error("Sales date is empty");
 
@@ -116,6 +121,17 @@ function csvEscape(v) {
 function logStep(message, level = 0) {
     const indent = "  ".repeat(level);
     console.log(`${indent}${message}`);
+}
+
+async function waitForQtyInput(page, timeoutMs = 8000) {
+    const qtyInput = page.locator('input[name="qty_product_sold"]').first();
+    if (!(await qtyInput.count())) return false;
+    try {
+        await qtyInput.waitFor({ state: "visible", timeout: timeoutMs });
+        return true;
+    } catch {
+        return false;
+    }
 }
 
 function ensureLogHeader() {
@@ -384,6 +400,13 @@ async function clickAddNewIfVisible(page) {
     await addNewBtn.click().catch(() => { });
     await page.waitForTimeout(300);
     return true;
+}
+
+async function resetToFreshPage(page) {
+    await page.goto(URL, { waitUntil: "domcontentloaded" }).catch(() => { });
+    await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 }).catch(() => { });
+    await clickAddNewIfVisible(page);
+    await page.waitForTimeout(1500);
 }
 
 async function ensureSalesFormReady(page) {
@@ -776,6 +799,7 @@ async function waitEntityAutofill(page) {
     for (let r = 2; r <= lastRow; r++) {
         const row = ws.getRow(r);
         let successThisRow = false;
+        let hardRefresh = false;
 
         if (isRowEmpty(row, headerMap)) {
             console.log(`Row ${r}: Skipped (row empty)`);
@@ -799,8 +823,10 @@ async function waitEntityAutofill(page) {
         const entityType = getVal(row, headerMap, "Entity Type*");
         const entityName = getVal(row, headerMap, "Name of the Entity *");
         const entityAddress = getVal(row, headerMap, "Address*");
-        const entityState = getVal(row, headerMap, "State*");
-        const entityDistrict = getVal(row, headerMap, "District*");
+        const entityStateRaw = getVal(row, headerMap, "State*");
+        const entityDistrictRaw = getVal(row, headerMap, "District*");
+        const entityState = normalizeLocation(entityStateRaw);
+        const entityDistrict = normalizeLocation(entityDistrictRaw);
 
         const sellerGst = getVal(row, headerMap, "GST No. of Seller *");
         const buyerGst = getVal(row, headerMap, "Buyer GST");
@@ -819,6 +845,9 @@ async function waitEntityAutofill(page) {
             await selectCat2RowWithRetry(page, CONFIG.plasticType || "PP");
 
             // âœ… Qty Sold
+            if (!(await waitForQtyInput(page))) {
+                throw new Error("qty_product_sold not visible");
+            }
             await fillBySelector(page, 'input[name="qty_product_sold"]', formatQty(qtySold));
 
             // âœ… Registration Type
@@ -855,7 +884,7 @@ async function waitEntityAutofill(page) {
                     appendFilledRow(row, headerMap, headerList, {
                         message: msg,
                     });
-                    await clickResetAndConfirm(page).catch(() => { });
+                    await resetToFreshPage(page);
                     continue;
                 }
                 const districtOk = await selectNgSelectByLabelIfExists(page, "District", entityDistrict);
@@ -874,7 +903,7 @@ async function waitEntityAutofill(page) {
                     appendFilledRow(row, headerMap, headerList, {
                         message: msg,
                     });
-                    await clickResetAndConfirm(page).catch(() => { });
+                    await resetToFreshPage(page);
                     continue;
                 }
             } else {
@@ -936,11 +965,12 @@ async function waitEntityAutofill(page) {
             await page.waitForTimeout(delayMs);
             const endTs = new Date().toISOString();
             console.log(`Row ${r}: delay end ${endTs}`);
-            await page.waitForTimeout(9000);
-
         } catch (e) {
             const msg = String(e?.message || e);
             console.log(`Row ${r}: Failed âŒ ->`, msg);
+            if (/qty_product_sold|ng-option/i.test(msg)) {
+                hardRefresh = true;
+            }
 
             setVal(row, headerMap, "Status", "Failed: " + msg);
             row.commit();
@@ -961,12 +991,16 @@ async function waitEntityAutofill(page) {
             if (successThisRow) {
                 await page.waitForTimeout(1000);
             }
-            await waitForLoaderToFinish(page);
-            const didReset = await clickResetAndConfirm(page);
-            if (!didReset) {
-                await clickAddNewIfVisible(page);
+            if (hardRefresh) {
+                await resetToFreshPage(page);
+            } else {
+                await waitForLoaderToFinish(page);
+                const didReset = await clickResetAndConfirm(page);
+                if (!didReset) {
+                    await clickAddNewIfVisible(page);
+                }
+                await page.waitForTimeout(2000);
             }
-            await page.waitForTimeout(2000);
             logStep(`Row ${r}: reset done`, 1);
         }
     }
