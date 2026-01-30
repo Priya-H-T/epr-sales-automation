@@ -356,6 +356,26 @@ async function clickSubmitAndConfirm(page) {
     } catch { }
 }
 
+async function clickResetAndConfirm(page) {
+    const reset = page.locator("button", { hasText: /\bReset\b/i }).first();
+    if (!(await reset.count())) return false;
+    await reset.waitFor({ state: "visible", timeout: 20000 }).catch(() => { });
+    await reset.scrollIntoViewIfNeeded().catch(() => { });
+    await reset.click().catch(() => { });
+
+    const modal = page.locator(".modal-dialog, .modal-content").first();
+    if (await modal.count()) {
+        try {
+            await modal.waitFor({ state: "visible", timeout: 15000 });
+            const confirmBtn = modal.getByRole("button", { name: "Confirm", exact: true }).first();
+            if (await confirmBtn.count()) {
+                await confirmBtn.click();
+            }
+        } catch { }
+    }
+    return true;
+}
+
 async function readToastText(page) {
     const toast = page.locator(".toast, .toaster, .ngx-toastr, .toast-container").first();
     if (!(await toast.count())) return "";
@@ -608,6 +628,17 @@ async function waitEntityAutofill(page) {
             appendFilledRow(row, headerMap, headerList, {
                 message: msg,
             });
+        } finally {
+            if (page.isClosed()) {
+                console.log("Page closed. Stopping.");
+                break;
+            }
+            await waitForLoaderToFinish(page);
+            const didReset = await clickResetAndConfirm(page);
+            if (!didReset) {
+                await clickAddNew(page);
+            }
+            await page.waitForTimeout(2000);
         }
     }
 

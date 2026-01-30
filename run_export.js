@@ -437,6 +437,8 @@ async function readEprInvoiceNumber(page) {
     const page = await context.newPage();
 
     await page.goto(URL, { waitUntil: "domcontentloaded" });
+    let loginAt = null;
+    let autoLogout = false;
 
     if (!fs.existsSync(STORAGE) || (await isLoginPage(page))) {
         await attemptLogout(page);
@@ -444,6 +446,8 @@ async function readEprInvoiceNumber(page) {
         await new Promise((res) => process.stdin.once("data", () => res()));
         await context.storageState({ path: STORAGE });
         console.log("Saved session to storageState.json");
+        loginAt = Date.now();
+        autoLogout = true;
     }
 
     await page.goto(URL, { waitUntil: "domcontentloaded" });

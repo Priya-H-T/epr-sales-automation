@@ -448,6 +448,7 @@ async function clickSubmitAndConfirm(page) {
 
 async function clickResetAndConfirm(page) {
     const reset = page.locator("button", { hasText: /\\bReset\\b/i }).first();
+    if (!(await reset.count())) return false;
     await reset.waitFor({ state: "visible", timeout: 20000 });
     await reset.scrollIntoViewIfNeeded();
     await reset.click();
@@ -462,6 +463,7 @@ async function clickResetAndConfirm(page) {
             }
         } catch { }
     }
+    return true;
 }
 
 async function waitForToast(page) {
@@ -847,6 +849,17 @@ async function waitEntityAutofill(page) {
                 eprInvoiceNumber: "",
                 message: msg,
             });
+        } finally {
+            if (page.isClosed()) {
+                console.log("Page closed. Stopping.");
+                break;
+            }
+            await waitForLoaderToFinish(page);
+            const didReset = await clickResetAndConfirm(page);
+            if (!didReset) {
+                await clickAddNew(page);
+            }
+            await page.waitForTimeout(2000);
         }
     }
 
