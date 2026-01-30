@@ -510,7 +510,7 @@ async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
                 logStep("selectCat2RowWithRetry: reload page", 1);
                 await page.goto(URL, { waitUntil: "domcontentloaded" }).catch(() => { });
             }
-            await page.waitForTimeout(1500);
+            await page.waitForTimeout(500);
         }
     }
     throw lastErr || new Error("Failed to select CAT-II row");
@@ -1019,7 +1019,7 @@ async function waitEntityAutofill(page) {
                 await logMissingRequiredFields(page);
             }
             await clickSubmitAndConfirm(page);
-            await page.waitForTimeout(1000);
+            await page.waitForTimeout(500);
             await waitForToast(page);
             const toastText = await readToastText(page);
             if (toastText) {
@@ -1060,7 +1060,7 @@ async function waitEntityAutofill(page) {
             const delayMs = randDelayMs(3000, 7000);
             const startTs = new Date().toISOString();
             console.log(`Row ${r}: delay start ${startTs} (${delayMs}ms)`);
-            await page.waitForTimeout(delayMs);
+            // await page.waitForTimeout(delayMs);
             const endTs = new Date().toISOString();
             console.log(`Row ${r}: delay end ${endTs}`);
         } catch (e) {

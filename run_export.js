@@ -560,7 +560,7 @@ async function waitForEprInvoiceNumber(page, timeoutMs = 20000) {
             const delayMs = randDelayMs(3000, 7000);
             const startTs = new Date().toISOString();
             console.log(`Row ${r}: delay start ${startTs} (${delayMs}ms)`);
-            await page.waitForTimeout(delayMs);
+            // await page.waitForTimeout(delayMs);
             const endTs = new Date().toISOString();
             console.log(`Row ${r}: delay end ${endTs}`);
         } catch (e) {
