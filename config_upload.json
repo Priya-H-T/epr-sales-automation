@@ -1,0 +1,8 @@
+{
+  "inputExcel": "Toppan PWP Sale For Automation.xlsx",
+  "sheetName": "Active Batch",
+  "outputExcel": "Toppan PWP Sale For Automation_upload_output.xlsx",
+  "max_rows": 0,
+  "storageState": "storageState_upload.json",
+  "invoicePdfDir": "C:\\Users\\Lenovo\\Downloads\\All invoices-20260130T085216Z-3-001\\All invoices"
+}

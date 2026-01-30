@@ -132,6 +132,12 @@ function formatQty(v) {
     return s;
 }
 
+function randDelayMs(minMs = 3000, maxMs = 7000) {
+    const min = Math.floor(minMs);
+    const max = Math.floor(maxMs);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // ---------- Excel helpers ----------
 function getHeaderMap(ws) {
     const headerRow = ws.getRow(1);
@@ -176,6 +182,23 @@ async function safeWriteWorkbook(wb) {
     fs.renameSync(EXCEL_TMP, OUTPUT_PATH);
 }
 
+async function safeWriteWorkbookToPath(wb, targetPath) {
+    const tmp = `${targetPath}.tmp`;
+    const bak = `${targetPath}.bak`;
+    await wb.xlsx.writeFile(tmp);
+    try {
+        if (fs.existsSync(targetPath) && fs.statSync(targetPath).size > 0) {
+            fs.copyFileSync(targetPath, bak);
+        }
+    } catch { }
+    fs.renameSync(tmp, targetPath);
+}
+
+async function syncInputWorkbook(wb) {
+    if (path.resolve(EXCEL_PATH) === path.resolve(OUTPUT_PATH)) return;
+    await safeWriteWorkbookToPath(wb, EXCEL_PATH);
+}
+
 // ---------- ERP helpers ----------
 async function waitForLoaderToFinish(page) {
     const loaders = [
@@ -199,7 +222,7 @@ async function waitForLoaderToFinish(page) {
 }
 
 async function clickAddNew(page) {
-    const addNewBtn = page.getByRole("button", { name: "Add New", exact: true }).first();
+    const addNewBtn = page.getByRole("button", { name: "Add New Export", exact: true }).first();
     await addNewBtn.waitFor({ state: "visible", timeout: 60000 });
     await addNewBtn.scrollIntoViewIfNeeded();
     await addNewBtn.click();
@@ -207,6 +230,7 @@ async function clickAddNew(page) {
 }
 
 async function selectCat2Row(page, plasticTypeText) {
+    console.log(`selectCat2Row: start (plastic=${plasticTypeText || "ANY"})`);
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
     let catRow = page.locator("tbody#ScrollableSimpleTableBody tr", {
         has: page.locator('span[title="CAT-II"]'),
@@ -219,11 +243,22 @@ async function selectCat2Row(page, plasticTypeText) {
     }
 
     catRow = catRow.first();
+    const rowCount = await catRow.count();
+    console.log(`selectCat2Row: rowCount=${rowCount}`);
+    const tableRows = await page.locator("tbody#ScrollableSimpleTableBody tr").count();
+    console.log(`selectCat2Row: totalRows=${tableRows}`);
+    const catCount = await page.locator('span[title="CAT-II"]').count();
+    console.log(`selectCat2Row: CAT-II spans=${catCount}`);
+    if (plasticTypeText) {
+        const plasticCount = await page.locator(`span[title="${plasticTypeText}"]`).count();
+        console.log(`selectCat2Row: ${plasticTypeText} spans=${plasticCount}`);
+    }
     await catRow.waitFor({ state: "visible", timeout: 20000 });
     const checkbox = catRow.locator('input[type="checkbox"][name="check-box"]').first();
     await checkbox.scrollIntoViewIfNeeded();
     await checkbox.click({ force: true });
     await page.waitForSelector('input[name="qty_product_sold"]', { timeout: 30000 });
+    console.log("selectCat2Row: checkbox clicked, form visible");
 }
 
 async function setAngularDateById(page, id, isoDate) {
@@ -278,6 +313,26 @@ async function clickSubmitAndConfirm(page) {
         await confirmBtn.waitFor({ state: "visible", timeout: 60000 });
         await confirmBtn.click();
     } catch { }
+}
+
+async function clickResetAndConfirm(page) {
+    const reset = page.locator("button", { hasText: /\bReset\b/i }).first();
+    if (!(await reset.count())) return false;
+    await reset.waitFor({ state: "visible", timeout: 10000 }).catch(() => { });
+    await reset.scrollIntoViewIfNeeded().catch(() => { });
+    await reset.click().catch(() => { });
+
+    const modal = page.locator(".modal-dialog, .modal-content").first();
+    if (await modal.count()) {
+        try {
+            await modal.waitFor({ state: "visible", timeout: 8000 });
+            const confirmBtn = modal.getByRole("button", { name: "Confirm", exact: true }).first();
+            if (await confirmBtn.count()) {
+                await confirmBtn.click();
+            }
+        } catch { }
+    }
+    return true;
 }
 
 async function readToastText(page) {
@@ -416,6 +471,7 @@ async function readEprInvoiceNumber(page) {
             setVal(row, headerMap, "EPR Invoice Number", eprInvoice);
             row.commit();
             await safeWriteWorkbook(wb);
+            await syncInputWorkbook(wb);
 
             appendLogRow(row, headerMap, {
                 status: "Filled",
@@ -424,7 +480,12 @@ async function readEprInvoiceNumber(page) {
             });
 
             console.log(`Row ${r}: Filled ✓`);
-            await page.waitForTimeout(2000);
+            const delayMs = randDelayMs(3000, 7000);
+            const startTs = new Date().toISOString();
+            console.log(`Row ${r}: delay start ${startTs} (${delayMs}ms)`);
+            await page.waitForTimeout(delayMs);
+            const endTs = new Date().toISOString();
+            console.log(`Row ${r}: delay end ${endTs}`);
         } catch (e) {
             const msg = String(e?.message || e);
             console.log(`Row ${r}: Failed ❌ ->`, msg);
@@ -432,12 +493,23 @@ async function readEprInvoiceNumber(page) {
             setVal(row, headerMap, "Status", "Failed: " + msg);
             row.commit();
             await safeWriteWorkbook(wb);
+            await syncInputWorkbook(wb);
 
             appendLogRow(row, headerMap, {
                 status: "Failed",
                 eprInvoiceNumber: "",
                 message: msg,
             });
+        } finally {
+            if (page.isClosed()) {
+                console.log("Page closed. Stopping.");
+                break;
+            }
+            await waitForLoaderToFinish(page);
+            const didReset = await clickResetAndConfirm(page);
+            if (!didReset) {
+                await clickAddNew(page);
+            }
         }
     }
 

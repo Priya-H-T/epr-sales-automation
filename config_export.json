@@ -1,8 +1,8 @@
 {
-  "inputExcel": "Toppan PWP Sale For Automation.xlsx",
-  "sheetName": "Active Batch",
-  "outputExcel": "Toppan PWP Sale For Automation_export_output.xlsx",
+  "inputExcel": "Khatima Exports PWP Sale For Automation.xlsx",
+  "sheetName": "Main Sheet",
+  "outputExcel": "Khatima Exports PWP Sale For Automation_output.xlsx",
   "max_rows": 0,
   "storageState": "storageState_export.json",
-  "plasticType": "PP"
+  "plasticType": "PET"
 }

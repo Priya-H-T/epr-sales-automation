@@ -4,8 +4,15 @@ const path = require("path");
 const fs = require("fs");
 
 const URL = "https://eprplastic.cpcb.gov.in/#/epr/details/sales";
-const CONFIG_PATH = path.resolve(__dirname, "config.json");
-const STORAGE = path.resolve(__dirname, "storageState.json");
+function getConfigPath() {
+    const idx = process.argv.indexOf("--config");
+    if (idx !== -1 && process.argv[idx + 1]) {
+        return path.resolve(__dirname, process.argv[idx + 1]);
+    }
+    return path.resolve(__dirname, "config.json");
+}
+
+const CONFIG_PATH = getConfigPath();
 const ROOT_DIR = __dirname;
 
 function loadConfig() {
@@ -19,6 +26,7 @@ function loadConfig() {
     const outputExcel = String(cfg?.outputExcel || "").trim();
     const maxRowsRaw = cfg?.max_rows;
     const invoicePdfDir = String(cfg?.invoicePdfDir || "").trim();
+    const storageState = String(cfg?.storageState || "storageState.json").trim();
     if (!inputExcel || !sheetName || !outputExcel) {
         throw new Error("config.json must include inputExcel, sheetName, and outputExcel");
     }
@@ -32,10 +40,11 @@ function loadConfig() {
             maxRows = Math.floor(n);
         }
     }
-    return { inputExcel, sheetName, outputExcel, maxRows, invoicePdfDir };
+    return { inputExcel, sheetName, outputExcel, maxRows, invoicePdfDir, storageState };
 }
 
 const CONFIG = loadConfig();
+const STORAGE = path.resolve(__dirname, CONFIG.storageState);
 const EXCEL_PATH = path.resolve(__dirname, CONFIG.inputExcel);
 const SHEET = CONFIG.sheetName;
 const OUTPUT_PATH = path.resolve(__dirname, CONFIG.outputExcel);
@@ -167,6 +176,11 @@ async function safeWriteWorkbookToPath(wb, targetPath) {
         }
     } catch { }
     fs.renameSync(tmp, targetPath);
+}
+
+async function syncInputWorkbook(wb) {
+    if (path.resolve(EXCEL_PATH) === path.resolve(OUTPUT_PATH)) return;
+    await safeWriteWorkbookToPath(wb, EXCEL_PATH);
 }
 
 async function appendOutputToInput({ inputPath, outputPath, sheetName }) {
@@ -537,6 +551,7 @@ async function uploadInvoiceFileWithRetry(page, opts) {
 
         row.commit();
         await safeWriteWorkbook(wb);
+        await syncInputWorkbook(wb);
     }
 
     await browser.close();

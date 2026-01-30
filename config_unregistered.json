@@ -1,7 +1,7 @@
 {
-  "inputExcel": "Toppan PWP Sale For Automation.xlsx",
-  "sheetName": "Active Batch",
-  "outputExcel": "Toppan PWP Sale For Automation_unregistered_output.xlsx",
+  "inputExcel": "CHIRPAL UNREGISTERD PWP Sale For Automation PP.xlsx",
+  "sheetName": "Main Sheet",
+  "outputExcel": "CHIRPAL UNREGISTERD PWP Sale For Automation PP_unregistered_output.xlsx",
   "max_rows": 0,
   "storageState": "storageState_unregistered.json",
   "plasticType": "PP"

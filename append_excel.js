@@ -2,7 +2,7 @@ const ExcelJS = require("exceljs");
 const path = require("path");
 const fs = require("fs");
 
-const cfg = require("./config.json");
+const cfg = require("./config_export.json");
 const inputPath = path.resolve(__dirname, cfg.inputExcel);
 const outputPath = path.resolve(__dirname, cfg.outputExcel);
 const sheetName = cfg.sheetName;
@@ -15,8 +15,8 @@ async function appendOutputToInput() {
         throw new Error(`Output not found: ${outputPath}`);
     }
 
-const wbIn = new ExcelJS.Workbook();
-const wbOut = new ExcelJS.Workbook();
+    const wbIn = new ExcelJS.Workbook();
+    const wbOut = new ExcelJS.Workbook();
     await wbIn.xlsx.readFile(inputPath);
     await wbOut.xlsx.readFile(outputPath);
 

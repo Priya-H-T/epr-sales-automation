@@ -262,6 +262,12 @@ function formatQty(v) {
     return s;
 }
 
+function randDelayMs(minMs = 3000, maxMs = 7000) {
+    const min = Math.floor(minMs);
+    const max = Math.floor(maxMs);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function isCellEmpty(v) {
     return cellText(v) === "";
 }
@@ -294,6 +300,11 @@ async function safeWriteWorkbookToPath(wb, targetPath) {
         }
     } catch { }
     fs.renameSync(tmp, targetPath);
+}
+
+async function syncInputWorkbook(wb) {
+    if (path.resolve(EXCEL_PATH) === path.resolve(OUTPUT_PATH)) return;
+    await safeWriteWorkbookToPath(wb, EXCEL_PATH);
 }
 
 async function appendOutputToInput({ inputPath, outputPath, sheetName }) {
@@ -708,6 +719,7 @@ async function waitEntityAutofill(page) {
                     setVal(row, headerMap, "Status", "Failed: " + msg);
                     row.commit();
                     await safeWriteWorkbook(wb);
+                    await syncInputWorkbook(wb);
                     appendLogRow(row, headerMap, {
                         status: "Failed",
                         eprInvoiceNumber: "",
@@ -759,6 +771,7 @@ async function waitEntityAutofill(page) {
             setVal(row, headerMap, "EPR Invoice Number", eprInvoice);
             row.commit();
             await safeWriteWorkbook(wb);
+            await syncInputWorkbook(wb);
 
             appendLogRow(row, headerMap, {
                 status: "Filled",
@@ -770,6 +783,12 @@ async function waitEntityAutofill(page) {
             });
 
             console.log(`Row ${r}: Filled âœ…`);
+            const delayMs = randDelayMs(3000, 7000);
+            const startTs = new Date().toISOString();
+            console.log(`Row ${r}: delay start ${startTs} (${delayMs}ms)`);
+            await page.waitForTimeout(delayMs);
+            const endTs = new Date().toISOString();
+            console.log(`Row ${r}: delay end ${endTs}`);
             await page.waitForTimeout(9000);
 
         } catch (e) {
@@ -779,6 +798,7 @@ async function waitEntityAutofill(page) {
             setVal(row, headerMap, "Status", "Failed: " + msg);
             row.commit();
             await safeWriteWorkbook(wb);
+            await syncInputWorkbook(wb);
 
             appendLogRow(row, headerMap, {
                 status: "Failed",

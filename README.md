@@ -37,3 +37,24 @@ All log files are created using the output file base name so they are easy to tr
 
 ## Notes
 - Logs append across runs.
+
+## Run Commands
+Export:
+```
+node run_export.js --config config_export.json
+```
+
+Registered:
+```
+node run_registered.js --config config_registered.json
+```
+
+Unregistered:
+```
+node run_unregistered.js --config config_unregistered.json
+```
+
+Upload:
+```
+node run_upload.js --config config_upload.json
+```
