@@ -572,6 +572,34 @@ async function clickResetAndConfirm(page) {
     return true;
 }
 
+async function logMissingRequiredFields(page) {
+    const fields = [
+        { id: "sellerGst", name: "sellerGst" },
+        { id: "buyerGst", name: "buyerGst" },
+        { id: "hsnCode", name: "hsnCode" },
+        { id: "invno", name: "invno" },
+        { id: "account_number", name: "account_number" },
+        { id: "ifsc_code", name: "ifsc_code" },
+        { id: "amount", name: "amount" },
+        { id: "gst", name: "gst" },
+        { id: "salesDate", name: "salesDate" },
+        { selector: 'input[name="qty_product_sold"]', name: "qty_product_sold" },
+        { selector: 'input[formcontrolname="entity_name"]', name: "entity_name" },
+        { selector: 'input[formcontrolname="entity_address"]', name: "entity_address" },
+    ];
+
+    const missing = [];
+    for (const f of fields) {
+        const loc = f.id ? page.locator(`#${f.id}`) : page.locator(f.selector);
+        if (!(await loc.count())) continue;
+        const val = (await loc.first().inputValue().catch(() => "")).trim();
+        if (!val) missing.push(f.name);
+    }
+    if (missing.length) {
+        logStep(`missing fields: ${missing.join(", ")}`, 1);
+    }
+}
+
 async function waitForToast(page) {
     const toast = page.locator(".toast, .toaster, .ngx-toastr, .toast-container").first();
     if (await toast.count()) {
@@ -958,6 +986,10 @@ async function waitEntityAutofill(page) {
 
 
             logStep("submit: start", 1);
+            const submitBtn = page.locator('button[type="submit"]', { hasText: "Generate EPR Invoice Number" }).first();
+            if (await submitBtn.isDisabled().catch(() => false)) {
+                await logMissingRequiredFields(page);
+            }
             await clickSubmitAndConfirm(page);
             await page.waitForTimeout(1000);
             await waitForToast(page);
