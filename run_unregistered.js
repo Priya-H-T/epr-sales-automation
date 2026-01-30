@@ -134,6 +134,14 @@ async function waitForQtyInput(page, timeoutMs = 8000) {
     }
 }
 
+async function ensureQtyInputVisible(page, plasticTypeText) {
+    if (await waitForQtyInput(page, 3000)) return true;
+    logStep("ensureQtyInputVisible: refreshing page", 1);
+    await resetToFreshPage(page);
+    await selectCat2RowWithRetry(page, plasticTypeText);
+    return waitForQtyInput(page, 8000);
+}
+
 function ensureLogHeader() {
     if (fs.existsSync(LOG_PATH)) return;
     const header = [
@@ -845,7 +853,7 @@ async function waitEntityAutofill(page) {
             await selectCat2RowWithRetry(page, CONFIG.plasticType || "PP");
 
             // âœ… Qty Sold
-            if (!(await waitForQtyInput(page))) {
+            if (!(await ensureQtyInputVisible(page, CONFIG.plasticType || "PP"))) {
                 throw new Error("qty_product_sold not visible");
             }
             await fillBySelector(page, 'input[name="qty_product_sold"]', formatQty(qtySold));
