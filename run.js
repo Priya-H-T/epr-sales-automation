@@ -571,7 +571,7 @@ async function waitEntityAutofill(page) {
             await selectCat2Row(page, "PP");
 
             // âœ… Qty Sold
-            await fillBySelector(page, 'input[name="qty_product_sold"]', qtySold);
+            await fillBySelector(page, 'input[name="qty_product_sold"]', qtySold.toFixed(4));
 
             // âœ… Registration Type
             await selectNgSelectByLabel(page, "Registration Type", regType);
@@ -620,7 +620,7 @@ async function waitEntityAutofill(page) {
             if (toastText) {
                 console.log(`Row ${r}: Toast -> ${toastText}`);
             }
-            await page.waitForTimeout(100000);
+
 
             const eprInvoice = await readEprInvoiceNumber(page);
             console.log(eprInvoice)
@@ -644,6 +644,7 @@ async function waitEntityAutofill(page) {
             });
 
             console.log(`Row ${r}: Filled âœ…`);
+            await page.waitForTimeout(8000);
 
         } catch (e) {
             const msg = String(e?.message || e);
