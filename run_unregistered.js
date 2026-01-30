@@ -234,8 +234,8 @@ async function fillBySelector(page, selector, value) {
     const v = cellText(value);
     const loc = page.locator(selector).first();
     await loc.waitFor({ state: "visible", timeout: 60000 });
-    await loc.scrollIntoViewIfNeeded();
-    await loc.click({ timeout: 15000 });
+    await loc.scrollIntoViewIfNeeded().catch(() => { });
+    await loc.click({ timeout: 15000 }).catch(() => { });
     await loc.fill("");
     if (v) await loc.fill(v);
     await loc.blur();
@@ -965,6 +965,12 @@ async function waitEntityAutofill(page) {
                     await resetToFreshPage(page);
                     continue;
                 }
+                // Re-assert entity name in case state/district clears it
+                const nameInput = page.locator('input[formcontrolname="entity_name"]').first();
+                const nameVal = (await nameInput.inputValue().catch(() => "")).trim();
+                if (!nameVal) {
+                    await fillBySelector(page, 'input[formcontrolname="entity_name"]', entityName);
+                }
             } else {
                 throw new Error(`Unsupported Registration Type: ${cellText(regType)}`);
             }
@@ -986,6 +992,11 @@ async function waitEntityAutofill(page) {
 
 
             logStep("submit: start", 1);
+            // Final guard: if entity_name empty, skip row
+            const finalName = (await page.locator('input[formcontrolname="entity_name"]').first().inputValue().catch(() => "")).trim();
+            if (!finalName) {
+                throw new Error("entity_name empty before submit");
+            }
             const submitBtn = page.locator('button[type="submit"]', { hasText: "Generate EPR Invoice Number" }).first();
             if (await submitBtn.isDisabled().catch(() => false)) {
                 await logMissingRequiredFields(page);
