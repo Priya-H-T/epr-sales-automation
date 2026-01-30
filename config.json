@@ -1,5 +1,6 @@
 {
-  "inputExcel": "ERP_automations.xlsx",
+  "inputExcel": "Copy of CHIRPAL UNREGISTERD PWP Sale For Automation PP.xlsx",
   "sheetName": "Main Sheet",
-  "outputExcel": "ERP_automations_output.xlsx"
+  "outputExcel": "Copy of CHIRPAL UNREGISTERD PWP Sale For Automation PP.xlsx",
+  "max_rows": 0
 }

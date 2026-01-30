@@ -26,10 +26,21 @@ function loadConfig() {
     const inputExcel = String(cfg?.inputExcel || "").trim();
     const sheetName = String(cfg?.sheetName || "").trim();
     const outputExcel = String(cfg?.outputExcel || "").trim();
+    const maxRowsRaw = cfg?.max_rows;
     if (!inputExcel || !sheetName || !outputExcel) {
         throw new Error("config.json must include inputExcel, sheetName, and outputExcel");
     }
-    return { inputExcel, sheetName, outputExcel };
+    let maxRows = null;
+    if (maxRowsRaw !== undefined && maxRowsRaw !== null && String(maxRowsRaw).trim() !== "") {
+        const n = Number(maxRowsRaw);
+        if (!Number.isFinite(n)) {
+            throw new Error("config.json max_rows must be a number when provided");
+        }
+        if (n > 0) {
+            maxRows = Math.floor(n);
+        }
+    }
+    return { inputExcel, sheetName, outputExcel, maxRows };
 }
 
 const CONFIG = loadConfig();
@@ -526,7 +537,8 @@ async function waitEntityAutofill(page) {
     await page.goto(URL, { waitUntil: "domcontentloaded" });
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
     await clickAddNew(page);
-    for (let r = 2; r <= ws.rowCount; r++) {
+    const lastRow = CONFIG.maxRows ? Math.min(ws.rowCount, CONFIG.maxRows) : ws.rowCount;
+    for (let r = 2; r <= lastRow; r++) {
         const row = ws.getRow(r);
 
         if (isRowEmpty(row, headerMap)) {
@@ -644,7 +656,7 @@ async function waitEntityAutofill(page) {
             });
 
             console.log(`Row ${r}: Filled âœ…`);
-            await page.waitForTimeout(8000);
+            await page.waitForTimeout(9000);
 
         } catch (e) {
             const msg = String(e?.message || e);

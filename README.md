@@ -5,9 +5,12 @@
 {
   "inputExcel": "ERP_automations.xlsx",
   "sheetName": "Main Sheet",
-  "outputExcel": "ERP_automations_output.xlsx"
+  "outputExcel": "ERP_automations_output.xlsx",
+  "max_rows": 0
 }
 ```
+
+Set `max_rows` to a positive number to limit how many rows are processed. Use `0` or remove the key to process all rows.
 
 ## Log file names (match the output file name)
 All log files are created using the output file base name so they are easy to track:
