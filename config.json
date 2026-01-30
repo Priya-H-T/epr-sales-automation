@@ -1,6 +1,7 @@
 {
-  "inputExcel": "Copy of CHIRPAL UNREGISTERD PWP Sale For Automation PP.xlsx",
-  "sheetName": "Main Sheet",
-  "outputExcel": "Copy of CHIRPAL UNREGISTERD PWP Sale For Automation PP.xlsx",
-  "max_rows": 0
+  "inputExcel": "Toppan PWP Sale For Automation.xlsx",
+  "sheetName": "Active Batch",
+  "outputExcel": "Toppan PWP Sale For Automation_output.xlsx",
+  "max_rows": 0,
+  "invoicePdfDir": "C:\\Users\\Lenovo\\Downloads\\All invoices-20260130T085216Z-3-001\\All invoices"
 }

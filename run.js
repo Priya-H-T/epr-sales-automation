@@ -267,6 +267,48 @@ async function safeWriteWorkbook(wb) {
     fs.renameSync(EXCEL_TMP, OUTPUT_PATH);
 }
 
+async function safeWriteWorkbookToPath(wb, targetPath) {
+    const tmp = `${targetPath}.tmp`;
+    const bak = `${targetPath}.bak`;
+    await wb.xlsx.writeFile(tmp);
+    try {
+        if (fs.existsSync(targetPath) && fs.statSync(targetPath).size > 0) {
+            fs.copyFileSync(targetPath, bak);
+        }
+    } catch { }
+    fs.renameSync(tmp, targetPath);
+}
+
+async function appendOutputToInput({ inputPath, outputPath, sheetName }) {
+    const inPath = path.resolve(inputPath);
+    const outPath = path.resolve(outputPath);
+    if (inPath === outPath) {
+        console.log("Append skipped: input and output are the same file.");
+        return;
+    }
+    if (!fs.existsSync(outPath)) {
+        console.log(`Append skipped: output file not found: ${outPath}`);
+        return;
+    }
+    const wbIn = new ExcelJS.Workbook();
+    const wbOut = new ExcelJS.Workbook();
+    await wbIn.xlsx.readFile(inPath);
+    await wbOut.xlsx.readFile(outPath);
+    const wsIn = wbIn.getWorksheet(sheetName);
+    const wsOut = wbOut.getWorksheet(sheetName);
+    if (!wsIn || !wsOut) {
+        throw new Error(`Append failed: sheet not found (${sheetName})`);
+    }
+    for (let r = 2; r <= wsOut.rowCount; r++) {
+        const rowOut = wsOut.getRow(r);
+        if (!rowOut.hasValues) continue;
+        const newRow = wsIn.addRow(rowOut.values);
+        newRow.commit();
+    }
+    await safeWriteWorkbookToPath(wbIn, inPath);
+    console.log("Append complete: output appended to input.");
+}
+
 // ---------- ERP helpers ----------
 
 // Try to wait for common loaders to disappear.
@@ -675,6 +717,15 @@ async function waitEntityAutofill(page) {
     }
 
     await browser.close();
+    try {
+        await appendOutputToInput({
+            inputPath: EXCEL_PATH,
+            outputPath: OUTPUT_PATH,
+            sheetName: SHEET,
+        });
+    } catch (e) {
+        console.log("Append output to input failed:", String(e?.message || e));
+    }
     console.log("Done. Updated Excel:", EXCEL_PATH);
 })();
 
