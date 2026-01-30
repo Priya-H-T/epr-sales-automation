@@ -520,6 +520,47 @@ async function readToastText(page) {
     }
 }
 
+async function isLoginPage(page) {
+    const pwd = page.locator('input[type="password"]').first();
+    if (await pwd.count()) return true;
+    const loginBtn = page.locator('button:has-text("Login"), button:has-text("Sign In")').first();
+    if (await loginBtn.count()) return true;
+    return false;
+}
+
+async function attemptLogout(page) {
+    try {
+        const logoutDirect = page.locator('text=/logout/i').first();
+        if (await logoutDirect.count()) {
+            await logoutDirect.click().catch(() => { });
+            await page.waitForTimeout(1000);
+            return true;
+        }
+
+        const toggles = [
+            'button[aria-haspopup="menu"]',
+            'button[aria-expanded]',
+            '.dropdown-toggle',
+            '.nav-link.dropdown-toggle',
+            '.user-profile',
+            '.profile',
+        ];
+        for (const sel of toggles) {
+            const btn = page.locator(sel).first();
+            if (await btn.count()) {
+                await btn.click().catch(() => { });
+                const logout = page.locator('text=/logout/i').first();
+                if (await logout.count()) {
+                    await logout.click().catch(() => { });
+                    await page.waitForTimeout(1000);
+                    return true;
+                }
+            }
+        }
+    } catch { }
+    return false;
+}
+
 async function readEprInvoiceNumber(page) {
     // Preferred: read disabled input value
     const input = page.locator("#invoiceNumberCopy").first();
@@ -634,7 +675,8 @@ async function waitEntityAutofill(page) {
     await page.goto(URL, { waitUntil: "domcontentloaded" });
 
     // login once (only if no storage state)
-    if (!fs.existsSync(STORAGE)) {
+    if (!fs.existsSync(STORAGE) || (await isLoginPage(page))) {
+        await attemptLogout(page);
         console.log("Login manually in this Playwright window, then press ENTER here...");
         await new Promise((res) => process.stdin.once("data", () => res()));
         await context.storageState({ path: STORAGE });
