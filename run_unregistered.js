@@ -319,6 +319,19 @@ async function safeWriteWorkbook(wb) {
     fs.renameSync(EXCEL_TMP, OUTPUT_PATH);
 }
 
+function buildEprSet(ws, headerMap) {
+    const set = new Set();
+    const col = headerMap.get(normHeader("EPR Invoice Number"));
+    if (!col) return set;
+    for (let r = 2; r <= ws.rowCount; r++) {
+        const row = ws.getRow(r);
+        if (!row.hasValues) continue;
+        const v = cellText(row.getCell(col).value);
+        if (v) set.add(v);
+    }
+    return set;
+}
+
 async function safeWriteWorkbookToPath(wb, targetPath) {
     const tmp = `${targetPath}.tmp`;
     const bak = `${targetPath}.bak`;
@@ -1012,6 +1025,9 @@ async function waitEntityAutofill(page) {
 
             logStep("read EPR invoice: start", 1);
             const eprInvoice = await waitForEprInvoiceNumber(page);
+            if (eprSet.has(eprInvoice)) {
+                throw new Error("Duplicate EPR Invoice Number: " + eprInvoice);
+            }
             console.log(eprInvoice)
             if (!eprInvoice) {
                 throw new Error("EPR Invoice Number not found after submit.");
@@ -1021,6 +1037,7 @@ async function waitEntityAutofill(page) {
             // âœ… Update Excel status
             setVal(row, headerMap, "Status", "Filled");
             setVal(row, headerMap, "EPR Invoice Number", eprInvoice);
+            eprSet.add(eprInvoice);
             row.commit();
             await safeWriteWorkbook(wb);
             await syncInputWorkbook(wb);

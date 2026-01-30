@@ -235,6 +235,19 @@ function isRowEmpty(row, headerMap) {
     return true;
 }
 
+function buildEprSet(ws, headerMap) {
+    const set = new Set();
+    const col = headerMap.get(normHeader("EPR Invoice Number"));
+    if (!col) return set;
+    for (let r = 2; r <= ws.rowCount; r++) {
+        const row = ws.getRow(r);
+        if (!row.hasValues) continue;
+        const v = cellText(row.getCell(col).value);
+        if (v) set.add(v);
+    }
+    return set;
+}
+
 async function safeWriteWorkbook(wb) {
     await wb.xlsx.writeFile(EXCEL_TMP);
     try {
@@ -523,6 +536,7 @@ async function waitEntityAutofill(page) {
     }
 
     const headerMap = getHeaderMap(ws);
+    const eprSet = buildEprSet(ws, headerMap);
     const headerList = getHeaderList(ws);
 
     const browser = await chromium.launch({ headless: false });
@@ -608,12 +622,16 @@ async function waitEntityAutofill(page) {
             const toastText = await readToastText(page);
 
             const eprInvoice = await waitForEprInvoiceNumber(page);
+            if (eprSet.has(eprInvoice)) {
+                throw new Error("Duplicate EPR Invoice Number: " + eprInvoice);
+            }
             if (!eprInvoice) {
                 throw new Error("EPR Invoice Number not found after submit.");
             }
 
             setVal(row, headerMap, "Status", "Filled");
             setVal(row, headerMap, "EPR Invoice Number", eprInvoice);
+            eprSet.add(eprInvoice);
             row.commit();
             await safeWriteWorkbook(wb);
             await syncInputWorkbook(wb);
