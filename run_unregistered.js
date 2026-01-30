@@ -856,6 +856,7 @@ async function waitEntityAutofill(page) {
     await page.goto(URL, { waitUntil: "domcontentloaded" });
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
     await clickAddNew(page);
+    const eprSet = buildEprSet(ws, headerMap);
     const lastRow = CONFIG.maxRows ? Math.min(ws.rowCount, CONFIG.maxRows) : ws.rowCount;
     for (let r = 2; r <= lastRow; r++) {
         const row = ws.getRow(r);
@@ -1025,13 +1026,13 @@ async function waitEntityAutofill(page) {
 
             logStep("read EPR invoice: start", 1);
             const eprInvoice = await waitForEprInvoiceNumber(page);
-            if (eprSet.has(eprInvoice)) {
-                throw new Error("Duplicate EPR Invoice Number: " + eprInvoice);
-            }
-            console.log(eprInvoice)
             if (!eprInvoice) {
                 throw new Error("EPR Invoice Number not found after submit.");
             }
+            if (eprSet.has(eprInvoice)) {
+                throw new Error("Duplicate EPR Invoice Number: " + eprInvoice);
+            }
+            console.log(`Row ${r}: EPR Invoice -> ${eprInvoice}`);
             logStep("read EPR invoice: done", 1);
 
             // âœ… Update Excel status
