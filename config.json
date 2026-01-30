@@ -1,0 +1,5 @@
+{
+  "inputExcel": "ERP_automations.xlsx",
+  "sheetName": "Main Sheet",
+  "outputExcel": "ERP_automations_output.xlsx"
+}

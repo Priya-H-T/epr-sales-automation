@@ -1,0 +1,7 @@
+/node_modules
+ERP_automations_output.xlsx
+*.bak
+*.tmp
+*_log.csv
+*_filled.csv
+~$*.xlsx

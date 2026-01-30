@@ -1,0 +1,49 @@
+{
+  "cookies": [
+    {
+      "name": "login-token",
+      "value": "8a7c267338da4a22aa58a0fda41163c9",
+      "domain": "eprplastic.cpcb.gov.in",
+      "path": "/epr",
+      "expires": 1769739837.666171,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://eprplastic.cpcb.gov.in",
+      "localStorage": [
+        {
+          "name": "isBorderRounded2",
+          "value": "undefined"
+        },
+        {
+          "name": "mediaBreakPoint",
+          "value": "xl"
+        },
+        {
+          "name": "financialYear",
+          "value": "2025-26"
+        },
+        {
+          "name": "isBorderRounded",
+          "value": "undefined"
+        },
+        {
+          "name": "userDetails",
+          "value": "{\"full_name\":\"shankar kumar jha\",\"company_name\":\"chiripal poly films limited\",\"email\":\"rakesh.aggarwal@cpfl.co.in\",\"profile_url\":\"\",\"user_id\":6189,\"user_type\":\"PWP\",\"user_role_id\":15,\"user_role_name\":\"PWP\",\"login_type\":\"PWP\",\"route\":\"/epr/pwp-dashboard\",\"type\":\"V2\",\"redirection_url\":\"\"}"
+        },
+        {
+          "name": "facility_type",
+          "value": "1"
+        },
+        {
+          "name": "process_code",
+          "value": "R2"
+        }
+      ]
+    }
+  ]
+}
