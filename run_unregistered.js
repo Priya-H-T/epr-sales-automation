@@ -415,6 +415,7 @@ async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
         } catch (e) {
             lastErr = e;
             await waitForLoaderToFinish(page);
+            await page.locator("#refersh_data").first().click().catch(() => { });
             const didReset = await clickResetAndConfirm(page);
             if (!didReset) {
                 await clickAddNewIfVisible(page);
@@ -631,6 +632,16 @@ async function readEprInvoiceNumber(page) {
     return "";
 }
 
+async function waitForEprInvoiceNumber(page, timeoutMs = 20000) {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+        const val = await readEprInvoiceNumber(page);
+        if (val) return val;
+        await page.waitForTimeout(300);
+    }
+    return "";
+}
+
 // Step 3: Entity Name autocomplete (handles both patterns)
 async function pickEntityName(page, entityNameValue) {
     const name = cellText(entityNameValue);
@@ -727,6 +738,7 @@ async function waitEntityAutofill(page) {
     const lastRow = CONFIG.maxRows ? Math.min(ws.rowCount, CONFIG.maxRows) : ws.rowCount;
     for (let r = 2; r <= lastRow; r++) {
         const row = ws.getRow(r);
+        let successThisRow = false;
 
         if (isRowEmpty(row, headerMap)) {
             console.log(`Row ${r}: Skipped (row empty)`);
@@ -767,7 +779,7 @@ async function waitEntityAutofill(page) {
             console.log(`Row ${r} starting...`);
 
             // âœ… Then select CAT-II checkbox (to reveal forms)
-            await selectCat2RowWithRetry(page, "PP");
+            await selectCat2RowWithRetry(page, CONFIG.plasticType || "PP");
 
             // âœ… Qty Sold
             await fillBySelector(page, 'input[name="qty_product_sold"]', formatQty(qtySold));
@@ -857,7 +869,7 @@ async function waitEntityAutofill(page) {
             }
 
 
-            const eprInvoice = await readEprInvoiceNumber(page);
+            const eprInvoice = await waitForEprInvoiceNumber(page);
             console.log(eprInvoice)
             if (!eprInvoice) {
                 throw new Error("EPR Invoice Number not found after submit.");
@@ -880,6 +892,7 @@ async function waitEntityAutofill(page) {
             });
 
             console.log(`Row ${r}: Filled âœ…`);
+            successThisRow = true;
             const delayMs = randDelayMs(3000, 7000);
             const startTs = new Date().toISOString();
             console.log(`Row ${r}: delay start ${startTs} (${delayMs}ms)`);
@@ -906,6 +919,9 @@ async function waitEntityAutofill(page) {
             if (page.isClosed()) {
                 console.log("Page closed. Stopping.");
                 break;
+            }
+            if (successThisRow) {
+                await page.waitForTimeout(1000);
             }
             await waitForLoaderToFinish(page);
             const didReset = await clickResetAndConfirm(page);

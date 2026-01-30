@@ -459,6 +459,16 @@ async function readEprInvoiceNumber(page) {
     return "";
 }
 
+async function waitForEprInvoiceNumber(page, timeoutMs = 20000) {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+        const val = await readEprInvoiceNumber(page);
+        if (val) return val;
+        await page.waitForTimeout(300);
+    }
+    return "";
+}
+
 async function pickEntityName(page, entityNameValue) {
     const name = cellText(entityNameValue);
     if (!name) throw new Error("Entity name empty");
@@ -537,6 +547,7 @@ async function waitEntityAutofill(page) {
     const lastRow = CONFIG.maxRows ? Math.min(ws.rowCount, CONFIG.maxRows) : ws.rowCount;
     for (let r = 2; r <= lastRow; r++) {
         const row = ws.getRow(r);
+        let successThisRow = false;
         if (isRowEmpty(row, headerMap)) {
             console.log(`Row ${r}: Skipped (row empty)`);
             continue;
@@ -596,7 +607,7 @@ async function waitEntityAutofill(page) {
             await waitForLoaderToFinish(page);
             const toastText = await readToastText(page);
 
-            const eprInvoice = await readEprInvoiceNumber(page);
+            const eprInvoice = await waitForEprInvoiceNumber(page);
             if (!eprInvoice) {
                 throw new Error("EPR Invoice Number not found after submit.");
             }
@@ -617,6 +628,7 @@ async function waitEntityAutofill(page) {
             });
 
             console.log(`Row ${r}: Filled ✅`);
+            successThisRow = true;
             const delayMs = randDelayMs(3000, 7000);
             const startTs = new Date().toISOString();
             console.log(`Row ${r}: delay start ${startTs} (${delayMs}ms)`);
@@ -642,6 +654,9 @@ async function waitEntityAutofill(page) {
             if (page.isClosed()) {
                 console.log("Page closed. Stopping.");
                 break;
+            }
+            if (successThisRow) {
+                await page.waitForTimeout(1000);
             }
             await waitForLoaderToFinish(page);
             const didReset = await clickResetAndConfirm(page);
