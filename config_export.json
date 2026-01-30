@@ -1,0 +1,8 @@
+{
+  "inputExcel": "Toppan PWP Sale For Automation.xlsx",
+  "sheetName": "Active Batch",
+  "outputExcel": "Toppan PWP Sale For Automation_export_output.xlsx",
+  "max_rows": 0,
+  "storageState": "storageState_export.json",
+  "plasticType": "PP"
+}

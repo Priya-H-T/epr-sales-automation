@@ -1,23 +1,39 @@
 # EPR Sales Automation
 
-## Configuration (edit `config.json`)
+## Configuration
+Default config file is `config.json`. You can also pass a per-user config:
+```
+node run_export.js --config config_export.json
+node run_registered.js --config config_registered.json
+node run_unregistered.js --config config_unregistered.json
+```
+
+Example config:
 ```json
 {
-  "inputExcel": "ERP_automations.xlsx",
-  "sheetName": "Main Sheet",
-  "outputExcel": "ERP_automations_output.xlsx",
-  "max_rows": 0
+  "inputExcel": "Toppan PWP Sale For Automation.xlsx",
+  "sheetName": "Active Batch",
+  "outputExcel": "Toppan PWP Sale For Automation_output.xlsx",
+  "max_rows": 0,
+  "storageState": "storageState_export.json",
+  "plasticType": "PP",
+  "invoicePdfDir": "C:\\\\Users\\\\Lenovo\\\\Downloads\\\\All invoices"
 }
 ```
 
-Set `max_rows` to a positive number to limit how many rows are processed. Use `0` or remove the key to process all rows.
+Notes:
+- `max_rows`: set to a positive number to limit how many rows are processed. Use `0` or remove to process all rows.
+- `storageState`: login session file for each user (export/registered/unregistered).
+- `plasticType`: CAT-II plastic type (e.g., `PP`, `PET`).
+- `invoicePdfDir`: root folder for PDFs used by `run_upload.js`.
 
 ## Log file names (match the output file name)
 All log files are created using the output file base name so they are easy to track:
 
-- `ERP_automations_output_log.csv` (all processed rows: filled + failed)
-- `ERP_automations_output_filled.csv` (only filled rows)
+- `<output>_log.csv` (all processed rows: filled + failed)
+- `<output>_filled.csv` (only filled rows)
+- `<output>_upload_log.csv` (file upload log)
+- `<output>_upload_filled.csv` (file upload rows)
 
 ## Notes
-- Only rows that are filled successfully are written to the filled output CSV.
 - Logs append across runs.
