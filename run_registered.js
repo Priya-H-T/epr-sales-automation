@@ -71,6 +71,14 @@ function excelDateToISO(v) {
     }
     const s = cellText(v);
     if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+    if (/^\d{2}\.\d{2}\.\d{4}$/.test(s)) {
+        const [dd, mm, yyyy] = s.split(".");
+        return `${yyyy}-${mm}-${dd}`;
+    }
+    if (/^\d{2}-\d{2}-\d{4}$/.test(s)) {
+        const [dd, mm, yyyy] = s.split("-");
+        return `${yyyy}-${mm}-${dd}`;
+    }
     const parts = s.split("/");
     if (parts.length === 3) {
         const mm = String(Number(parts[0])).padStart(2, "0");
