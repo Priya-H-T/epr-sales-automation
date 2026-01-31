@@ -481,7 +481,7 @@ async function clickResetAndConfirm(page) {
     const modal = page.locator(".modal-dialog, .modal-content").first();
     if (await modal.count()) {
         try {
-            await modal.waitFor({ state: "visible", timeout: 15000 });
+            await modal.waitFor({ state: "visible", timeout: 2000 });
             const confirmBtn = modal.getByRole("button", { name: "Confirm", exact: true }).first();
             if (await confirmBtn.count()) {
                 await confirmBtn.click();
