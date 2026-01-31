@@ -556,10 +556,12 @@ async function readEprInvoiceNumber(page) {
     if (await label.count()) {
         const container = label.locator("xpath=ancestor-or-self::*[self::div or self::span or self::p][1]");
         const text = (await container.innerText().catch(() => "")) || "";
+        if (/confirm entered details/i.test(text)) return "";
         const match = text.match(/EPR\\s*Invoice\\s*Number\\s*[:\\-]?\\s*([A-Za-z0-9\\-\\/]+)/i);
         if (match && match[1]) return match[1].trim();
         const sibling = label.locator("xpath=following::span[1] | following::div[1] | following::p[1]").first();
         const sibText = (await sibling.innerText().catch(() => "")).trim();
+        if (/confirm entered details/i.test(sibText)) return "";
         if (sibText) return sibText;
     }
     return "";
@@ -569,6 +571,14 @@ async function waitForEprInvoiceNumber(page, timeoutMs = 20000) {
     const start = Date.now();
     logStep("wait EPR invoice: start", 1);
     while (Date.now() - start < timeoutMs) {
+        const modal = page.locator(".modal-dialog, .modal-content").first();
+        if (await modal.count()) {
+            const confirmBtn = modal.getByRole("button", { name: "Confirm", exact: true }).first();
+            if (await confirmBtn.count()) {
+                await confirmBtn.click().catch(() => { });
+                await modal.waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
+            }
+        }
         const val = await readEprInvoiceNumber(page);
         if (val) return val;
         await page.waitForTimeout(300);
