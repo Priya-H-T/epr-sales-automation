@@ -111,6 +111,12 @@ function csvEscape(v) {
     return s;
 }
 
+function logStep(message, level = 0) {
+    const indent = "  ".repeat(level);
+    const ts = new Date().toISOString();
+    console.log(`${indent}${ts} ${message}`);
+}
+
 function ensureLogHeader() {
     if (fs.existsSync(LOG_PATH)) return;
     const header = [
@@ -294,6 +300,7 @@ async function waitForLoaderToFinish(page) {
         ".block-ui-wrapper",
         ".k-i-loading",
     ];
+    logStep("wait for loader: start", 2);
     for (const sel of loaders) {
         try {
             const loc = page.locator(sel);
@@ -302,6 +309,7 @@ async function waitForLoaderToFinish(page) {
             }
         } catch { }
     }
+    logStep("wait for loader: done", 2);
 }
 
 async function waitForQtyInput(page, timeoutMs = 8000) {
@@ -317,10 +325,12 @@ async function waitForQtyInput(page, timeoutMs = 8000) {
 
 async function clickAddNew(page) {
     const addNewBtn = page.getByRole("button", { name: "Add New", exact: true }).first();
+    logStep("click add new: start", 1);
     await addNewBtn.waitFor({ state: "visible", timeout: 60000 });
     await addNewBtn.scrollIntoViewIfNeeded();
     await addNewBtn.click();
     await page.waitForTimeout(300);
+    logStep("click add new: done", 1);
 }
 
 async function clickAddNewIfVisible(page) {
@@ -330,14 +340,17 @@ async function clickAddNewIfVisible(page) {
     await addNewBtn.scrollIntoViewIfNeeded().catch(() => { });
     await addNewBtn.click().catch(() => { });
     await page.waitForTimeout(300);
+    logStep("click add new (visible): done", 2);
     return true;
 }
 
 async function resetToFreshPage(page) {
+    logStep("reset to fresh page: start", 1);
     await page.goto(URL, { waitUntil: "domcontentloaded" }).catch(() => { });
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 }).catch(() => { });
     await clickAddNewIfVisible(page);
     await page.waitForTimeout(1500);
+    logStep("reset to fresh page: done", 1);
 }
 
 async function ensureSalesFormReady(page) {
@@ -351,15 +364,18 @@ async function ensureSalesFormReady(page) {
 
     const resetBtn = page.locator("button", { hasText: /\bReset\b/i }).first();
     if (await resetBtn.count()) {
+        logStep("ensure form ready: reset", 1);
         await clickResetAndConfirm(page).catch(() => { });
         await page.waitForTimeout(1500);
     } else {
+        logStep("ensure form ready: add new", 1);
         await clickAddNewIfVisible(page);
     }
     return false;
 }
 
 async function selectCat2Row(page, plasticTypeText) {
+    logStep("select CAT-II row: start", 1);
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
     let catRow = page.locator("tbody#ScrollableSimpleTableBody tr", {
         has: page.locator('span[title="CAT-II"]'),
@@ -377,17 +393,20 @@ async function selectCat2Row(page, plasticTypeText) {
     await checkbox.scrollIntoViewIfNeeded();
     await checkbox.click({ force: true });
     await page.waitForSelector('input[name="qty_product_sold"]', { timeout: 30000 });
+    logStep("select CAT-II row: done", 1);
 }
 
 async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
     let lastErr = null;
     for (let i = 0; i < attempts; i++) {
         try {
+            logStep(`select CAT-II retry ${i + 1}/${attempts}`, 1);
             await ensureSalesFormReady(page);
             await selectCat2Row(page, plasticTypeText);
             return true;
         } catch (e) {
             lastErr = e;
+            logStep(`select CAT-II failed: ${String(e?.message || e)}`, 1);
             await waitForLoaderToFinish(page);
             await page.locator("#refersh_data").first().click().catch(() => { });
             const didReset = await clickResetAndConfirm(page);
@@ -411,6 +430,7 @@ async function selectNgSelectByLabel(page, labelText, optionText) {
         .locator(".form-group", { has: page.locator("label", { hasText: labelText }) })
         .first();
 
+    logStep(`select ng-select: ${labelText} -> ${text}`, 1);
     await group.waitFor({ state: "visible", timeout: 20000 });
     const ng = group.locator("ng-select").first();
     await ng.scrollIntoViewIfNeeded();
@@ -436,6 +456,7 @@ async function selectNgSelectByLabel(page, labelText, optionText) {
 
 async function clickSubmitAndConfirm(page) {
     const submit = page.locator('button[type="submit"]', { hasText: "Generate EPR Invoice Number" }).first();
+    logStep("submit: start", 1);
     await submit.waitFor({ state: "visible", timeout: 20000 });
     if (await submit.isDisabled()) {
         throw new Error("Submit disabled: some required fields still missing.");
@@ -446,11 +467,13 @@ async function clickSubmitAndConfirm(page) {
         await confirmBtn.waitFor({ state: "visible", timeout: 60000 });
         await confirmBtn.click();
     } catch { }
+    logStep("submit: done", 1);
 }
 
 async function clickResetAndConfirm(page) {
     const reset = page.locator("button", { hasText: /\bReset\b/i }).first();
     if (!(await reset.count())) return false;
+    logStep("reset: start", 1);
     await reset.waitFor({ state: "visible", timeout: 20000 }).catch(() => { });
     await reset.scrollIntoViewIfNeeded().catch(() => { });
     await reset.click().catch(() => { });
@@ -465,6 +488,7 @@ async function clickResetAndConfirm(page) {
             }
         } catch { }
     }
+    logStep("reset: done", 1);
     return true;
 }
 
@@ -543,11 +567,13 @@ async function readEprInvoiceNumber(page) {
 
 async function waitForEprInvoiceNumber(page, timeoutMs = 20000) {
     const start = Date.now();
+    logStep("wait EPR invoice: start", 1);
     while (Date.now() - start < timeoutMs) {
         const val = await readEprInvoiceNumber(page);
         if (val) return val;
         await page.waitForTimeout(300);
     }
+    logStep("wait EPR invoice: timeout", 1);
     return "";
 }
 
@@ -711,16 +737,27 @@ async function waitEntityAutofill(page) {
             if (!(await waitForQtyInput(page, 8000))) {
                 throw new Error("qty_product_sold not visible");
             }
+            logStep("fill qty: start", 1);
             await fillBySelector(page, 'input[name="qty_product_sold"]', formatQty(qtySold));
+            logStep("fill qty: done", 1);
 
+            logStep("select registration type: start", 1);
             await selectNgSelectByLabel(page, "Registration Type", regType);
+            logStep("select registration type: done", 1);
+            logStep("select entity type: start", 1);
             await selectNgSelectByLabel(page, "Entity Type", entityType);
+            logStep("select entity type: done", 1);
 
             console.log("wait for entity list: 1500ms");
             await page.waitForTimeout(1500);
+            logStep("pick entity name: start", 1);
             await pickEntityName(page, entityName);
+            logStep("pick entity name: done", 1);
+            logStep("wait entity autofill: start", 1);
             await waitEntityAutofill(page);
+            logStep("wait entity autofill: done", 1);
 
+            logStep("fill remaining fields: start", 1);
             await fillById(page, "sellerGst", sellerGst);
             await fillById(page, "buyerGst", buyerGst);
             await fillById(page, "hsnCode", hsn);
@@ -729,14 +766,21 @@ async function waitEntityAutofill(page) {
             await fillById(page, "ifsc_code", ifsc);
             await fillById(page, "amount", principal);
             await fillById(page, "gst", gstOther);
+            logStep("fill remaining fields: done", 1);
 
+            logStep("set sales date: start", 1);
             const salesDateISO = excelDateToISO(salesDateRaw);
             await setAngularDateById(page, "salesDate", salesDateISO);
+            logStep(`set sales date: done (${salesDateISO})`, 1);
 
             await clickSubmitAndConfirm(page);
+            logStep("post-submit: wait 1000ms", 1);
             await page.waitForTimeout(1000);
             await waitForLoaderToFinish(page);
             const toastText = await readToastText(page);
+            if (toastText) {
+                logStep(`toast: ${toastText}`, 1);
+            }
 
             const eprInvoice = await waitForEprInvoiceNumber(page);
             if (eprSet.has(eprInvoice)) {
@@ -745,6 +789,7 @@ async function waitEntityAutofill(page) {
             if (!eprInvoice) {
                 throw new Error("EPR Invoice Number not found after submit.");
             }
+            logStep(`EPR invoice: ${eprInvoice}`, 1);
 
             setVal(row, headerMap, "Status", "Filled");
             setVal(row, headerMap, "EPR Invoice Number", eprInvoice);
