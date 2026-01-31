@@ -329,7 +329,7 @@ async function clickAddNew(page) {
     await addNewBtn.waitFor({ state: "visible", timeout: 60000 });
     await addNewBtn.scrollIntoViewIfNeeded();
     await addNewBtn.click();
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(150);
     logStep("click add new: done", 1);
 }
 
@@ -339,7 +339,7 @@ async function clickAddNewIfVisible(page) {
     await addNewBtn.waitFor({ state: "visible", timeout: 5000 }).catch(() => { });
     await addNewBtn.scrollIntoViewIfNeeded().catch(() => { });
     await addNewBtn.click().catch(() => { });
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(150);
     logStep("click add new (visible): done", 2);
     return true;
 }
@@ -349,7 +349,7 @@ async function resetToFreshPage(page) {
     await page.goto(URL, { waitUntil: "domcontentloaded" }).catch(() => { });
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 }).catch(() => { });
     await clickAddNewIfVisible(page);
-    await page.waitForTimeout(1500);
+    await page.waitForTimeout(800);
     logStep("reset to fresh page: done", 1);
 }
 
@@ -416,7 +416,7 @@ async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
             if (i === 1) {
                 await resetToFreshPage(page);
             }
-            await page.waitForTimeout(500);
+    await page.waitForTimeout(300);
         }
     }
     throw lastErr || new Error("Failed to select CAT-II row");
@@ -443,7 +443,7 @@ async function selectNgSelectByLabel(page, labelText, optionText) {
     if (await searchInput.count()) {
         try {
             await searchInput.fill(text);
-            await page.waitForTimeout(200);
+    await page.waitForTimeout(120);
         } catch { }
     }
 
@@ -598,7 +598,7 @@ async function pickEntityName(page, entityNameValue) {
             const searchInput = panel.locator("input[type='text']").first();
             if (await searchInput.count()) {
                 await searchInput.fill(name);
-                await page.waitForTimeout(300);
+                await page.waitForTimeout(150);
                 await searchInput.press("Enter");
             } else {
                 await page.keyboard.type(name);
@@ -631,7 +631,7 @@ async function pickEntityName(page, entityNameValue) {
     await input.click();
     await input.fill(name);
 
-    await page.waitForTimeout(600);
+    await page.waitForTimeout(300);
 
     const suggestion = page.locator(
         'ul li, .dropdown-item, .typeahead-item, .autocomplete-items div'
@@ -748,8 +748,8 @@ async function waitEntityAutofill(page) {
             await selectNgSelectByLabel(page, "Entity Type", entityType);
             logStep("select entity type: done", 1);
 
-            console.log("wait for entity list: 1500ms");
-            await page.waitForTimeout(1500);
+            console.log("wait for entity list: 500ms");
+            await page.waitForTimeout(500);
             logStep("pick entity name: start", 1);
             await pickEntityName(page, entityName);
             logStep("pick entity name: done", 1);
@@ -774,8 +774,8 @@ async function waitEntityAutofill(page) {
             logStep(`set sales date: done (${salesDateISO})`, 1);
 
             await clickSubmitAndConfirm(page);
-            logStep("post-submit: wait 1000ms", 1);
-            await page.waitForTimeout(1000);
+            logStep("post-submit: wait 300ms", 1);
+            await page.waitForTimeout(300);
             await waitForLoaderToFinish(page);
             const toastText = await readToastText(page);
             if (toastText) {
@@ -836,14 +836,14 @@ async function waitEntityAutofill(page) {
                 break;
             }
             if (successThisRow) {
-                await page.waitForTimeout(1000);
+                await page.waitForTimeout(300);
             }
             await waitForLoaderToFinish(page);
             const didReset = await clickResetAndConfirm(page);
             if (!didReset) {
                 await clickAddNewIfVisible(page);
             }
-            await page.waitForTimeout(2000);
+            await page.waitForTimeout(500);
         }
     }
 
