@@ -9,7 +9,7 @@ function getConfigPath() {
     if (idx !== -1 && process.argv[idx + 1]) {
         return path.resolve(__dirname, process.argv[idx + 1]);
     }
-    return path.resolve(__dirname, "config.json");
+    return path.resolve(__dirname, "config_export.json");
 }
 
 const CONFIG_PATH = getConfigPath();

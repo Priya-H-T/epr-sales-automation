@@ -2,10 +2,10 @@
   "cookies": [
     {
       "name": "login-token",
-      "value": "e38a079cc8d341988de67b4d6f49b001",
+      "value": "00e33765e3574b24bee6b032ddac6e47",
       "domain": "eprplastic.cpcb.gov.in",
       "path": "/epr",
-      "expires": 1769762133.046474,
+      "expires": 1769849267.082777,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Strict"
@@ -20,28 +20,20 @@
           "value": "undefined"
         },
         {
-          "name": "mediaBreakPoint",
-          "value": "xl"
-        },
-        {
-          "name": "financialYear",
-          "value": "2025-26"
-        },
-        {
           "name": "isBorderRounded",
           "value": "undefined"
+        },
+        {
+          "name": "mediaBreakPoint",
+          "value": "xl"
         },
         {
           "name": "userDetails",
           "value": "{\"full_name\":\"ARUN GOEL\",\"company_name\":\"POLYPLEX CORPORATION LTD\",\"email\":\"epr-khatimarecycler@polyplex.com\",\"profile_url\":\"\",\"user_id\":3734,\"user_type\":\"PWP\",\"user_role_id\":15,\"user_role_name\":\"PWP\",\"login_type\":\"PWP\",\"route\":\"/epr/pwp-dashboard\",\"type\":\"V2\",\"redirection_url\":\"\"}"
         },
         {
-          "name": "facility_type",
-          "value": "1"
-        },
-        {
-          "name": "process_code",
-          "value": "R2"
+          "name": "financialYear",
+          "value": "2025-26"
         }
       ]
     }

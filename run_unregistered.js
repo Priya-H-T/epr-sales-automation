@@ -779,11 +779,11 @@ async function pickEntityName(page, entityNameValue) {
     await input.fill(name);
 
     // Wait a little for autocomplete
-    await page.waitForTimeout(800);
+    await page.waitForTimeout(600);
 
     // Generic dropdown patterns (not ng-select)
     const suggestion = page.locator(
-        'ul li, .dropdown-item, .typeahead-item, .autocomplete-items div'
+        "ul li, .dropdown-item, .typeahead-item, .autocomplete-items div"
     ).first();
 
     if (await suggestion.count()) {

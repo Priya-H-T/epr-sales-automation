@@ -486,13 +486,28 @@ async function pickEntityName(page, entityNameValue) {
     const name = cellText(entityNameValue);
     if (!name) throw new Error("Entity name empty");
 
+    const group = page
+        .locator(".form-group", { has: page.locator("label", { hasText: "Name of the Entity" }) })
+        .first();
+
+    if (await group.count()) {
+        const ng = group.locator("ng-select").first();
+        if (await ng.count()) {
+            console.log("pick entity name: ng-select");
+            await selectNgSelectByLabel(page, "Name of the Entity", name);
+            await waitForLoaderToFinish(page);
+            return;
+        }
+    }
+
     const input = page.locator('input[formcontrolname="entity_name"]').first();
     await input.waitFor({ state: "visible", timeout: 30000 });
     await input.scrollIntoViewIfNeeded();
+    console.log("pick entity name: input autocomplete");
     await input.click();
     await input.fill(name);
 
-    await page.waitForTimeout(800);
+    await page.waitForTimeout(600);
 
     const suggestion = page.locator(
         'ul li, .dropdown-item, .typeahead-item, .autocomplete-items div'
@@ -600,7 +615,8 @@ async function waitEntityAutofill(page) {
             await selectNgSelectByLabel(page, "Registration Type", regType);
             await selectNgSelectByLabel(page, "Entity Type", entityType);
 
-            await page.waitForTimeout(2000);
+            console.log("wait for entity list: 1500ms");
+            await page.waitForTimeout(1500);
             await pickEntityName(page, entityName);
             await waitEntityAutofill(page);
 
