@@ -296,6 +296,17 @@ async function waitForLoaderToFinish(page) {
     }
 }
 
+async function waitForQtyInput(page, timeoutMs = 8000) {
+    const qtyInput = page.locator('input[name="qty_product_sold"]').first();
+    if (!(await qtyInput.count())) return false;
+    try {
+        await qtyInput.waitFor({ state: "visible", timeout: timeoutMs });
+        return true;
+    } catch {
+        return false;
+    }
+}
+
 async function clickAddNew(page) {
     const addNewBtn = page.getByRole("button", { name: "Add New", exact: true }).first();
     await addNewBtn.waitFor({ state: "visible", timeout: 60000 });
@@ -312,6 +323,32 @@ async function clickAddNewIfVisible(page) {
     await addNewBtn.click().catch(() => { });
     await page.waitForTimeout(300);
     return true;
+}
+
+async function resetToFreshPage(page) {
+    await page.goto(URL, { waitUntil: "domcontentloaded" }).catch(() => { });
+    await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 }).catch(() => { });
+    await clickAddNewIfVisible(page);
+    await page.waitForTimeout(1500);
+}
+
+async function ensureSalesFormReady(page) {
+    const qtyInput = page.locator('input[name="qty_product_sold"]').first();
+    if (await qtyInput.count()) {
+        try {
+            await qtyInput.waitFor({ state: "visible", timeout: 2000 });
+            return true;
+        } catch { }
+    }
+
+    const resetBtn = page.locator("button", { hasText: /\bReset\b/i }).first();
+    if (await resetBtn.count()) {
+        await clickResetAndConfirm(page).catch(() => { });
+        await page.waitForTimeout(1500);
+    } else {
+        await clickAddNewIfVisible(page);
+    }
+    return false;
 }
 
 async function selectCat2Row(page, plasticTypeText) {
@@ -332,6 +369,30 @@ async function selectCat2Row(page, plasticTypeText) {
     await checkbox.scrollIntoViewIfNeeded();
     await checkbox.click({ force: true });
     await page.waitForSelector('input[name="qty_product_sold"]', { timeout: 30000 });
+}
+
+async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
+    let lastErr = null;
+    for (let i = 0; i < attempts; i++) {
+        try {
+            await ensureSalesFormReady(page);
+            await selectCat2Row(page, plasticTypeText);
+            return true;
+        } catch (e) {
+            lastErr = e;
+            await waitForLoaderToFinish(page);
+            await page.locator("#refersh_data").first().click().catch(() => { });
+            const didReset = await clickResetAndConfirm(page);
+            if (!didReset) {
+                await clickAddNewIfVisible(page);
+            }
+            if (i === 1) {
+                await resetToFreshPage(page);
+            }
+            await page.waitForTimeout(500);
+        }
+    }
+    throw lastErr || new Error("Failed to select CAT-II row");
 }
 
 async function selectNgSelectByLabel(page, labelText, optionText) {
@@ -494,6 +555,35 @@ async function pickEntityName(page, entityNameValue) {
         const ng = group.locator("ng-select").first();
         if (await ng.count()) {
             console.log("pick entity name: ng-select");
+            await ng.scrollIntoViewIfNeeded();
+            await ng.click();
+
+            const panel = page.locator(".ng-dropdown-panel");
+            await panel.waitFor({ state: "visible", timeout: 20000 });
+
+            const searchInput = panel.locator("input[type='text']").first();
+            if (await searchInput.count()) {
+                await searchInput.fill(name);
+                await page.waitForTimeout(300);
+                await searchInput.press("Enter");
+            } else {
+                await page.keyboard.type(name);
+                await page.waitForTimeout(300);
+                await page.keyboard.press("Enter");
+            }
+
+            await panel.waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
+            const selected = group.locator(".ng-value-label").first();
+            if (await selected.count()) {
+                const selectedText = (await selected.innerText().catch(() => "")).trim();
+                if (selectedText) {
+                    console.log(`pick entity name: selected "${selectedText}"`);
+                    await waitForLoaderToFinish(page);
+                    return;
+                }
+            }
+
+            console.log("pick entity name: enter did not select, fallback to click");
             await selectNgSelectByLabel(page, "Name of the Entity", name);
             await waitForLoaderToFinish(page);
             return;
@@ -609,7 +699,10 @@ async function waitEntityAutofill(page) {
 
         try {
             console.log(`Row ${r} starting...`);
-            await selectCat2Row(page, CONFIG.plasticType || "PP");
+            await selectCat2RowWithRetry(page, CONFIG.plasticType || "PP");
+            if (!(await waitForQtyInput(page, 8000))) {
+                throw new Error("qty_product_sold not visible");
+            }
             await fillBySelector(page, 'input[name="qty_product_sold"]', formatQty(qtySold));
 
             await selectNgSelectByLabel(page, "Registration Type", regType);
