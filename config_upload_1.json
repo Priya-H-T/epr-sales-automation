@@ -1,0 +1,8 @@
+{
+    "inputExcel": "BAZPUR PWP Sale For Automation PET_T_updated.xlsx",
+    "sheetName": "Main Sheet",
+    "outputExcel": "BAZPUR PWP Sale For Automation PET_T_updated_upload_output.xlsx",
+    "max_rows": 0,
+    "storageState": "storageState_upload.json",
+    "invoicePdfDir": "C:\\Users\\Lenovo\\Downloads\\Processed Invoices-20260210T111647Z-1-001\\Processed Invoices\\polyplex_bazpur_output\\polyplex_bazpur_output"
+}

@@ -1,8 +1,8 @@
 {
-  "inputExcel": "Toppan PWP Sale For Automation.xlsx",
-  "sheetName": "Active Batch",
-  "outputExcel": "Toppan PWP Sale For Automation_upload_output.xlsx",
+  "inputExcel": "BAZPURA PWP Sale For Automation PP_T_updated.xlsx",
+  "sheetName": "Main Sheet",
+  "outputExcel": "BAZPURA PWP Sale For Automation PP_T_updated_upload_output.xlsx",
   "max_rows": 0,
   "storageState": "storageState_upload.json",
-  "invoicePdfDir": "C:\\Users\\Lenovo\\Downloads\\All invoices-20260130T085216Z-3-001\\All invoices"
+  "invoicePdfDir": "C:\\Users\\Lenovo\\Downloads\\processed-20260210T111629Z-1-001\\processed\\polyplex_bazpur_pp_output\\polyplex_bazpur_pp_output"
 }

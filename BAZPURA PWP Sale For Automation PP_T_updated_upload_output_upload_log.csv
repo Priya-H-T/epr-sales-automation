@@ -1,0 +1,1765 @@
+datetime,row,e_invoice_number,epr_invoice_number,status,message
+2026-02-10T05:58:37.726Z,2,B02416000001,202601287218533,Success,Already uploaded (green status).
+2026-02-10T05:58:46.769Z,3,B02416000002,20260128721882,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T05:58:50.964Z,4,B02416000003,202601287219030,Success,Already uploaded (green status).
+2026-02-10T05:58:54.752Z,5,B02416000004,202601287219084,Success,Already uploaded (green status).
+2026-02-10T05:58:58.227Z,6,B02416000005,202601287219166,Success,Already uploaded (green status).
+2026-02-10T05:59:01.853Z,7,B02416000006,202601287219221,Success,Already uploaded (green status).
+2026-02-10T05:59:05.514Z,8,B02416000007,202601287219263,Success,Already uploaded (green status).
+2026-02-10T05:59:12.769Z,9,B02416000009,202601287219299,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T05:59:20.801Z,10,B02416000010,202601287219349,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T05:59:24.503Z,11,B02416000011,202601287219384,Success,Already uploaded (green status).
+2026-02-10T05:59:29.102Z,12,B02416000012,202601287219417,Success,Already uploaded (green status).
+2026-02-10T05:59:33.400Z,13,B02416000014,202601287219450,Success,Already uploaded (green status).
+2026-02-10T05:59:41.347Z,14,B02416000015,202601287219478,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T05:59:45.456Z,15,B02416000020,202601287219510,Success,Already uploaded (green status).
+2026-02-10T05:59:49.056Z,16,B02416000021,202601287219543,Success,Already uploaded (green status).
+2026-02-10T05:59:53.289Z,17,B02416000022,202601287219572,Success,Already uploaded (green status).
+2026-02-10T06:00:02.633Z,18,B02416000023,202601287219599,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:00:10.335Z,19,B02416000035,202601287219631,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:00:17.420Z,20,B02416000043,202601287221100,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:00:21.587Z,21,B02416000045,202601287221537,Success,Already uploaded (green status).
+2026-02-10T06:00:29.513Z,22,B02416000055,202601287221565,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:00:37.377Z,23,B02416000078,202601287221656,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:00:41.731Z,24,B02416000079,202601287221737,Success,Already uploaded (green status).
+2026-02-10T06:00:45.470Z,25,B02416000087,202601287222153,Success,Already uploaded (green status).
+2026-02-10T06:00:49.593Z,26,B02416000088,202601287222183,Success,Already uploaded (green status).
+2026-02-10T06:00:54.312Z,27,B02416000106,202601287222244,Success,Already uploaded (green status).
+2026-02-10T06:00:58.571Z,28,B02416000171,202601287222427,Success,Already uploaded (green status).
+2026-02-10T06:01:02.974Z,29,B02416000215,202601287222625,Success,Already uploaded (green status).
+2026-02-10T06:01:06.637Z,30,B02416000262,202601287222769,Success,Already uploaded (green status).
+2026-02-10T06:01:10.284Z,31,B02416000263,202601287222811,Success,Already uploaded (green status).
+2026-02-10T06:01:12.468Z,32,B02416000276,202601287222852,Failed,"page.waitForTimeout: Target page, context or browser has been closed"
+2026-02-10T06:02:46.259Z,340,B02416001225,202601287230674,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:02:54.397Z,341,B02416001230,202601287230680,Failed,"page.waitForTimeout: Target page, context or browser has been closed"
+2026-02-10T06:03:36.827Z,340,B02416001225,202601287230674,Success,Already uploaded (green status).
+2026-02-10T06:03:41.523Z,341,B02416001230,202601287230680,Success,Already uploaded (green status).
+2026-02-10T06:03:48.783Z,342,B02416001231,202601287230691,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:03:56.406Z,343,B02416001232,202601287230698,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:04:04.673Z,344,B02416001233,202601287230705,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:04:41.496Z,345,B02416001245,202601287230712,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:04:48.537Z,346,B02416001247,202601287230721,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:05:26.042Z,347,B02416001249,202601287230729,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:05:33.217Z,348,B02416001250,202601287230737,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:05:40.817Z,349,B02416001251,202601287230743,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:05:48.235Z,350,B02416001252,202601287230751,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:05:55.076Z,351,B02416001253,202601287232303,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:06:33.029Z,352,B02416001254,202601287232314,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:06:40.154Z,353,B02416001255,202601287232330,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:07:18.068Z,354,B02416001256,202601287232341,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:07:54.959Z,355,B02416001257,202601287232586,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:08:01.952Z,356,B02416001260,202601287232605,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:08:39.968Z,357,B02416001261,202601287232621,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:08:56.705Z,358,B02416001262,202601287232637,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:09:33.797Z,359,B02416001278,202601287232653,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:09:40.480Z,360,B02416001279,202601287232668,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:09:47.825Z,361,B02416001281,202601287232684,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:09:55.400Z,362,B02416001284,202601287232701,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:10:32.474Z,363,B02416001285,202601287232718,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:10:39.475Z,364,B02416001287,202601287232733,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:10:46.813Z,365,B02416001288,202601287232749,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:11:24.209Z,366,B02416001289,202601287232764,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:11:30.839Z,367,B02416001290,202601287232781,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:12:08.331Z,368,B02416001291,202601287232799,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:12:44.876Z,369,B02416001292,202601287232814,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:12:54.120Z,370,B02416001294,202601287232829,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:13:01.208Z,371,B02416001295,202601287232855,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:13:08.104Z,372,B02416001296,202601287233143,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:13:45.574Z,373,B02416001298,202601287233182,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:13:52.206Z,374,B02416001299,202601287233202,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:14:29.627Z,375,B02416001302,202601287233218,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:14:36.300Z,376,B02416001303,202601287233238,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:14:44.169Z,377,B02416001310,202601287233256,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:15:21.098Z,378,B02416001311,202601287233275,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:15:27.231Z,379,B02416001313,202601287233293,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:15:34.143Z,380,B02416001328,202601287233309,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:15:41.273Z,381,B02416001331,202601287233325,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:16:17.046Z,382,B02416001352,202601287233338,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:16:23.965Z,383,B02416001353,202601287233360,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:16:30.593Z,384,B02416001354,202601287233381,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:17:08.019Z,385,B02416001358,202601287233406,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:17:14.676Z,386,B02416001359,202601287233432,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:17:54.214Z,387,B02416001360,202601287233463,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:18:01.294Z,388,B02416001362,202601287233492,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:18:09.090Z,389,B02416001364,202601287233508,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:18:16.829Z,390,B02416001365,202601287233526,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:18:23.654Z,391,B02416001366,202601287233542,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:19:01.078Z,392,B02416001368,202601287233563,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T06:19:37.904Z,393,B02416001369,202601287233580,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:20:14.751Z,394,B02416001387,202601287233597,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:20:50.982Z,395,B02416001394,202601287233625,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:21:27.091Z,396,B02416001395,202601287233642,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:21:34.085Z,397,B02416001396,202601287233671,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:22:10.222Z,398,B02416001409,202601287233945,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:22:47.065Z,399,B02416001416,202601287233967,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:22:54.036Z,400,B02416001417,202601287233980,Failed,error
+2026-02-10T06:23:31.663Z,401,B02416001418,202601287234006,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:24:08.866Z,402,B02416001420,202601287234027,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:24:16.304Z,403,B02416001434,202601287234041,Failed,error
+2026-02-10T06:24:24.592Z,404,B02416001438,202601287234061,Failed,error
+2026-02-10T06:24:32.091Z,405,B02416001439,202601287234076,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:24:39.517Z,406,B02416001440,202601287234093,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:25:16.576Z,407,B02416001445,202601287234115,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:25:52.849Z,408,B02416001446,202601287234138,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:26:29.521Z,409,B02416001450,202601287234169,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:27:06.342Z,410,B02416001451,202601287234191,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:27:43.060Z,411,B02416001452,202601287234213,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:28:19.169Z,412,B02416001477,202601287234230,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:28:25.888Z,413,B02416001480,202601287234250,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:29:04.351Z,414,B02416001481,202601287234269,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:29:11.031Z,415,B02416001486,202601287234283,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:29:47.724Z,416,B02416001491,202601287234301,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:29:53.973Z,417,B02416001507,202601287234321,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:30:30.956Z,418,B02416001513,202601287234345,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:30:37.450Z,419,B02416001517,202601287234376,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:31:14.269Z,420,B02416001518,202601287234386,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:31:50.602Z,421,B02416001520,202601287234410,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:31:57.190Z,422,B02416001523,202601287234431,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:32:04.381Z,423,B02416001535,202601287234452,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:32:10.481Z,424,B02416001536,202601287234464,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:32:47.427Z,425,B02416001537,202601287234490,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:32:54.461Z,426,B02416001540,202601287234518,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:33:31.352Z,427,B02416001541,202601287234534,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:34:11.211Z,428,B02416001542,202601287234552,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:34:47.515Z,429,B02416001543,202601287234571,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:35:25.784Z,430,B02416001544,202601287234588,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:36:06.395Z,431,B02416001545,202601287234608,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:36:14.877Z,432,B02416001553,202601287234623,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:36:23.618Z,433,B02416001555,202601287234643,Failed,error
+2026-02-10T06:36:38.095Z,434,B02416001562,202601287234665,Failed,error
+2026-02-10T06:37:21.681Z,435,B02416001563,202601287234676,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:38:05.523Z,436,B02416001564,202601287234691,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:38:43.235Z,437,B02416001565,202601287234709,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:39:26.511Z,438,B02416001575,202601287234727,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:40:10.187Z,439,B02416001576,202601287234741,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:40:54.310Z,440,B02416001577,202601287234751,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:41:36.506Z,441,B02416001586,202601287234758,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:42:20.046Z,442,B02416001587,202601287234767,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T06:43:01.564Z,443,B02416001588,202601287234775,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:43:20.595Z,444,B02416001589,202601287234790,Failed,"×
+Error
+Unable to verify the GST e-invoice: The QR code as required in the GST e-invoice is missing in the uploaded document."
+2026-02-10T06:44:02.461Z,445,B02416001590,202601287234823,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:44:12.579Z,446,B02416001594,202601287235153,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T06:44:55.194Z,447,B02416001597,202601287235168,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:45:36.972Z,448,B02416001599,202601287235177,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:46:14.737Z,449,B02416001600,202601287235191,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:46:22.877Z,450,B02416001617,202601287235201,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:47:00.843Z,451,B02416001618,202601287235219,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:47:09.250Z,452,B02416001626,202601287235233,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:47:46.309Z,453,B02416001631,202601287235247,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:48:23.783Z,454,B02416001632,202601287235267,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T06:48:31.077Z,455,B02416001633,202601287235285,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:48:39.117Z,456,B02416001634,202601287235302,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:48:47.783Z,457,B02416001635,202601287235316,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:49:25.376Z,458,B02416001636,202601287235336,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:50:02.994Z,459,B02416001672,202601287235360,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T06:51:17.127Z,460,B02416001673,202601287235377,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:51:25.610Z,461,B02416001685,202601287235389,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:52:03.498Z,462,B02416001686,202601287235414,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:52:41.141Z,463,B02416001692,202601287235441,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:52:49.580Z,464,B02416001701,202601287235453,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:53:29.818Z,465,B02416001702,202601287235476,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T06:54:09.156Z,466,B02416001703,202601287235488,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:54:17.499Z,467,B02416001705,202601287235502,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information.
+×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T06:54:25.967Z,468,B02416001709,202601287235521,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:54:33.765Z,469,B02416001711,202601287235535,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:54:41.249Z,470,B02416001712,202601287235558,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T06:55:18.289Z,471,B02416001716,202601287235570,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:55:25.460Z,472,B02416001718,202601287235587,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:56:03.269Z,473,B02416001737,202601287235603,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:56:11.186Z,474,B02416001740,202601287235618,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:56:18.555Z,475,B02416001741,202601287235638,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:56:25.593Z,476,B02416001743,202601287235652,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:56:33.356Z,477,B02416001744,202601287235666,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:57:10.695Z,478,B02416001748,202601287235683,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:57:18.563Z,479,B02416001754,202601287235694,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:57:56.519Z,480,B02416001755,202601287235712,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:58:34.020Z,481,B02416001756,202601287235740,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:58:42.179Z,482,B02416001757,202601287235764,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:58:49.640Z,483,B02416001762,202601287235783,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:58:57.083Z,484,B02416001763,202601287235794,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:59:34.249Z,485,B02416001764,202601287235805,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T06:59:41.453Z,486,B02416001765,202601287235812,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:00:18.738Z,487,B02416001768,202601287235821,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:00:55.941Z,488,B02416001769,202601287235828,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:01:03.411Z,489,B02416001771,202601287235838,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:01:41.212Z,490,B02416001773,202601287235845,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:02:18.923Z,491,B02416001777,202601287235856,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:02:27.374Z,492,B02416001778,202601287235868,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:02:35.767Z,493,B02416001780,202601287235875,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:02:43.175Z,494,B02416001783,202601287235885,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:02:51.139Z,495,B02416001784,202601287235892,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:02:58.396Z,496,B02416001785,202601287235904,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:03:36.049Z,497,B02416001787,202601287235913,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:03:43.221Z,498,B02416001788,202601287235926,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:03:50.445Z,499,B02416001789,202601287235935,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:03:57.587Z,500,B02416001790,202601287235941,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:04:05.480Z,501,B02416001792,202601287235950,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:04:13.620Z,502,B02416001793,202601287235957,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:04:52.422Z,503,B02416001796,202601287235968,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:04:59.893Z,504,B02416001797,202601287235976,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:05:07.086Z,505,B02416001800,202601287235984,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:05:14.932Z,506,B02416001801,202601287235993,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:05:22.420Z,507,B02416001802,202601287236000,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:05:30.594Z,508,B02416001803,202601287236017,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:06:08.245Z,509,B02416001805,202601287236024,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:06:15.707Z,510,B02416001806,202601287236036,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:06:22.746Z,511,B02416001807,202601287236047,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:06:30.126Z,512,B02416001812,202601287236054,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:06:37.272Z,513,B02416001813,202601287236068,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:06:44.442Z,514,B02416001814,202601287236076,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:06:51.437Z,515,B02416001815,202601287236089,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:07:28.615Z,516,B02416001816,202601287236099,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:08:05.937Z,517,B02416001818,202601287236109,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T07:08:13.077Z,518,B02416001820,202601287236124,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:08:51.465Z,519,B02416001821,202601287236132,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:09:29.022Z,520,B02416001822,202601287236149,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:10:06.401Z,521,B02416001826,202601287236161,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:10:43.049Z,522,B02416001828,202601287236182,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:10:50.028Z,523,B02416001829,202601287236195,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:11:27.109Z,524,B02416001830,202601287236219,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:11:34.736Z,525,B02416001831,202601287236247,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:11:41.776Z,526,B02416001832,202601287236286,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:12:19.380Z,527,B02416001833,202601287236310,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:12:27.360Z,528,B02416001834,202601287236328,Failed,error
+2026-02-10T07:12:34.537Z,529,B02416001836,202601287236348,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:12:42.605Z,530,B02416001854,202601287236361,Failed,error
+2026-02-10T07:13:20.983Z,531,B02416001859,202601287236382,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:13:57.995Z,532,B02416001860,202601287236398,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:14:05.065Z,533,B02416001863,202601287236421,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:14:13.087Z,534,B02416001866,202601287236431,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:14:20.273Z,535,B02416001867,202601287236451,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:14:27.538Z,536,B02416001868,202601287236461,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:14:34.865Z,537,B02416001869,202601287236487,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:14:41.908Z,538,B02416001871,202601287236496,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:14:49.129Z,539,B02416001873,202601287236509,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:14:56.314Z,540,B02416001874,202601287236523,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:15:03.051Z,541,B02416001875,202601287236534,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:15:10.539Z,542,B02416001876,202601287236556,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:15:48.165Z,543,B02416001878,202601287236572,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:16:25.807Z,544,B02416001879,202601287236593,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:17:03.327Z,545,B02416001880,202601287236620,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:17:11.699Z,546,B02416001881,202601287236644,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:17:20.166Z,547,B02416001882,202601287236661,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:17:57.218Z,548,B02416001885,202601287236688,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:18:04.320Z,549,B02416001901,202601287236697,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:18:41.251Z,550,B02416001902,202601287236709,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:18:48.405Z,551,B02416001909,202601287236737,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:18:55.274Z,552,B02416001910,202601287236761,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:19:05.314Z,553,B02416001917,202601287236783,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+×
+Error
+Unable to verify the GST e-invoice: Seller GST number , Buyer GST number , Invoice number , Date of sale entry , Total Amount Value , HSN Code in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:19:44.398Z,554,B02416001918,202601287236799,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:19:53.035Z,555,B02416001919,202601287236824,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:20:31.370Z,556,B02416001922,202601287236840,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:21:10.233Z,557,B02416001923,202601287236865,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:21:18.539Z,558,B02416001924,202601287236881,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:21:26.242Z,559,B02416001925,202601287236909,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:21:34.483Z,560,B02416001926,202601287236925,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:21:42.082Z,561,B02416001928,202601287236950,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:21:50.070Z,562,B02416001932,202601287236962,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:21:57.720Z,563,B02416001933,202601287236989,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:22:05.308Z,564,B02416001934,202601287237004,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:22:13.364Z,565,B02416001935,202601287237031,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:22:21.605Z,566,B02416001942,202601287237050,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:22:30.484Z,567,B02416001947,202601287237062,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:22:38.107Z,568,B02416001949,202601287237084,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:22:45.934Z,569,B02416001961,202601287237116,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:22:53.350Z,570,B02416001965,202601287237140,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:23:31.437Z,571,B02416001966,202601287237856,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:23:38.484Z,572,B02416001967,202601287237880,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:23:45.449Z,573,B02416001968,202601287237889,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:24:22.843Z,574,B02416002000,202601287237913,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:25:01.542Z,575,B02416002016,202601287237929,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:25:09.554Z,576,B02416002017,202601287237956,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:25:17.144Z,577,B02416002021,202601287237985,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:25:24.506Z,578,B02416002046,202601287238009,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:25:32.078Z,579,B02416002047,202601287238024,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:25:39.777Z,580,B02416002048,202601287238047,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:25:47.814Z,581,B02416002049,202601287238065,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:25:55.547Z,582,B02416002060,202601287238087,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:26:03.044Z,583,B02416002061,202601287238106,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:26:10.161Z,584,B02416002067,202601287238129,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:26:25.744Z,585,B02416002068,202601287238160,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:26:33.705Z,586,B02416002088,202601287238180,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:26:41.770Z,587,B02416002091,202601287238203,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:26:50.353Z,588,B02416002093,202601287238219,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:27:28.513Z,589,B02416002094,202601287238245,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:28:06.271Z,590,B02416002110,202601287238261,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:28:43.789Z,591,B02416002111,202601287238288,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:29:21.591Z,592,B02416002117,202601287238314,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:29:28.984Z,593,B02416002120,202601287238334,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:29:37.282Z,594,B02416002121,202601287238357,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:29:44.990Z,595,B02416002122,202601287238383,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:29:52.261Z,596,B02416002124,202601287238411,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:29:59.901Z,597,B02416002125,202601287238426,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:30:40.217Z,598,B02416002126,202601287238451,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T07:31:17.882Z,599,B02416002127,202601287238479,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:31:25.556Z,600,B02416002129,202601287238504,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:46:28.970Z,3,B02416000002,20260128721882,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:46:32.921Z,5,B02416000004,202601287219084,Success,Already uploaded (green status).
+2026-02-10T07:46:36.533Z,7,B02416000006,202601287219221,Success,Already uploaded (green status).
+2026-02-10T07:46:43.976Z,9,B02416000009,202601287219299,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:46:52.624Z,10,B02416000010,202601287219349,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:46:56.170Z,12,B02416000012,202601287219417,Success,Already uploaded (green status).
+2026-02-10T07:47:03.381Z,14,B02416000015,202601287219478,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:47:06.971Z,15,B02416000020,202601287219510,Success,Already uploaded (green status).
+2026-02-10T07:47:11.153Z,16,B02416000021,202601287219543,Success,Already uploaded (green status).
+2026-02-10T07:47:18.460Z,18,B02416000023,202601287219599,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:47:25.888Z,19,B02416000035,202601287219631,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:47:34.020Z,20,B02416000043,202601287221100,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:47:37.772Z,21,B02416000045,202601287221537,Success,Already uploaded (green status).
+2026-02-10T07:47:46.336Z,22,B02416000055,202601287221565,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:47:54.604Z,23,B02416000078,202601287221656,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:47:58.030Z,24,B02416000079,202601287221737,Success,Already uploaded (green status).
+2026-02-10T07:48:01.728Z,43,B02416000311,202601287223898,Success,Already uploaded (green status).
+2026-02-10T07:48:05.391Z,52,B02416000328,202601287224285,Success,Already uploaded (green status).
+2026-02-10T07:48:08.785Z,53,B02416000333,202601287224315,Success,Already uploaded (green status).
+2026-02-10T07:48:12.296Z,58,B02416000348,202601287224570,Success,Already uploaded (green status).
+2026-02-10T07:48:15.537Z,63,B02416000357,202601287224795,Success,Already uploaded (green status).
+2026-02-10T07:48:19.133Z,68,B02416000371,202601287225317,Success,Already uploaded (green status).
+2026-02-10T07:48:22.936Z,70,B02416000385,202601287225394,Success,Already uploaded (green status).
+2026-02-10T07:48:26.606Z,71,B02416000386,202601287225474,Success,Already uploaded (green status).
+2026-02-10T07:48:30.477Z,72,B02416000387,202601287225524,Failed,Invoice PDF not found for E-Invoice Number: B02416000387
+2026-02-10T07:48:44.634Z,74,B02416000392,202601287225780,Success,Already uploaded (green status).
+2026-02-10T07:48:48.225Z,75,B02416000393,202601287225803,Success,Already uploaded (green status).
+2026-02-10T07:49:25.001Z,76,B02416000394,202601287225824,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:49:28.586Z,77,B02416000395,202601287225855,Success,Already uploaded (green status).
+2026-02-10T07:50:06.605Z,78,B02416000397,202601287225885,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:50:10.510Z,79,B02416000401,202601287225974,Success,Already uploaded (green status).
+2026-02-10T07:50:14.200Z,80,B02416000402,202601287226217,Success,Already uploaded (green status).
+2026-02-10T07:50:17.708Z,81,B02416000403,202601287226239,Success,Already uploaded (green status).
+2026-02-10T07:50:21.492Z,82,B02416000404,202601287226269,Success,Already uploaded (green status).
+2026-02-10T07:50:24.847Z,83,B02416000405,202601287226290,Success,Already uploaded (green status).
+2026-02-10T07:50:28.263Z,85,B02416000422,202601287226330,Success,Already uploaded (green status).
+2026-02-10T07:50:31.828Z,86,B02416000424,202601287226349,Success,Already uploaded (green status).
+2026-02-10T07:50:35.413Z,87,B02416000425,202601287226370,Success,Already uploaded (green status).
+2026-02-10T07:50:39.211Z,89,B02416000427,202601287226410,Success,Already uploaded (green status).
+2026-02-10T07:50:42.844Z,90,B02416000428,202601287226431,Success,Already uploaded (green status).
+2026-02-10T07:50:46.596Z,91,B02416000429,202601287226459,Success,Already uploaded (green status).
+2026-02-10T07:50:50.246Z,92,B02416000432,202601287226476,Success,Already uploaded (green status).
+2026-02-10T07:50:53.834Z,93,B02416000433,202601287226503,Success,Already uploaded (green status).
+2026-02-10T07:50:57.417Z,94,B02416000435,202601287226537,Success,Already uploaded (green status).
+2026-02-10T07:51:00.988Z,95,B02416000438,202601287226556,Success,Already uploaded (green status).
+2026-02-10T07:51:04.485Z,96,B02416000439,202601287226576,Success,Already uploaded (green status).
+2026-02-10T07:51:08.197Z,97,B02416000441,202601287226594,Success,Already uploaded (green status).
+2026-02-10T07:51:11.765Z,98,B02416000442,202601287226628,Success,Already uploaded (green status).
+2026-02-10T07:51:15.396Z,99,B02416000443,202601287226746,Success,Already uploaded (green status).
+2026-02-10T07:51:18.775Z,100,B02416000444,202601287226780,Success,Already uploaded (green status).
+2026-02-10T07:51:22.756Z,101,B02416000445,202601287226798,Failed,Invoice PDF not found for E-Invoice Number: B02416000445
+2026-02-10T07:52:22.509Z,102,B02416000446,202601287226830,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:52:26.025Z,118,B02416000501,202601287227327,Success,Already uploaded (green status).
+2026-02-10T07:52:30.092Z,124,B02416000513,202601287227778,Failed,Invoice PDF not found for E-Invoice Number: B02416000513
+2026-02-10T07:52:54.275Z,125,B02416000514,202601287227806,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:53:01.565Z,126,B02416000515,202601287227824,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:53:04.897Z,134,B02416000524,202601287228032,Success,Already uploaded (green status).
+2026-02-10T07:53:08.214Z,138,B02416000534,202601287228048,Success,Already uploaded (green status).
+2026-02-10T07:53:25.291Z,142,B02416000548,202601287228067,Failed,"×
+Error
+Unable to verify the GST e-invoice: The QR code as required in the GST e-invoice is missing in the uploaded document."
+2026-02-10T07:53:28.790Z,158,B02416000616,202601287228283,Success,Already uploaded (green status).
+2026-02-10T07:53:32.212Z,163,B02416000623,202601287228397,Success,Already uploaded (green status).
+2026-02-10T07:53:35.716Z,164,B02416000624,202601287228456,Success,Already uploaded (green status).
+2026-02-10T07:53:39.330Z,168,B02416000673,202601287228623,Success,Already uploaded (green status).
+2026-02-10T07:53:56.686Z,174,B02416000693,202601287228693,Failed,"×
+Error
+Unable to verify the GST e-invoice: The QR code as required in the GST e-invoice is missing in the uploaded document."
+2026-02-10T07:54:15.923Z,177,B02416000702,202601287228732,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:54:28.840Z,179,B02416000729,202601287228758,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:54:36.910Z,182,B02416000735,202601287228802,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:54:40.477Z,187,B02416000750,202601287228889,Success,Already uploaded (green status).
+2026-02-10T07:54:43.824Z,196,B02416000774,202601287229006,Success,Already uploaded (green status).
+2026-02-10T07:54:47.203Z,199,B02416000778,202601287229043,Success,Already uploaded (green status).
+2026-02-10T07:54:58.983Z,202,B02416000791,202601287229085,Failed,"×
+Error
+Unable to verify the GST e-invoice: Seller GST number , Buyer GST number , Invoice number , Date of sale entry , Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information.
+×
+Error
+Unable to verify the GST e-invoice: The QR code as required in the GST e-invoice is missing in the uploaded document."
+2026-02-10T07:55:06.800Z,203,B02416000792,202601287229100,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T07:55:43.914Z,204,B02416000800,202601287229115,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:55:52.293Z,205,B02416000801,202601287229128,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:56:01.684Z,206,B02416000802,202601287229140,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:56:10.079Z,207,B02416000807,202601287229152,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:56:17.493Z,208,B02416000808,202601287229162,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:56:28.650Z,209,B02416000809,202601287229173,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T07:56:36.604Z,210,B02416000811,202601287229190,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:56:44.305Z,211,B02416000812,202601287229200,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:57:21.504Z,212,B02416000813,202601287229220,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:57:59.875Z,213,B02416000827,202601287229232,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T07:58:40.454Z,214,B02416000829,202601287229245,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T07:59:17.715Z,215,B02416000830,202601287229262,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:59:26.740Z,216,B02416000831,202601287229275,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:59:34.290Z,217,B02416000847,202601287229298,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:59:41.997Z,218,B02416000848,202601287229310,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T07:59:50.151Z,219,B02416000852,202601287229320,Failed,"×
+Error
+Unable to verify the GST e-invoice: The QR code as required in the GST e-invoice is missing in the uploaded document."
+2026-02-10T07:59:57.659Z,220,B02416000854,202601287229329,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:00:05.073Z,221,B02416000860,202601287229339,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:00:42.051Z,222,B02416000862,202601287229349,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:01:19.133Z,223,B02416000863,202601287229358,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T08:01:26.382Z,224,B02416000864,202601287229370,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:01:36.078Z,225,B02416000866,202601287229384,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:01:45.341Z,226,B02416000867,202601287229393,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:01:53.098Z,227,B02416000868,202601287229403,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:02:11.224Z,228,B02416000869,202601287229419,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:02:19.738Z,229,B02416000870,202601287229432,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:02:57.289Z,230,B02416000871,202601287229440,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:03:04.829Z,231,B02416000872,202601287229452,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:03:12.054Z,232,B02416000875,202601287229461,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:03:48.942Z,233,B02416000876,202601287229474,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:04:25.677Z,234,B02416000877,202601287229484,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:04:32.714Z,235,B02416000878,202601287229493,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:04:41.107Z,236,B02416000879,202601287229503,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T08:04:48.538Z,237,B02416000881,202601287229512,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:05:25.476Z,238,B02416000882,202601287229527,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:05:32.537Z,239,B02416000885,202601287229537,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:06:10.183Z,240,B02416000886,202601287229549,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:06:17.333Z,241,B02416000887,202601287229557,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:06:24.993Z,242,B02416000888,202601287229568,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:06:32.230Z,243,B02416000889,202601287229576,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:07:08.962Z,244,B02416000890,202601287229585,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:07:16.066Z,245,B02416000891,202601287229592,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:07:23.541Z,246,B02416000892,202601287229601,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:07:30.614Z,247,B02416000893,202601287229609,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:08:07.819Z,248,B02416000894,202601287229621,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:08:44.781Z,249,B02416000899,202601287229630,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:09:21.614Z,250,B02416000900,202601287229643,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:10:01.833Z,251,B02416000905,202601287229657,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T08:10:09.764Z,252,B02416000911,202601287229664,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:10:16.670Z,253,B02416000913,202601287229672,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:11:00.036Z,254,B02416000916,202601287229681,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:11:07.723Z,255,B02416000917,202601287229694,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:11:45.566Z,256,B02416000918,202601287229702,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:12:22.871Z,257,B02416000920,202601287229715,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:13:00.928Z,258,B02416000922,202601287229728,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:13:42.957Z,259,B02416000923,202601287229737,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:14:21.818Z,260,B02416000924,202601287229746,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:14:29.776Z,261,B02416000942,202601287229755,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:14:37.548Z,262,B02416000943,202601287229764,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information.
+×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T08:14:44.532Z,263,B02416000948,202601287229769,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:15:21.425Z,264,B02416000949,202601287229779,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:15:58.344Z,265,B02416000950,202601287229792,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:16:06.042Z,266,B02416000951,202601287229806,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:16:42.751Z,267,B02416000961,202601287229814,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:16:50.214Z,268,B02416000962,202601287229822,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:17:29.952Z,269,B02416000966,202601287229832,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T08:18:06.669Z,270,B02416000967,202601287229840,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:18:43.603Z,271,B02416000972,202601287229851,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:18:50.429Z,272,B02416000977,202601287229860,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:19:27.399Z,273,B02416001007,202601287229867,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:19:34.594Z,274,B02416001008,202601287229877,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:19:42.260Z,275,B02416001015,202601287229884,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:19:49.666Z,276,B02416001059,202601287229891,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:19:56.581Z,277,B02416001066,202601287229899,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:20:03.822Z,278,B02416001096,202601287229906,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:20:11.289Z,279,B02416001097,202601287229913,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:20:18.467Z,280,B02416001099,202601287229921,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:20:55.040Z,281,B02416001101,202601287229929,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:21:31.804Z,282,B02416001102,202601287229936,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:22:08.897Z,283,B02416001103,202601287229945,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:22:16.590Z,284,B02416001104,202601287229953,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:22:53.683Z,285,B02416001105,202601287229963,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:23:01.195Z,286,B02416001109,202601287229970,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:23:08.341Z,287,B02416001110,202601287229978,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:23:44.999Z,288,B02416001111,202601287229988,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:24:21.830Z,289,B02416001115,202601287229998,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:24:59.055Z,290,B02416001116,202601287230007,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:25:06.693Z,291,B02416001117,202601287230015,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:25:43.360Z,292,B02416001118,202601287230031,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:26:20.065Z,293,B02416001119,202601287230039,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:26:36.453Z,294,B02416001123,202601287230047,Failed,"×
+Error
+Unable to verify the GST e-invoice: The QR code as required in the GST e-invoice is missing in the uploaded document."
+2026-02-10T08:27:14.778Z,295,B02416001124,202601287230057,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:27:53.319Z,296,B02416001125,202601287230067,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:28:30.846Z,297,B02416001126,202601287230078,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:28:38.532Z,298,B02416001127,202601287230087,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:28:46.019Z,299,B02416001128,202601287230095,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:28:52.877Z,300,B02416001129,202601287230103,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:29:29.887Z,301,B02416001130,202601287230110,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'"
+2026-02-10T08:29:37.039Z,302,B02416001142,202601287230119,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:29:44.504Z,303,B02416001143,202601287230127,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:30:24.620Z,304,B02416001144,202601287230137,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T08:31:01.514Z,305,B02416001145,202601287230146,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:31:08.492Z,306,B02416001155,202601287230155,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:31:45.402Z,307,B02416001156,202601287230163,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:31:52.731Z,308,B02416001157,202601287230172,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:32:29.279Z,309,B02416001159,202601287230181,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:33:05.933Z,310,B02416001160,202601287230194,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:33:42.609Z,311,B02416001161,202601287230204,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:33:53.696Z,312,B02416001162,202601287230213,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:34:36.239Z,313,B02416001164,202601287230221,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T08:35:15.713Z,314,B02416001165,202601287230230,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:35:23.824Z,315,B02416001172,202601287230239,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:35:31.528Z,316,B02416001173,202601287230251,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:36:11.707Z,317,B02416001174,202601287230261,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T08:36:19.325Z,318,B02416001175,202601287230273,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:36:55.806Z,319,B02416001176,202601287230279,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:37:01.786Z,320,B02416001181,202601287230289,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:37:38.259Z,321,B02416001182,202601287230298,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:37:44.427Z,322,B02416001183,202601287230306,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:38:21.698Z,323,B02416001184,202601287230320,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:38:28.295Z,324,B02416001185,202601287230329,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:38:35.649Z,325,B02416001186,202601287230336,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:39:11.752Z,326,B02416001187,202601287230344,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:39:19.315Z,327,B02416001188,202601287230545,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:39:26.787Z,328,B02416001189,202601287230552,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:40:04.825Z,329,B02416001190,202601287230561,Failed,"×
+Error
+Unable to verify the GST e-invoice: Seller GST number , Buyer GST number , Invoice number , Date of sale entry , Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:40:12.058Z,330,B02416001191,202601287230568,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:40:48.833Z,331,B02416001198,202601287230580,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:41:33.023Z,332,B02416001207,202601287230593,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:42:09.862Z,333,B02416001211,202601287230605,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:42:16.789Z,334,B02416001212,202601287230615,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:42:23.821Z,335,B02416001213,202601287230626,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:43:00.273Z,336,B02416001214,202601287230638,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:43:06.666Z,337,B02416001216,202601287230647,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:43:13.807Z,338,B02416001218,202601287230657,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:43:50.281Z,339,B02416001219,202601287230663,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:43:53.044Z,340,B02416001225,202601287230674,Success,Already uploaded (green status).
+2026-02-10T08:43:55.932Z,341,B02416001230,202601287230680,Success,Already uploaded (green status).
+2026-02-10T08:43:58.745Z,342,B02416001231,202601287230691,Success,Already uploaded (green status).
+2026-02-10T08:44:01.624Z,343,B02416001232,202601287230698,Success,Already uploaded (green status).
+2026-02-10T08:44:04.472Z,344,B02416001233,202601287230705,Success,Already uploaded (green status).
+2026-02-10T08:44:07.267Z,345,B02416001245,202601287230712,Success,Already uploaded (green status).
+2026-02-10T08:44:10.106Z,346,B02416001247,202601287230721,Success,Already uploaded (green status).
+2026-02-10T08:44:12.880Z,347,B02416001249,202601287230729,Success,Already uploaded (green status).
+2026-02-10T08:44:16.024Z,348,B02416001250,202601287230737,Success,Already uploaded (green status).
+2026-02-10T08:44:19.041Z,349,B02416001251,202601287230743,Success,Already uploaded (green status).
+2026-02-10T08:44:21.951Z,350,B02416001252,202601287230751,Success,Already uploaded (green status).
+2026-02-10T08:44:24.777Z,351,B02416001253,202601287232303,Success,Already uploaded (green status).
+2026-02-10T08:44:27.582Z,352,B02416001254,202601287232314,Success,Already uploaded (green status).
+2026-02-10T08:44:31.266Z,353,B02416001255,202601287232330,Success,Already uploaded (green status).
+2026-02-10T08:44:34.123Z,354,B02416001256,202601287232341,Success,Already uploaded (green status).
+2026-02-10T08:44:37.043Z,355,B02416001257,202601287232586,Success,Already uploaded (green status).
+2026-02-10T08:44:40.081Z,356,B02416001260,202601287232605,Success,Already uploaded (green status).
+2026-02-10T08:44:43.174Z,357,B02416001261,202601287232621,Success,Already uploaded (green status).
+2026-02-10T08:44:46.123Z,358,B02416001262,202601287232637,Success,Already uploaded (green status).
+2026-02-10T08:44:49.087Z,359,B02416001278,202601287232653,Success,Already uploaded (green status).
+2026-02-10T08:44:52.070Z,360,B02416001279,202601287232668,Success,Already uploaded (green status).
+2026-02-10T08:44:54.893Z,361,B02416001281,202601287232684,Success,Already uploaded (green status).
+2026-02-10T08:44:57.969Z,362,B02416001284,202601287232701,Success,Already uploaded (green status).
+2026-02-10T08:45:00.833Z,363,B02416001285,202601287232718,Success,Already uploaded (green status).
+2026-02-10T08:45:03.666Z,364,B02416001287,202601287232733,Success,Already uploaded (green status).
+2026-02-10T08:45:06.621Z,365,B02416001288,202601287232749,Success,Already uploaded (green status).
+2026-02-10T08:45:09.450Z,366,B02416001289,202601287232764,Success,Already uploaded (green status).
+2026-02-10T08:45:12.364Z,367,B02416001290,202601287232781,Success,Already uploaded (green status).
+2026-02-10T08:45:15.202Z,368,B02416001291,202601287232799,Success,Already uploaded (green status).
+2026-02-10T08:45:18.032Z,369,B02416001292,202601287232814,Success,Already uploaded (green status).
+2026-02-10T08:46:35.030Z,370,B02416001294,202601287232829,Failed,error
+2026-02-10T08:46:38.779Z,371,B02416001295,202601287232855,Success,Already uploaded (green status).
+2026-02-10T08:46:41.793Z,372,B02416001296,202601287233143,Success,Already uploaded (green status).
+2026-02-10T08:46:44.808Z,373,B02416001298,202601287233182,Success,Already uploaded (green status).
+2026-02-10T08:46:47.661Z,374,B02416001299,202601287233202,Success,Already uploaded (green status).
+2026-02-10T08:46:50.521Z,375,B02416001302,202601287233218,Success,Already uploaded (green status).
+2026-02-10T08:46:53.363Z,376,B02416001303,202601287233238,Success,Already uploaded (green status).
+2026-02-10T08:46:56.145Z,377,B02416001310,202601287233256,Success,Already uploaded (green status).
+2026-02-10T08:46:59.108Z,378,B02416001311,202601287233275,Success,Already uploaded (green status).
+2026-02-10T08:47:01.972Z,379,B02416001313,202601287233293,Success,Already uploaded (green status).
+2026-02-10T08:47:04.847Z,380,B02416001328,202601287233309,Success,Already uploaded (green status).
+2026-02-10T08:47:12.281Z,381,B02416001331,202601287233325,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:47:15.180Z,382,B02416001352,202601287233338,Success,Already uploaded (green status).
+2026-02-10T08:47:22.150Z,383,B02416001353,202601287233360,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:47:25.163Z,384,B02416001354,202601287233381,Success,Already uploaded (green status).
+2026-02-10T08:47:28.057Z,385,B02416001358,202601287233406,Success,Already uploaded (green status).
+2026-02-10T08:47:31.165Z,386,B02416001359,202601287233432,Success,Already uploaded (green status).
+2026-02-10T08:47:34.113Z,387,B02416001360,202601287233463,Success,Already uploaded (green status).
+2026-02-10T08:47:37.149Z,388,B02416001362,202601287233492,Success,Already uploaded (green status).
+2026-02-10T08:47:40.000Z,389,B02416001364,202601287233508,Success,Already uploaded (green status).
+2026-02-10T08:47:42.828Z,390,B02416001365,202601287233526,Success,Already uploaded (green status).
+2026-02-10T08:47:45.777Z,391,B02416001366,202601287233542,Success,Already uploaded (green status).
+2026-02-10T08:47:48.654Z,392,B02416001368,202601287233563,Success,Already uploaded (green status).
+2026-02-10T08:47:51.610Z,393,B02416001369,202601287233580,Success,Already uploaded (green status).
+2026-02-10T08:47:54.670Z,394,B02416001387,202601287233597,Success,Already uploaded (green status).
+2026-02-10T08:48:03.343Z,395,B02416001394,202601287233625,Success,Already uploaded (green status).
+2026-02-10T08:48:06.206Z,396,B02416001395,202601287233642,Success,Already uploaded (green status).
+2026-02-10T08:48:14.574Z,397,B02416001396,202601287233671,Failed,"×
+Error
+OpenCV(4.9.0) /io/opencv/modules/imgproc/src/color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:48:17.761Z,398,B02416001409,202601287233945,Success,Already uploaded (green status).
+2026-02-10T08:48:20.654Z,399,B02416001416,202601287233967,Success,Already uploaded (green status).
+2026-02-10T08:48:23.722Z,400,B02416001417,202601287233980,Success,Already uploaded (green status).
+2026-02-10T08:48:26.730Z,401,B02416001418,202601287234006,Success,Already uploaded (green status).
+2026-02-10T08:48:29.863Z,402,B02416001420,202601287234027,Success,Already uploaded (green status).
+2026-02-10T08:48:32.673Z,403,B02416001434,202601287234041,Success,Already uploaded (green status).
+2026-02-10T08:48:35.582Z,404,B02416001438,202601287234061,Success,Already uploaded (green status).
+2026-02-10T08:48:38.606Z,405,B02416001439,202601287234076,Success,Already uploaded (green status).
+2026-02-10T08:48:41.417Z,406,B02416001440,202601287234093,Success,Already uploaded (green status).
+2026-02-10T08:48:44.388Z,407,B02416001445,202601287234115,Success,Already uploaded (green status).
+2026-02-10T08:48:47.341Z,408,B02416001446,202601287234138,Success,Already uploaded (green status).
+2026-02-10T08:48:50.384Z,409,B02416001450,202601287234169,Success,Already uploaded (green status).
+2026-02-10T08:48:53.310Z,410,B02416001451,202601287234191,Success,Already uploaded (green status).
+2026-02-10T08:48:56.201Z,411,B02416001452,202601287234213,Success,Already uploaded (green status).
+2026-02-10T08:48:59.112Z,412,B02416001477,202601287234230,Success,Already uploaded (green status).
+2026-02-10T08:49:01.981Z,413,B02416001480,202601287234250,Success,Already uploaded (green status).
+2026-02-10T08:49:04.838Z,414,B02416001481,202601287234269,Success,Already uploaded (green status).
+2026-02-10T08:49:07.570Z,415,B02416001486,202601287234283,Success,Already uploaded (green status).
+2026-02-10T08:49:10.492Z,416,B02416001491,202601287234301,Success,Already uploaded (green status).
+2026-02-10T08:49:13.238Z,417,B02416001507,202601287234321,Success,Already uploaded (green status).
+2026-02-10T08:49:16.107Z,418,B02416001513,202601287234345,Success,Already uploaded (green status).
+2026-02-10T08:49:18.961Z,419,B02416001517,202601287234376,Success,Already uploaded (green status).
+2026-02-10T08:49:21.752Z,420,B02416001518,202601287234386,Success,Already uploaded (green status).
+2026-02-10T08:49:24.583Z,421,B02416001520,202601287234410,Success,Already uploaded (green status).
+2026-02-10T08:49:27.505Z,422,B02416001523,202601287234431,Success,Already uploaded (green status).
+2026-02-10T08:49:34.800Z,423,B02416001535,202601287234452,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:49:37.738Z,424,B02416001536,202601287234464,Success,Already uploaded (green status).
+2026-02-10T08:49:40.631Z,425,B02416001537,202601287234490,Success,Already uploaded (green status).
+2026-02-10T08:49:43.507Z,426,B02416001540,202601287234518,Success,Already uploaded (green status).
+2026-02-10T08:49:46.313Z,427,B02416001541,202601287234534,Success,Already uploaded (green status).
+2026-02-10T08:49:49.204Z,428,B02416001542,202601287234552,Success,Already uploaded (green status).
+2026-02-10T08:49:52.073Z,429,B02416001543,202601287234571,Success,Already uploaded (green status).
+2026-02-10T08:49:54.915Z,430,B02416001544,202601287234588,Success,Already uploaded (green status).
+2026-02-10T08:49:57.719Z,431,B02416001545,202601287234608,Success,Already uploaded (green status).
+2026-02-10T08:50:00.741Z,432,B02416001553,202601287234623,Success,Already uploaded (green status).
+2026-02-10T08:50:03.631Z,433,B02416001555,202601287234643,Success,Already uploaded (green status).
+2026-02-10T08:50:06.715Z,434,B02416001562,202601287234665,Success,Already uploaded (green status).
+2026-02-10T08:50:09.630Z,435,B02416001563,202601287234676,Success,Already uploaded (green status).
+2026-02-10T08:50:12.751Z,436,B02416001564,202601287234691,Success,Already uploaded (green status).
+2026-02-10T08:50:15.702Z,437,B02416001565,202601287234709,Success,Already uploaded (green status).
+2026-02-10T08:50:18.701Z,438,B02416001575,202601287234727,Success,Already uploaded (green status).
+2026-02-10T08:50:21.694Z,439,B02416001576,202601287234741,Success,Already uploaded (green status).
+2026-02-10T08:50:24.846Z,440,B02416001577,202601287234751,Success,Already uploaded (green status).
+2026-02-10T08:50:27.807Z,441,B02416001586,202601287234758,Success,Already uploaded (green status).
+2026-02-10T08:50:30.819Z,442,B02416001587,202601287234767,Success,Already uploaded (green status).
+2026-02-10T08:50:33.813Z,443,B02416001588,202601287234775,Success,Already uploaded (green status).
+2026-02-10T08:50:48.827Z,444,B02416001589,202601287234790,Failed,"×
+Error
+Unable to verify the GST e-invoice: The QR code as required in the GST e-invoice is missing in the uploaded document."
+2026-02-10T08:50:52.184Z,445,B02416001590,202601287234823,Success,Already uploaded (green status).
+2026-02-10T08:50:59.335Z,446,B02416001594,202601287235153,Failed,error
+2026-02-10T08:51:02.551Z,447,B02416001597,202601287235168,Success,Already uploaded (green status).
+2026-02-10T08:51:05.427Z,448,B02416001599,202601287235177,Success,Already uploaded (green status).
+2026-02-10T08:51:08.462Z,449,B02416001600,202601287235191,Success,Already uploaded (green status).
+2026-02-10T08:51:15.742Z,450,B02416001617,202601287235201,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:51:18.814Z,451,B02416001618,202601287235219,Success,Already uploaded (green status).
+2026-02-10T08:51:25.865Z,452,B02416001626,202601287235233,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:51:28.734Z,453,B02416001631,202601287235247,Success,Already uploaded (green status).
+2026-02-10T08:51:31.652Z,454,B02416001632,202601287235267,Success,Already uploaded (green status).
+2026-02-10T08:51:37.820Z,455,B02416001633,202601287235285,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:51:40.842Z,456,B02416001634,202601287235302,Success,Already uploaded (green status).
+2026-02-10T08:51:47.184Z,457,B02416001635,202601287235316,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:51:50.100Z,458,B02416001636,202601287235336,Success,Already uploaded (green status).
+2026-02-10T08:51:52.931Z,459,B02416001672,202601287235360,Success,Already uploaded (green status).
+2026-02-10T08:51:55.697Z,460,B02416001673,202601287235377,Success,Already uploaded (green status).
+2026-02-10T08:52:01.863Z,461,B02416001685,202601287235389,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:52:04.646Z,462,B02416001686,202601287235414,Success,Already uploaded (green status).
+2026-02-10T08:52:07.359Z,463,B02416001692,202601287235441,Success,Already uploaded (green status).
+2026-02-10T08:52:10.088Z,464,B02416001701,202601287235453,Success,Already uploaded (green status).
+2026-02-10T08:52:12.770Z,465,B02416001702,202601287235476,Success,Already uploaded (green status).
+2026-02-10T08:52:15.604Z,466,B02416001703,202601287235488,Success,Already uploaded (green status).
+2026-02-10T08:52:22.724Z,467,B02416001705,202601287235502,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:52:29.967Z,468,B02416001709,202601287235521,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:52:32.667Z,469,B02416001711,202601287235535,Success,Already uploaded (green status).
+2026-02-10T08:53:46.384Z,470,B02416001712,202601287235558,Failed,"locator.click: Element is not visible
+Call log:
+[2m  - waiting for locator('.modal-dialog:has-text(""Upload Invoice"")').first().locator('button.btn.btn-primary').filter({ hasText: 'Upload' }).first()[22m
+[2m    - locator resolved to <button disabled _ngcontent-ng-c3768047143="""" class=""btn btn-primary float-end m-3"">Upload</button>[22m
+[2m  - attempting click action[22m
+[2m    - scrolling into view if needed[22m
+"
+2026-02-10T08:53:49.981Z,471,B02416001716,202601287235570,Success,Already uploaded (green status).
+2026-02-10T08:53:52.746Z,472,B02416001718,202601287235587,Success,Already uploaded (green status).
+2026-02-10T08:53:55.504Z,473,B02416001737,202601287235603,Success,Already uploaded (green status).
+2026-02-10T08:53:58.172Z,474,B02416001740,202601287235618,Success,Already uploaded (green status).
+2026-02-10T08:54:00.941Z,475,B02416001741,202601287235638,Success,Already uploaded (green status).
+2026-02-10T08:54:03.661Z,476,B02416001743,202601287235652,Success,Already uploaded (green status).
+2026-02-10T08:54:06.473Z,477,B02416001744,202601287235666,Success,Already uploaded (green status).
+2026-02-10T08:54:09.265Z,478,B02416001748,202601287235683,Success,Already uploaded (green status).
+2026-02-10T08:54:11.974Z,479,B02416001754,202601287235694,Success,Already uploaded (green status).
+2026-02-10T08:54:14.801Z,480,B02416001755,202601287235712,Success,Already uploaded (green status).
+2026-02-10T08:54:17.639Z,481,B02416001756,202601287235740,Success,Already uploaded (green status).
+2026-02-10T08:54:20.340Z,482,B02416001757,202601287235764,Success,Already uploaded (green status).
+2026-02-10T08:54:23.118Z,483,B02416001762,202601287235783,Success,Already uploaded (green status).
+2026-02-10T08:54:26.575Z,484,B02416001763,202601287235794,Success,Already uploaded (green status).
+2026-02-10T08:54:29.320Z,485,B02416001764,202601287235805,Success,Already uploaded (green status).
+2026-02-10T08:54:32.319Z,486,B02416001765,202601287235812,Success,Already uploaded (green status).
+2026-02-10T08:54:35.256Z,487,B02416001768,202601287235821,Success,Already uploaded (green status).
+2026-02-10T08:54:38.142Z,488,B02416001769,202601287235828,Success,Already uploaded (green status).
+2026-02-10T08:54:41.095Z,489,B02416001771,202601287235838,Success,Already uploaded (green status).
+2026-02-10T08:54:44.280Z,490,B02416001773,202601287235845,Success,Already uploaded (green status).
+2026-02-10T08:54:47.612Z,491,B02416001777,202601287235856,Success,Already uploaded (green status).
+2026-02-10T08:54:50.499Z,492,B02416001778,202601287235868,Success,Already uploaded (green status).
+2026-02-10T08:54:56.678Z,493,B02416001780,202601287235875,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:54:59.610Z,494,B02416001783,202601287235885,Success,Already uploaded (green status).
+2026-02-10T08:55:02.490Z,495,B02416001784,202601287235892,Success,Already uploaded (green status).
+2026-02-10T08:55:05.223Z,496,B02416001785,202601287235904,Success,Already uploaded (green status).
+2026-02-10T08:55:08.194Z,497,B02416001787,202601287235913,Success,Already uploaded (green status).
+2026-02-10T08:55:11.069Z,498,B02416001788,202601287235926,Success,Already uploaded (green status).
+2026-02-10T08:55:13.895Z,499,B02416001789,202601287235935,Success,Already uploaded (green status).
+2026-02-10T08:55:16.799Z,500,B02416001790,202601287235941,Success,Already uploaded (green status).
+2026-02-10T08:55:19.659Z,501,B02416001792,202601287235950,Success,Already uploaded (green status).
+2026-02-10T08:55:22.562Z,502,B02416001793,202601287235957,Success,Already uploaded (green status).
+2026-02-10T08:55:25.451Z,503,B02416001796,202601287235968,Success,Already uploaded (green status).
+2026-02-10T08:55:28.286Z,504,B02416001797,202601287235976,Success,Already uploaded (green status).
+2026-02-10T08:55:31.107Z,505,B02416001800,202601287235984,Success,Already uploaded (green status).
+2026-02-10T08:55:33.948Z,506,B02416001801,202601287235993,Success,Already uploaded (green status).
+2026-02-10T08:55:36.773Z,507,B02416001802,202601287236000,Success,Already uploaded (green status).
+2026-02-10T08:55:39.661Z,508,B02416001803,202601287236017,Success,Already uploaded (green status).
+2026-02-10T08:55:42.427Z,509,B02416001805,202601287236024,Success,Already uploaded (green status).
+2026-02-10T08:55:45.289Z,510,B02416001806,202601287236036,Success,Already uploaded (green status).
+2026-02-10T08:55:48.118Z,511,B02416001807,202601287236047,Success,Already uploaded (green status).
+2026-02-10T08:55:50.965Z,512,B02416001812,202601287236054,Success,Already uploaded (green status).
+2026-02-10T08:55:53.703Z,513,B02416001813,202601287236068,Success,Already uploaded (green status).
+2026-02-10T08:55:56.481Z,514,B02416001814,202601287236076,Success,Already uploaded (green status).
+2026-02-10T08:55:59.355Z,515,B02416001815,202601287236089,Success,Already uploaded (green status).
+2026-02-10T08:56:02.863Z,516,B02416001816,202601287236099,Success,Already uploaded (green status).
+2026-02-10T08:56:05.722Z,517,B02416001818,202601287236109,Success,Already uploaded (green status).
+2026-02-10T08:56:08.693Z,518,B02416001820,202601287236124,Success,Already uploaded (green status).
+2026-02-10T08:56:11.439Z,519,B02416001821,202601287236132,Success,Already uploaded (green status).
+2026-02-10T08:56:14.236Z,520,B02416001822,202601287236149,Success,Already uploaded (green status).
+2026-02-10T08:56:17.215Z,521,B02416001826,202601287236161,Success,Already uploaded (green status).
+2026-02-10T08:56:19.947Z,522,B02416001828,202601287236182,Success,Already uploaded (green status).
+2026-02-10T08:56:22.689Z,523,B02416001829,202601287236195,Success,Already uploaded (green status).
+2026-02-10T08:56:25.419Z,524,B02416001830,202601287236219,Success,Already uploaded (green status).
+2026-02-10T08:56:32.280Z,525,B02416001831,202601287236247,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:56:35.201Z,526,B02416001832,202601287236286,Success,Already uploaded (green status).
+2026-02-10T08:56:38.037Z,527,B02416001833,202601287236310,Success,Already uploaded (green status).
+2026-02-10T08:56:40.820Z,528,B02416001834,202601287236328,Success,Already uploaded (green status).
+2026-02-10T08:56:43.578Z,529,B02416001836,202601287236348,Success,Already uploaded (green status).
+2026-02-10T08:56:46.329Z,530,B02416001854,202601287236361,Success,Already uploaded (green status).
+2026-02-10T08:56:49.022Z,531,B02416001859,202601287236382,Success,Already uploaded (green status).
+2026-02-10T08:56:51.781Z,532,B02416001860,202601287236398,Success,Already uploaded (green status).
+2026-02-10T08:56:54.529Z,533,B02416001863,202601287236421,Success,Already uploaded (green status).
+2026-02-10T08:56:57.506Z,534,B02416001866,202601287236431,Success,Already uploaded (green status).
+2026-02-10T08:57:00.475Z,535,B02416001867,202601287236451,Success,Already uploaded (green status).
+2026-02-10T08:57:03.216Z,536,B02416001868,202601287236461,Success,Already uploaded (green status).
+2026-02-10T08:57:06.098Z,537,B02416001869,202601287236487,Success,Already uploaded (green status).
+2026-02-10T08:57:09.614Z,538,B02416001871,202601287236496,Success,Already uploaded (green status).
+2026-02-10T08:57:12.302Z,539,B02416001873,202601287236509,Success,Already uploaded (green status).
+2026-02-10T08:57:19.066Z,540,B02416001874,202601287236523,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:57:21.937Z,541,B02416001875,202601287236534,Success,Already uploaded (green status).
+2026-02-10T08:57:24.761Z,542,B02416001876,202601287236556,Success,Already uploaded (green status).
+2026-02-10T08:57:27.628Z,543,B02416001878,202601287236572,Success,Already uploaded (green status).
+2026-02-10T08:57:30.453Z,544,B02416001879,202601287236593,Success,Already uploaded (green status).
+2026-02-10T08:57:33.429Z,545,B02416001880,202601287236620,Success,Already uploaded (green status).
+2026-02-10T08:57:36.268Z,546,B02416001881,202601287236644,Success,Already uploaded (green status).
+2026-02-10T08:57:39.122Z,547,B02416001882,202601287236661,Success,Already uploaded (green status).
+2026-02-10T08:57:41.952Z,548,B02416001885,202601287236688,Success,Already uploaded (green status).
+2026-02-10T08:57:44.851Z,549,B02416001901,202601287236697,Success,Already uploaded (green status).
+2026-02-10T08:57:47.598Z,550,B02416001902,202601287236709,Success,Already uploaded (green status).
+2026-02-10T08:57:50.566Z,551,B02416001909,202601287236737,Success,Already uploaded (green status).
+2026-02-10T08:57:53.315Z,552,B02416001910,202601287236761,Success,Already uploaded (green status).
+2026-02-10T08:58:29.761Z,553,B02416001917,202601287236783,Success,"×
+Success
+The GST e-invoice was successfully validated with GST Network information and uploaded on the EPR Plastic Portal."
+2026-02-10T08:58:32.606Z,554,B02416001918,202601287236799,Success,Already uploaded (green status).
+2026-02-10T08:58:35.242Z,555,B02416001919,202601287236824,Success,Already uploaded (green status).
+2026-02-10T08:58:37.899Z,556,B02416001922,202601287236840,Success,Already uploaded (green status).
+2026-02-10T08:58:40.620Z,557,B02416001923,202601287236865,Success,Already uploaded (green status).
+2026-02-10T08:58:43.405Z,558,B02416001924,202601287236881,Success,Already uploaded (green status).
+2026-02-10T08:58:46.088Z,559,B02416001925,202601287236909,Success,Already uploaded (green status).
+2026-02-10T08:58:48.856Z,560,B02416001926,202601287236925,Success,Already uploaded (green status).
+2026-02-10T08:58:51.695Z,561,B02416001928,202601287236950,Success,Already uploaded (green status).
+2026-02-10T08:58:57.786Z,562,B02416001932,202601287236962,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:59:00.602Z,563,B02416001933,202601287236989,Success,Already uploaded (green status).
+2026-02-10T08:59:03.309Z,564,B02416001934,202601287237004,Success,Already uploaded (green status).
+2026-02-10T08:59:09.958Z,565,B02416001935,202601287237031,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:59:12.800Z,566,B02416001942,202601287237050,Success,Already uploaded (green status).
+2026-02-10T08:59:15.735Z,567,B02416001947,202601287237062,Success,Already uploaded (green status).
+2026-02-10T08:59:18.480Z,568,B02416001949,202601287237084,Success,Already uploaded (green status).
+2026-02-10T08:59:21.948Z,569,B02416001961,202601287237116,Success,Already uploaded (green status).
+2026-02-10T08:59:28.120Z,570,B02416001965,202601287237140,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:59:30.869Z,571,B02416001966,202601287237856,Success,Already uploaded (green status).
+2026-02-10T08:59:33.605Z,572,B02416001967,202601287237880,Success,Already uploaded (green status).
+2026-02-10T08:59:36.506Z,573,B02416001968,202601287237889,Success,Already uploaded (green status).
+2026-02-10T08:59:39.944Z,574,B02416002000,202601287237913,Success,Already uploaded (green status).
+2026-02-10T08:59:42.720Z,575,B02416002016,202601287237929,Success,Already uploaded (green status).
+2026-02-10T08:59:48.834Z,576,B02416002017,202601287237956,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T08:59:51.608Z,577,B02416002021,202601287237985,Success,Already uploaded (green status).
+2026-02-10T08:59:54.493Z,578,B02416002046,202601287238009,Success,Already uploaded (green status).
+2026-02-10T08:59:57.301Z,579,B02416002047,202601287238024,Success,Already uploaded (green status).
+2026-02-10T09:00:04.092Z,580,B02416002048,202601287238047,Failed,"×
+Error
+Unable to verify the GST e-invoice: Total Amount Value in the uploaded e-invoice document are not matching with the GST Network information."
+2026-02-10T09:00:07.038Z,581,B02416002049,202601287238065,Success,Already uploaded (green status).
+2026-02-10T09:00:09.892Z,582,B02416002060,202601287238087,Success,Already uploaded (green status).
+2026-02-10T09:00:12.785Z,583,B02416002061,202601287238106,Success,Already uploaded (green status).
+2026-02-10T09:00:15.699Z,584,B02416002067,202601287238129,Success,Already uploaded (green status).
+2026-02-10T09:00:18.664Z,585,B02416002068,202601287238160,Success,Already uploaded (green status).
+2026-02-10T09:00:21.494Z,586,B02416002088,202601287238180,Success,Already uploaded (green status).
+2026-02-10T09:00:24.385Z,587,B02416002091,202601287238203,Success,Already uploaded (green status).
+2026-02-10T09:00:27.199Z,588,B02416002093,202601287238219,Success,Already uploaded (green status).
+2026-02-10T09:00:30.060Z,589,B02416002094,202601287238245,Success,Already uploaded (green status).
+2026-02-10T09:00:32.930Z,590,B02416002110,202601287238261,Success,Already uploaded (green status).
+2026-02-10T09:00:35.746Z,591,B02416002111,202601287238288,Success,Already uploaded (green status).
+2026-02-10T09:00:38.650Z,592,B02416002117,202601287238314,Success,Already uploaded (green status).
+2026-02-10T09:00:41.524Z,593,B02416002120,202601287238334,Success,Already uploaded (green status).
+2026-02-10T09:00:44.414Z,594,B02416002121,202601287238357,Success,Already uploaded (green status).
+2026-02-10T09:00:47.311Z,595,B02416002122,202601287238383,Success,Already uploaded (green status).
+2026-02-10T09:00:50.091Z,596,B02416002124,202601287238411,Success,Already uploaded (green status).
+2026-02-10T09:00:52.850Z,597,B02416002125,202601287238426,Success,Already uploaded (green status).
+2026-02-10T09:00:55.723Z,598,B02416002126,202601287238451,Success,Already uploaded (green status).
+2026-02-10T09:00:58.637Z,599,B02416002127,202601287238479,Success,Already uploaded (green status).
+2026-02-10T09:01:01.481Z,600,B02416002129,202601287238504,Success,Already uploaded (green status).
+2026-02-10T09:01:04.572Z,604,B02416002140,202601287238601,Success,Already uploaded (green status).
+2026-02-10T09:01:07.291Z,612,B02416002151,202601287238778,Success,Already uploaded (green status).
+2026-02-10T09:01:29.995Z,614,B02416002172,202601287238817,Failed,"locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for locator('#ScrollableSimpleTableBody tr').filter({ hasText: '202601287238817' }).first() to be visible[22m
+"
+2026-02-10T09:02:01.189Z,616,B02416002177,202601287238859,Failed,"locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('input[name=""searchField""]').first() to be visible[22m
+"
+2026-02-10T09:02:25.639Z,624,B02416002216,202601287239277,Failed,"locator.waitFor: Target page, context or browser has been closed
+Call log:
+[2m  - waiting for locator('input[name=""searchField""]').first() to be visible[22m
+"

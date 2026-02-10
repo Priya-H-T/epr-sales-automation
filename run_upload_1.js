@@ -9,7 +9,7 @@ function getConfigPath() {
     if (idx !== -1 && process.argv[idx + 1]) {
         return path.resolve(__dirname, process.argv[idx + 1]);
     }
-    return path.resolve(__dirname, "config.json");
+    return path.resolve(__dirname, "config_upload_1.json");
 }
 
 const CONFIG_PATH = getConfigPath();
@@ -572,15 +572,15 @@ async function uploadInvoiceFileWithRetry(page, opts) {
 
             const uploadMessage = uploadResult.toast || uploadResult.status;
             if (uploadResult.status === "already") {
-                setVal(row, headerMap, "Invoice update Status", "Sucess");
+                setVal(row, headerMap, "Invoice update Status", "Success");
                 appendUploadLogRow(row, headerMap, { status: "Success", message: uploadMessage });
                 appendUploadFilledRow(row, headerMap, headerList, { message: uploadMessage });
-            } else if (uploadResult.status === "success") {
-                setVal(row, headerMap, "Invoice update Status", "Sucess");
+            } else if (uploadResult.status === "Success") {
+                setVal(row, headerMap, "Invoice update Status", "Success");
                 appendUploadLogRow(row, headerMap, { status: "Success", message: uploadMessage });
                 appendUploadFilledRow(row, headerMap, headerList, { message: uploadMessage });
             } else {
-                setVal(row, headerMap, "Invoice update Status", "Failed: " + (uploadMessage || "Error"));
+                setVal(row, headerMap, "Invoice update Status", "Failed: " + (uploadMessage || "Error" || "Failed"));
                 appendUploadLogRow(row, headerMap, { status: "Failed", message: uploadMessage });
                 appendUploadFilledRow(row, headerMap, headerList, { message: uploadMessage });
             }
