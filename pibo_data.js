@@ -640,102 +640,142 @@ async function clickSubmitAndConfirm(page) {
     await confirmBtn.click();
     logStep("submit: confirmed", 1);
 
-    // Wait for confirmation modal to close
+    // Wait for confirmation modal to disappear
+    await page.waitForTimeout(1000);
     await page.locator("#openConfirmation").waitFor({ state: "hidden", timeout: 10000 }).catch(() => { });
-
-    // Dismiss confirmation modal manually if still visible
-    try {
-        const dismissBtn = page.locator('#openConfirmation button[data-bs-dismiss="modal"], #openConfirmation button.close').first();
-        if (await dismissBtn.count()) {
-            await dismissBtn.click().catch(() => { });
-            await page.waitForTimeout(300);
-        }
-    } catch { }
-
     await waitForLoaderToFinish(page);
     logStep("submit: done", 1);
 }
 
-async function readEprInvoiceNumber(page) {
-    // Look for the EPR Invoice Number input field at bottom of form
-    // Try multiple selectors for the EPR number input
-    const selectors = [
-        'input[name="invoiceNumberCopy"]',
-        '#invoiceNumberCopy',
-        'input[readonly][value]',
-    ];
-    for (const sel of selectors) {
-        const input = page.locator(sel).first();
-        if (await input.count()) {
-            const val = (await input.inputValue().catch(() => "")).trim();
-            if (val && /^\d+$/.test(val)) return val;
+async function submitAndCaptureResult(page) {
+    await clickSubmitAndConfirm(page);
+
+    // Wait for toast (success or error)
+    await page.waitForTimeout(1000);
+    const toastText = await readToastTextWithRetry(page, 10, 500);
+    logStep(`toast: ${toastText || "(none)"}`, 1);
+
+    // Try to extract EPR number from toast
+    let eprInvoice = "";
+    if (toastText) {
+        const match = toastText.match(/Invoice\s*Id\s*(?:is\s*)?[:\s]*(\d+)/i);
+        if (match && match[1]) eprInvoice = match[1].trim();
+    }
+
+    // Also try reading from the input field on the form
+    if (!eprInvoice) {
+        const selectors = [
+            '#invoiceNumberCopy',
+            'input[name="invoiceNumberCopy"]',
+        ];
+        for (const sel of selectors) {
+            const input = page.locator(sel).first();
+            if (await input.count()) {
+                const val = (await input.inputValue().catch(() => "")).trim();
+                if (val && /^\d+$/.test(val)) {
+                    eprInvoice = val;
+                    break;
+                }
+            }
         }
     }
 
-    // Fallback: extract from the toast text
-    const toast = await readToastTextWithRetry(page, 4, 300);
-    if (toast) {
-        const match = toast.match(/Invoice\s*Id\s*(?:is\s*)?[:\s]*(\d+)/i);
-        if (match && match[1]) return match[1].trim();
-    }
-
-    // Fallback: look for EPR Invoice Number label + adjacent value
-    const label = page.locator("text=/EPR\\s*Invoice\\s*Number/i").first();
-    if (await label.count()) {
-        const parent = label.locator("xpath=ancestor::div[1]");
-        const input2 = parent.locator("input").first();
-        if (await input2.count()) {
-            const val = (await input2.inputValue().catch(() => "")).trim();
-            if (val) return val;
+    // Fallback: poll for EPR input to appear
+    if (!eprInvoice) {
+        const start = Date.now();
+        while (Date.now() - start < 15000) {
+            // Check all visible inputs for a numeric value that looks like an EPR number
+            const inputs = page.locator('input[readonly], input[disabled]');
+            const count = await inputs.count();
+            for (let i = 0; i < count; i++) {
+                const val = (await inputs.nth(i).inputValue().catch(() => "")).trim();
+                if (val && /^\d{10,}$/.test(val)) {
+                    eprInvoice = val;
+                    break;
+                }
+            }
+            if (eprInvoice) break;
+            await page.waitForTimeout(500);
         }
     }
 
-    return "";
-}
-
-async function waitForEprInvoiceNumber(page, timeoutMs = 20000) {
-    const start = Date.now();
-    logStep("wait EPR invoice: start", 1);
-    while (Date.now() - start < timeoutMs) {
-        const val = await readEprInvoiceNumber(page);
-        if (val) return val;
-        await page.waitForTimeout(500);
+    if (eprInvoice) {
+        logStep(`EPR invoice captured: ${eprInvoice}`, 1);
     }
-    logStep("wait EPR invoice: timeout", 1);
-    return "";
+
+    // Determine success/failure from toast
+    const isSuccess = /success/i.test(toastText) && !/error/i.test(toastText);
+
+    // Close the form modal
+    await closeFormModal(page);
+
+    return { eprInvoice, toastText, isSuccess };
 }
 
 async function closeFormModal(page) {
-    // Click the "Close" button at the bottom-right of the Add Sales Details form
+    logStep("closing modal: start", 2);
+
+    // 1. Try clicking the "Close" button at bottom-right of the form
     try {
         const closeBtn = page.locator("button", { hasText: /^Close$/i }).first();
         if (await closeBtn.count()) {
-            await closeBtn.scrollIntoViewIfNeeded();
+            await closeBtn.scrollIntoViewIfNeeded().catch(() => { });
             await closeBtn.click();
-            logStep("form Close button clicked", 2);
+            logStep("Close button clicked", 2);
             await page.waitForTimeout(500);
         }
     } catch { }
 
-    // Dismiss any remaining modals via X buttons
+    // 2. If modal still visible, click the X button at top-right
     try {
-        const modals = page.locator(".modal-dialog");
+        const modalVisible = await page.locator(".modal-dialog").first().isVisible().catch(() => false);
+        if (modalVisible) {
+            const xBtn = page.locator(".modal-header button.close, .modal-header button[aria-label='Close']").first();
+            if (await xBtn.count()) {
+                await xBtn.click().catch(() => { });
+                logStep("X button clicked", 2);
+                await page.waitForTimeout(500);
+            }
+        }
+    } catch { }
+
+    // 3. If still visible, try pressing Escape
+    try {
+        const stillVisible = await page.locator(".modal-dialog").first().isVisible().catch(() => false);
+        if (stillVisible) {
+            await page.keyboard.press("Escape");
+            logStep("Escape pressed", 2);
+            await page.waitForTimeout(500);
+        }
+    } catch { }
+
+    // 4. Dismiss any remaining backdrop/modals
+    try {
+        const modals = page.locator(".modal.show, .modal-dialog");
         const count = await modals.count();
         for (let i = count - 1; i >= 0; i--) {
             const modal = modals.nth(i);
             if (await modal.isVisible().catch(() => false)) {
-                const xBtn = modal.locator("button.close, button[data-bs-dismiss='modal']").first();
-                if (await xBtn.count()) {
-                    await xBtn.click().catch(() => { });
+                const btn = modal.locator("button.close, button[data-bs-dismiss='modal'], button[aria-label='Close']").first();
+                if (await btn.count()) {
+                    await btn.click().catch(() => { });
                     await page.waitForTimeout(300);
                 }
             }
         }
     } catch { }
 
-    // Wait for all modals to be gone
+    // 5. Wait for all modals gone
     await page.locator(".modal-dialog").first().waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
-    logStep("all modals closed", 2);
+    // Remove leftover backdrop
+    await page.evaluate(() => {
+        document.querySelectorAll(".modal-backdrop").forEach(el => el.remove());
+        document.body.classList.remove("modal-open");
+        document.body.style.removeProperty("overflow");
+        document.body.style.removeProperty("padding-right");
+    }).catch(() => { });
+
+    logStep("closing modal: done", 2);
 }
 
 // ── Navigation / reset ───────────────────────────────────────────────────────
@@ -886,7 +926,21 @@ async function resetToFreshPage(page) {
             await selectNgSelectByLabel(page, "Registration Type", regType);
             await page.waitForTimeout(300);
 
-            // 2. Entity Type (always fill)
+            // 2. Type — click "Entity Details" radio button
+            logStep("select Type: Entity Details", 1);
+            const entityDetailsRadio = page.locator('label', { hasText: "Entity Details" }).first();
+            if (await entityDetailsRadio.count()) {
+                await entityDetailsRadio.click();
+                await page.waitForTimeout(300);
+            } else {
+                // Fallback: click the radio input directly
+                const radio = page.locator('input[type="radio"]').nth(1);
+                if (await radio.count()) await radio.click({ force: true });
+                await page.waitForTimeout(300);
+            }
+            await waitForLoaderToFinish(page);
+
+            // 3. Entity Type (always fill)
             logStep("fill Entity Type", 1);
             await selectNgSelectByLabel(page, "Entity Type", entityType);
             await page.waitForTimeout(500);
@@ -950,43 +1004,56 @@ async function resetToFreshPage(page) {
             logStep("fill Recycled Plastic %", 1);
             await fillByName(page, "recycled_plastic", recycledContent);
 
-            // Submit and confirm
-            await clickSubmitAndConfirm(page);
-            logStep("post-submit: wait", 1);
-            await page.waitForTimeout(300);
-            await waitForLoaderToFinish(page);
-            const toastText = await readToastTextWithRetry(page);
-            if (toastText) {
-                logStep(`toast: ${toastText}`, 1);
+            // Submit, confirm, read toast + EPR number, close modal
+            const result = await submitAndCaptureResult(page);
+
+            if (result.isSuccess && result.eprInvoice) {
+                if (eprSet.has(result.eprInvoice)) {
+                    throw new Error("Duplicate EPR Invoice Number: " + result.eprInvoice);
+                }
+                setVal(row, headerMap, "Status", "Filled");
+                setVal(row, headerMap, "EPR Invoice Number", result.eprInvoice);
+                eprSet.add(result.eprInvoice);
+                appendLogRow(row, headerMap, {
+                    status: "Filled",
+                    eprInvoiceNumber: result.eprInvoice,
+                    message: result.toastText,
+                });
+                appendFilledRow(row, headerMap, headerList, {
+                    message: result.toastText,
+                });
+                console.log(`Row ${r}: Filled (EPR: ${result.eprInvoice})`);
+                successThisRow = true;
+            } else if (result.isSuccess && !result.eprInvoice) {
+                setVal(row, headerMap, "Status", "Success but EPR not captured");
+                appendLogRow(row, headerMap, {
+                    status: "Success but EPR not captured",
+                    eprInvoiceNumber: "",
+                    message: result.toastText,
+                });
+                appendFilledRow(row, headerMap, headerList, {
+                    message: result.toastText,
+                });
+                console.log(`Row ${r}: Success but EPR number not captured`);
+                successThisRow = true;
+            } else {
+                // Error toast
+                const errMsg = result.toastText || "Unknown error";
+                setVal(row, headerMap, "Status", "Failed: " + errMsg);
+                appendLogRow(row, headerMap, {
+                    status: "Failed",
+                    eprInvoiceNumber: result.eprInvoice || "",
+                    message: errMsg,
+                });
+                appendFilledRow(row, headerMap, headerList, {
+                    message: errMsg,
+                });
+                console.log(`Row ${r}: Failed -> ${errMsg}`);
             }
 
-            const eprInvoice = await waitForEprInvoiceNumber(page);
-            if (eprSet.has(eprInvoice)) {
-                throw new Error("Duplicate EPR Invoice Number: " + eprInvoice);
-            }
-            if (!eprInvoice) {
-                throw new Error("EPR Invoice Number not found after submit.");
-            }
-            logStep(`EPR invoice: ${eprInvoice}`, 1);
-
-            setVal(row, headerMap, "Status", "Filled");
-            setVal(row, headerMap, "EPR Invoice Number", eprInvoice);
-            eprSet.add(eprInvoice);
             row.commit();
             await safeWriteWorkbook(wb);
             await syncInputWorkbook(wb);
-
-            appendLogRow(row, headerMap, {
-                status: "Filled",
-                eprInvoiceNumber: eprInvoice,
-                message: toastText,
-            });
-            appendFilledRow(row, headerMap, headerList, {
-                message: toastText,
-            });
-
-            console.log(`Row ${r}: Filled`);
-            successThisRow = true;
         } catch (e) {
             const msg = String(e?.message || e);
             console.log(`Row ${r}: Failed ->`, msg);
@@ -1007,9 +1074,7 @@ async function resetToFreshPage(page) {
                 console.log("Page closed. Stopping.");
                 break;
             }
-            if (successThisRow) {
-                await page.waitForTimeout(300);
-            }
+            // Ensure modal is closed even if error happened before submitAndCaptureResult
             await waitForLoaderToFinish(page);
             await closeFormModal(page);
             await page.waitForTimeout(500);
