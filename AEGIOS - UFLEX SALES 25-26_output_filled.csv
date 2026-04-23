@@ -1,2 +1,77 @@
 REGISTRATION TYPE,ENTITY TYPE,ENTITY,GST NO,STATE,CATEGORY,PLASTIC TYPE,INVOICE No,RECYCLED CONTENT %,BANK ACCOUNT  NO,IFSC,Sum of QTY  MT,Sum of GST PAID,EPR,EPR Invoice Number,Status,datetime,message
 Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601336,90,4441008700000569,PUNB0444100,0.6525,15268.5,,,Failed: Unknown error,2026-04-23T10:38:52.358Z,Unknown error
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601336,90,4441008700000569,PUNB0444100,0.6525,15268.5,,,Failed: Unknown error,2026-04-23T10:40:22.221Z,Unknown error
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601730,90,4441008700000569,PUNB0444100,2.1256999999999997,48593.5,,202604238175657,Filled,2026-04-23T10:40:56.956Z,"×
+Note
+Invoice number will be generated, make use of the same number in the invoice while uploading
+×
+Success
+Sales receipt saved successfully Invoice Id is :202604238175657"
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601785,90,4441008700000569,PUNB0444100,2.1444,49020.979999999996,,,"Failed: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+Call log:
+[2m  - attempting scroll into view action[22m
+[2m    - waiting for element to be stable[22m
+[2m    - element is not stable[22m
+[2m  - retrying scroll into view action[22m
+[2m    - waiting for element to be stable[22m",2026-04-23T10:41:09.252Z,"locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+Call log:
+[2m  - attempting scroll into view action[22m
+[2m    - waiting for element to be stable[22m
+[2m    - element is not stable[22m
+[2m  - retrying scroll into view action[22m
+[2m    - waiting for element to be stable[22m
+"
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601798,90,4441008700000569,PUNB0444100,9.3034,212675.72,,,"Failed: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+Call log:
+[2m  - attempting scroll into view action[22m
+[2m    2 × waiting for element to be stable[22m
+[2m      - element is not stable[22m
+[2m    - retrying scroll into view action[22m
+[2m    - waiting 20ms[22m
+[2m    - waiting for element to be stable[22m",2026-04-23T10:41:16.520Z,"locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+Call log:
+[2m  - attempting scroll into view action[22m
+[2m    2 × waiting for element to be stable[22m
+[2m      - element is not stable[22m
+[2m    - retrying scroll into view action[22m
+[2m    - waiting 20ms[22m
+[2m    - waiting for element to be stable[22m
+"
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601336,90,4441008700000569,PUNB0444100,0.6525,15268.5,,,"Failed: page.waitForTimeout: Target page, context or browser has been closed",2026-04-23T10:44:46.973Z,"page.waitForTimeout: Target page, context or browser has been closed"
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601336,90,4441008700000569,PUNB0444100,0.6525,15268.5,,,Failed: Unknown error,2026-04-23T10:50:25.581Z,Unknown error
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601785,90,4441008700000569,PUNB0444100,2.1444,49020.979999999996,,202604238175704,Filled,2026-04-23T10:50:59.888Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601798,90,4441008700000569,PUNB0444100,9.3034,212675.72,,,"Failed: locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for locator('.form-group').filter({ has: locator('label').filter({ hasText: 'Registration Type' }) }).first() to be visible[22m
+[2m    44 × locator resolved to hidden <div _ngcontent-ng-c1973799827="""" class=""form-group ng-star-inserted"">…</div>[22m",2026-04-23T10:51:29.040Z,"locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for locator('.form-group').filter({ has: locator('label').filter({ hasText: 'Registration Type' }) }).first() to be visible[22m
+[2m    44 × locator resolved to hidden <div _ngcontent-ng-c1973799827="""" class=""form-group ng-star-inserted"">…</div>[22m
+"
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601906,90,4441008700000569,PUNB0444100,2.1439,49009.56,,,"Failed: locator.waitFor: Target page, context or browser has been closed
+Call log:
+[2m  - waiting for locator('.form-group').filter({ has: locator('label').filter({ hasText: 'Registration Type' }) }).first() to be visible[22m
+[2m    43 × locator resolved to hidden <div _ngcontent-ng-c1973799827="""" class=""form-group ng-star-inserted"">…</div>[22m",2026-04-23T10:51:56.661Z,"locator.waitFor: Target page, context or browser has been closed
+Call log:
+[2m  - waiting for locator('.form-group').filter({ has: locator('label').filter({ hasText: 'Registration Type' }) }).first() to be visible[22m
+[2m    43 × locator resolved to hidden <div _ngcontent-ng-c1973799827="""" class=""form-group ng-star-inserted"">…</div>[22m
+"
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601336,90,4441008700000569,PUNB0444100,0.6525,15268.5,,9419115705,Filled,2026-04-23T10:55:36.332Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601798,90,4441008700000569,PUNB0444100,9.3034,212675.72,,202604238175727,Filled,2026-04-23T10:56:22.963Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601906,90,4441008700000569,PUNB0444100,2.1439,49009.56,,202604238175728,Filled,2026-04-23T10:57:09.331Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601940,90,4441008700000569,PUNB0444100,6.60315,156033.56,,202604238175733,Filled,2026-04-23T10:57:59.195Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252601981,90,4441008700000569,PUNB0444100,8.89041,235240.26,,202604238175740,Filled,2026-04-23T10:58:45.659Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602029,90,4441008700000569,PUNB0444100,2.02805,53662.2,,202604238175741,Filled,2026-04-23T10:59:32.072Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602030,90,4441008700000569,PUNB0444100,4.6243099999999995,122359.26000000001,,202604238175744,Filled,2026-04-23T11:00:19.062Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602081,90,4441008700000569,PUNB0444100,4.9915,112308.76,,,"Failed: page.waitForTimeout: Target page, context or browser has been closed",2026-04-23T11:00:21.467Z,"page.waitForTimeout: Target page, context or browser has been closed"
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602081,90,4441008700000569,PUNB0444100,4.9915,112308.76,,202604238175760,Filled,2026-04-23T11:04:49.837Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602081,90,4441008700000569,PUNB0444100,4.9915,112308.76,,202604238175767,Filled,2026-04-23T11:07:13.752Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602148,90,4441008700000569,PUNB0444100,5.702,128295,,202604238175770,Filled,2026-04-23T11:07:53.712Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602161,90,4441008700000569,PUNB0444100,1.4194,31936.5,,202604238175777,Filled,2026-04-23T11:08:18.222Z,"×
+Note
+Invoice number will be generated, make use of the same number in the invoice while uploading
+×
+Success
+Sales receipt saved successfully Invoice Id is :202604238175777"
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602184,90,4441008700000569,PUNB0444100,3.8018899999999998,99229.32,,202604238175780,Filled,2026-04-23T11:08:57.925Z,
+Registered,PRODUCER,UFLEX LIMITED,01AAACF0109J1ZE,JAMMU AND KASHMIR,CAT 2,PET,AF130252602434,90,4441008700000569,PUNB0444100,4.67127,125283.45999999999,,202604238175786,Filled,2026-04-23T11:09:37.572Z,

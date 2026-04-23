@@ -526,6 +526,8 @@ async function selectNgSelectByLabel(page, labelText, optionText) {
     await panel.waitFor({ state: "hidden", timeout: 20000 }).catch(() => { });
 }
 
+let lastMatchedEntityIndex = -1;
+
 async function pickEntityWithStateMatch(page, entityNameValue, expectedState, expectedGst) {
     const name = cellText(entityNameValue);
     const expState = cellText(expectedState).toLowerCase();
@@ -555,8 +557,14 @@ async function pickEntityWithStateMatch(page, entityNameValue, expectedState, ex
         throw new Error("Name of the Entity field not found on form");
     }
 
-    // Try each matching option until auto-filled State + GST match Excel row
-    for (let attempt = 0; attempt < 15; attempt++) {
+    // Build try order: last matched index first, then the rest
+    const tryOrder = [];
+    if (lastMatchedEntityIndex >= 0) tryOrder.push(lastMatchedEntityIndex);
+    for (let i = 0; i < 15; i++) {
+        if (i !== lastMatchedEntityIndex) tryOrder.push(i);
+    }
+
+    for (const attempt of tryOrder) {
         logStep(`pick entity: trying option ${attempt + 1}`, 1);
 
         // Clear current selection if any
@@ -581,9 +589,7 @@ async function pickEntityWithStateMatch(page, entityNameValue, expectedState, ex
         const options = panel.locator(".ng-option", { hasText: name });
         const count = await options.count();
         if (count === 0) throw new Error(`No entity options found for "${name}"`);
-        if (attempt >= count) {
-            throw new Error(`All ${count} options tried for "${name}", none matched State="${expState}" GST="${expGst}"`);
-        }
+        if (attempt >= count) continue;
 
         // Click the nth option
         await options.nth(attempt).click();
@@ -601,7 +607,8 @@ async function pickEntityWithStateMatch(page, entityNameValue, expectedState, ex
         const gstMatch = !expGst || filledGst === expGst;
 
         if (stateMatch && gstMatch) {
-            logStep(`entity matched on option ${attempt + 1}`, 1);
+            lastMatchedEntityIndex = attempt;
+            logStep(`entity matched on option ${attempt + 1} (cached for next row)`, 1);
             return;
         }
 
@@ -703,8 +710,8 @@ async function submitAndCaptureResult(page) {
         logStep(`EPR invoice captured: ${eprInvoice}`, 1);
     }
 
-    // Determine success/failure from toast
-    const isSuccess = /success/i.test(toastText) && !/error/i.test(toastText);
+    // Determine success: EPR captured = success, OR toast says success
+    const isSuccess = !!eprInvoice || (/success/i.test(toastText) && !/error/i.test(toastText));
 
     // Refresh the page to close all modals cleanly
     await closeAllModals(page);
@@ -714,8 +721,19 @@ async function submitAndCaptureResult(page) {
 
 async function closeAllModals(page) {
     logStep("refresh page to close modals", 2);
-    await page.goto(PIBO_URL, { waitUntil: "domcontentloaded" });
-    await page.waitForTimeout(2000);
+    // Force full page reload (page.goto same hash URL doesn't always reload in Angular)
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await page.waitForTimeout(3000);
+    await waitForLoaderToFinish(page);
+    // Remove any leftover modal backdrop via JS
+    await page.evaluate(() => {
+        document.querySelectorAll(".modal-backdrop, .modal.show").forEach(el => el.remove());
+        document.body.classList.remove("modal-open");
+        document.body.style.removeProperty("overflow");
+        document.body.style.removeProperty("padding-right");
+    }).catch(() => { });
+    // Wait for the page table to be ready
+    await page.waitForSelector("button", { timeout: 10000 }).catch(() => { });
     await waitForLoaderToFinish(page);
     logStep("page refreshed, ready for next row", 2);
 }
@@ -769,16 +787,20 @@ async function resetToFreshPage(page) {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 (async () => {
-    if (!fs.existsSync(EXCEL_PATH)) {
-        throw new Error(`Excel not found: ${EXCEL_PATH}`);
+    // Read from OUTPUT Excel if it exists (has EPR numbers from previous runs)
+    // Otherwise read from INPUT Excel
+    const readPath = fs.existsSync(OUTPUT_PATH) ? OUTPUT_PATH : EXCEL_PATH;
+    if (!fs.existsSync(readPath)) {
+        throw new Error(`Excel not found: ${readPath}`);
     }
-    const stat = fs.statSync(EXCEL_PATH);
+    const stat = fs.statSync(readPath);
     if (stat.size < 1000) {
-        throw new Error(`Excel looks empty/corrupt (${stat.size} bytes): ${EXCEL_PATH}`);
+        throw new Error(`Excel looks empty/corrupt (${stat.size} bytes): ${readPath}`);
     }
+    console.log(`Reading from: ${readPath}`);
 
     const wb = new ExcelJS.Workbook();
-    await wb.xlsx.readFile(EXCEL_PATH);
+    await wb.xlsx.readFile(readPath);
     let ws = wb.getWorksheet(SHEET);
     if (!ws) {
         // Try trimmed matching (sheet names may have trailing spaces)
@@ -819,6 +841,7 @@ async function resetToFreshPage(page) {
     for (let r = 2; r <= lastRow; r++) {
         const row = ws.getRow(r);
         let successThisRow = false;
+        let pageRefreshed = false;
         if (isRowEmpty(row, headerMap)) {
             console.log(`Row ${r}: Skipped (row empty)`);
             continue;
@@ -860,8 +883,13 @@ async function resetToFreshPage(page) {
 
             // Open form modal
             await clickAddNew(page);
-            await page.waitForTimeout(500);
+            await page.waitForTimeout(2000);
             await waitForLoaderToFinish(page);
+            // Wait for Registration Type dropdown to be fully visible and stable
+            const regSelect = page.locator('ng-select[name="registration_type"]').first();
+            await regSelect.waitFor({ state: "visible", timeout: 20000 });
+            await regSelect.waitFor({ state: "attached", timeout: 5000 }).catch(() => { });
+            await page.waitForTimeout(500);
 
             // 1. Registration Type (dropdown)
             logStep("fill Registration Type", 1);
@@ -946,8 +974,9 @@ async function resetToFreshPage(page) {
             logStep("fill Recycled Plastic %", 1);
             await fillByName(page, "recycled_plastic", recycledContent);
 
-            // Submit, confirm, read toast + EPR number, close modal
+            // Submit, confirm, read toast + EPR number, refresh page
             const result = await submitAndCaptureResult(page);
+            pageRefreshed = true;
 
             if (result.isSuccess && result.eprInvoice) {
                 if (eprSet.has(result.eprInvoice)) {
@@ -1016,8 +1045,10 @@ async function resetToFreshPage(page) {
                 console.log("Page closed. Stopping.");
                 break;
             }
-            // Refresh page to ensure clean state for next row
-            await closeAllModals(page);
+            // Refresh page to ensure clean state for next row (only if not already refreshed)
+            if (!pageRefreshed) {
+                await closeAllModals(page);
+            }
         }
     }
 
