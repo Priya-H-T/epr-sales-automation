@@ -26,6 +26,9 @@ function loadConfig() {
     const outputExcel = String(cfg?.outputExcel || "").trim();
     const maxRowsRaw = cfg?.max_rows;
     const storageState = String(cfg?.storageState || "storageState_pibo.json").trim();
+    const financialYear = String(cfg?.financialYear || "").trim();
+    const address = String(cfg?.address || "").trim();
+    const mobileNumber = String(cfg?.mobileNumber || "").trim();
     if (!inputExcel || !sheetName || !outputExcel) {
         throw new Error("config must include inputExcel, sheetName, and outputExcel");
     }
@@ -37,7 +40,7 @@ function loadConfig() {
         }
         if (n > 0) maxRows = Math.floor(n);
     }
-    return { inputExcel, sheetName, outputExcel, maxRows, storageState };
+    return { inputExcel, sheetName, outputExcel, maxRows, storageState, financialYear, address, mobileNumber };
 }
 
 const CONFIG = loadConfig();
@@ -83,6 +86,18 @@ function formatQty(v) {
     const n = Number(s);
     if (Number.isFinite(n)) return n.toFixed(2);
     return s;
+}
+
+const CATEGORY_MAP = {
+    "cat 1": "CAT I",
+    "cat 2": "CAT II",
+    "cat 3": "CAT III",
+    "cat 4": "CAT IV",
+};
+
+function mapCategory(v) {
+    const s = cellText(v).toLowerCase();
+    return CATEGORY_MAP[s] || cellText(v);
 }
 
 // ── Excel helpers ────────────────────────────────────────────────────────────
@@ -143,6 +158,14 @@ function buildEprSet(ws, headerMap) {
     return set;
 }
 
+function ensureColumn(ws, headerMap, headerName) {
+    const key = normHeader(headerName);
+    if (headerMap.has(key)) return;
+    const maxCol = Math.max(0, ...headerMap.values()) + 1;
+    ws.getRow(1).getCell(maxCol).value = headerName;
+    headerMap.set(key, maxCol);
+}
+
 // ── Logging ──────────────────────────────────────────────────────────────────
 
 function ensureLogHeader() {
@@ -167,10 +190,10 @@ function appendLogRow(row, headerMap, { status, eprInvoiceNumber, message }) {
     const data = [
         ts,
         row.number,
-        cellText(getVal(row, headerMap, "GST E-Invoice Number*")),
-        cellText(getVal(row, headerMap, "Registration Type*")),
-        cellText(getVal(row, headerMap, "Name of the Entity*")),
-        cellText(getVal(row, headerMap, "Total Plastic Quantity (Tons)*")),
+        cellText(getVal(row, headerMap, "INVOICE No")),
+        cellText(getVal(row, headerMap, "REGISTRATION TYPE")),
+        cellText(getVal(row, headerMap, "ENTITY")),
+        cellText(getVal(row, headerMap, "Sum of QTY MT")),
         cellText(eprInvoiceNumber),
         status,
         message || "",
@@ -307,6 +330,55 @@ async function attemptLogout(page) {
 
 // ── Form interaction ─────────────────────────────────────────────────────────
 
+async function selectRadioByLabel(page, groupLabel, optionText) {
+    const text = cellText(optionText);
+    if (!text) throw new Error(`Missing option for ${groupLabel}`);
+    logStep(`select radio: ${groupLabel} -> ${text}`, 1);
+
+    // Try clicking a radio label that matches the text
+    const radio = page.locator(`label`, { hasText: new RegExp(`^\\s*${text}\\s*$`, "i") }).first();
+    if (await radio.count()) {
+        await radio.scrollIntoViewIfNeeded();
+        await radio.click();
+        await page.waitForTimeout(200);
+        return;
+    }
+
+    // Fallback: find radio input by value
+    const input = page.locator(`input[type="radio"][value="${text}" i]`).first();
+    if (await input.count()) {
+        await input.scrollIntoViewIfNeeded();
+        await input.click({ force: true });
+        await page.waitForTimeout(200);
+        return;
+    }
+
+    // Fallback: find by name containing the group + matching value
+    const anyRadio = page.locator(`input[type="radio"]`);
+    const count = await anyRadio.count();
+    for (let i = 0; i < count; i++) {
+        const r = anyRadio.nth(i);
+        const lbl = await r.evaluate((el) => {
+            const id = el.id;
+            if (id) {
+                const l = document.querySelector(`label[for="${id}"]`);
+                if (l) return l.innerText.trim();
+            }
+            const parent = el.closest("label");
+            if (parent) return parent.innerText.trim();
+            return "";
+        });
+        if (lbl.toLowerCase().includes(text.toLowerCase())) {
+            await r.scrollIntoViewIfNeeded();
+            await r.click({ force: true });
+            await page.waitForTimeout(200);
+            return;
+        }
+    }
+
+    throw new Error(`Radio option "${text}" not found for ${groupLabel}`);
+}
+
 async function fillByName(page, name, value) {
     const v = cellText(value);
     if (!v) return;
@@ -316,6 +388,109 @@ async function fillByName(page, name, value) {
     await loc.click();
     await loc.fill("");
     await loc.fill(v);
+    await loc.blur();
+}
+
+async function fillByNameIfEmpty(page, name, value) {
+    const v = cellText(value);
+    if (!v) return;
+    const loc = page.locator(`input[name="${name}"]`).first();
+    if (!(await loc.count())) return;
+    await loc.waitFor({ state: "visible", timeout: 10000 }).catch(() => { });
+    const current = (await loc.inputValue().catch(() => "")).trim();
+    if (current) {
+        logStep(`${name}: already filled ("${current}"), skipping`, 2);
+        return;
+    }
+    await loc.scrollIntoViewIfNeeded();
+    await loc.click();
+    await loc.fill(v);
+    await loc.blur();
+}
+
+async function isNgSelectFilled(page, labelText) {
+    const group = page
+        .locator(".form-group", { has: page.locator("label", { hasText: labelText }) })
+        .first();
+    if (!(await group.count())) return false;
+    const selected = group.locator(".ng-value-label, .ng-value").first();
+    if (!(await selected.count())) return false;
+    const text = (await selected.innerText().catch(() => "")).trim();
+    return text.length > 0;
+}
+
+async function selectNgSelectByLabelIfEmpty(page, labelText, optionText) {
+    const text = cellText(optionText);
+    if (!text) return;
+    if (await isNgSelectFilled(page, labelText)) {
+        logStep(`${labelText}: already filled, skipping`, 2);
+        return;
+    }
+    await selectNgSelectByLabel(page, labelText, optionText);
+}
+
+async function getNgSelectValue(page, labelText) {
+    const group = page
+        .locator(".form-group", { has: page.locator("label", { hasText: labelText }) })
+        .first();
+    if (!(await group.count())) return "";
+    const selected = group.locator(".ng-value-label, .ng-value").first();
+    if (!(await selected.count())) return "";
+    return (await selected.innerText().catch(() => "")).trim();
+}
+
+async function clearAndReselectNgSelect(page, labelText, optionText) {
+    const text = cellText(optionText);
+    if (!text) return;
+
+    const group = page
+        .locator(".form-group", { has: page.locator("label", { hasText: labelText }) })
+        .first();
+    await group.waitFor({ state: "visible", timeout: 10000 });
+    const ng = group.locator("ng-select").first();
+
+    // Clear current selection
+    const clearBtn = ng.locator(".ng-clear-wrapper").first();
+    if (await clearBtn.count()) {
+        await clearBtn.click();
+        await page.waitForTimeout(200);
+    }
+
+    await selectNgSelectByLabel(page, labelText, optionText);
+}
+
+async function verifyAndFixNgSelect(page, labelText, expectedValue) {
+    const expected = cellText(expectedValue);
+    if (!expected) return;
+
+    const current = await getNgSelectValue(page, labelText);
+    if (current.toLowerCase() === expected.toLowerCase()) {
+        logStep(`${labelText}: verified OK ("${current}")`, 2);
+        return;
+    }
+
+    logStep(`${labelText}: mismatch ("${current}" != "${expected}"), re-selecting`, 1);
+    await clearAndReselectNgSelect(page, labelText, expected);
+    await waitForLoaderToFinish(page);
+}
+
+async function verifyAndFixInput(page, name, expectedValue) {
+    const expected = cellText(expectedValue);
+    if (!expected) return;
+
+    const loc = page.locator(`input[name="${name}"]`).first();
+    if (!(await loc.count())) return;
+    const current = (await loc.inputValue().catch(() => "")).trim();
+    if (current === expected) {
+        logStep(`${name}: verified OK`, 2);
+        return;
+    }
+
+    logStep(`${name}: mismatch ("${current}" != "${expected}"), overwriting`, 1);
+    await loc.scrollIntoViewIfNeeded();
+    await loc.click();
+    await loc.fill("");
+    await loc.fill(expected);
     await loc.blur();
 }
 
@@ -351,52 +526,20 @@ async function selectNgSelectByLabel(page, labelText, optionText) {
     await panel.waitFor({ state: "hidden", timeout: 20000 }).catch(() => { });
 }
 
-async function pickEntityName(page, entityNameValue) {
+async function pickEntityWithStateMatch(page, entityNameValue, expectedState, expectedGst) {
     const name = cellText(entityNameValue);
+    const expState = cellText(expectedState).toLowerCase();
+    const expGst = cellText(expectedGst).toLowerCase();
     if (!name) throw new Error("Entity name empty");
 
     const group = page
         .locator(".form-group", { has: page.locator("label", { hasText: "Name of the Entity" }) })
         .first();
 
-    if (await group.count()) {
-        const ng = group.locator("ng-select").first();
-        if (await ng.count()) {
-            logStep("pick entity name: ng-select", 1);
-            await ng.scrollIntoViewIfNeeded();
-            await ng.click();
+    if (!(await group.count())) throw new Error("Name of the Entity field not found on form");
 
-            const panel = page.locator(".ng-dropdown-panel");
-            await panel.waitFor({ state: "visible", timeout: 20000 });
-
-            const searchInput = panel.locator("input[type='text']").first();
-            if (await searchInput.count()) {
-                await searchInput.fill(name);
-                await page.waitForTimeout(150);
-                await searchInput.press("Enter");
-            } else {
-                await page.keyboard.type(name);
-                await page.waitForTimeout(300);
-                await page.keyboard.press("Enter");
-            }
-
-            await panel.waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
-            const selected = group.locator(".ng-value-label").first();
-            if (await selected.count()) {
-                const selectedText = (await selected.innerText().catch(() => "")).trim();
-                if (selectedText) {
-                    logStep(`pick entity name: selected "${selectedText}"`, 1);
-                    await waitForLoaderToFinish(page);
-                    return;
-                }
-            }
-
-            logStep("pick entity name: enter did not select, fallback to click", 1);
-            await selectNgSelectByLabel(page, "Name of the Entity", name);
-            await waitForLoaderToFinish(page);
-            return;
-        }
-
+    const ng = group.locator("ng-select").first();
+    if (!(await ng.count())) {
         // Fallback: plain input (for unregistered entities)
         const input = group.locator("input").first();
         if (await input.count()) {
@@ -409,9 +552,63 @@ async function pickEntityName(page, entityNameValue) {
             await waitForLoaderToFinish(page);
             return;
         }
+        throw new Error("Name of the Entity field not found on form");
     }
 
-    throw new Error("Name of the Entity field not found on form");
+    // Try each matching option until auto-filled State + GST match Excel row
+    for (let attempt = 0; attempt < 15; attempt++) {
+        logStep(`pick entity: trying option ${attempt + 1}`, 1);
+
+        // Clear current selection if any
+        const clearBtn = ng.locator(".ng-clear-wrapper").first();
+        if (await clearBtn.count()) {
+            await clearBtn.click();
+            await page.waitForTimeout(200);
+        }
+
+        // Open dropdown and search
+        await ng.scrollIntoViewIfNeeded();
+        await ng.click();
+        const panel = page.locator(".ng-dropdown-panel");
+        await panel.waitFor({ state: "visible", timeout: 20000 });
+
+        const searchInput = panel.locator("input[type='text']").first();
+        if (await searchInput.count()) {
+            await searchInput.fill(name);
+            await page.waitForTimeout(300);
+        }
+
+        const options = panel.locator(".ng-option", { hasText: name });
+        const count = await options.count();
+        if (count === 0) throw new Error(`No entity options found for "${name}"`);
+        if (attempt >= count) {
+            throw new Error(`All ${count} options tried for "${name}", none matched State="${expState}" GST="${expGst}"`);
+        }
+
+        // Click the nth option
+        await options.nth(attempt).click();
+        await panel.waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
+        await waitForLoaderToFinish(page);
+        await page.waitForTimeout(500);
+
+        // Read auto-filled State and GST
+        const filledState = (await getNgSelectValue(page, "State")).toLowerCase();
+        const filledGst = (await page.locator('input[name="gst_no"]').first().inputValue().catch(() => "")).trim().toLowerCase();
+
+        logStep(`option ${attempt + 1}/${count}: state="${filledState}" gst="${filledGst}"`, 2);
+
+        const stateMatch = !expState || filledState.includes(expState) || expState.includes(filledState);
+        const gstMatch = !expGst || filledGst === expGst;
+
+        if (stateMatch && gstMatch) {
+            logStep(`entity matched on option ${attempt + 1}`, 1);
+            return;
+        }
+
+        logStep(`mismatch (expected state="${expState}" gst="${expGst}"), trying next`, 2);
+    }
+
+    throw new Error(`Could not match entity "${name}" with State="${expState}" GST="${expGst}"`);
 }
 
 async function waitEntityAutofill(page) {
@@ -434,36 +631,65 @@ async function clickSubmitAndConfirm(page) {
         throw new Error("Submit disabled: some required fields still missing.");
     }
     await submit.click();
+
+    // Wait for confirmation modal and click Confirm
+    const confirmBtn = page
+        .locator("#openConfirmation .modal-footer button.btn-primary", { hasText: "Confirm" })
+        .first();
+    await confirmBtn.waitFor({ state: "visible", timeout: 60000 });
+    await confirmBtn.click();
+    logStep("submit: confirmed", 1);
+
+    // Wait for confirmation modal to close
+    await page.locator("#openConfirmation").waitFor({ state: "hidden", timeout: 10000 }).catch(() => { });
+
+    // Dismiss confirmation modal manually if still visible
     try {
-        const confirmBtn = page
-            .locator("#openConfirmation .modal-footer button.btn-primary", { hasText: "Confirm" })
-            .first();
-        await confirmBtn.waitFor({ state: "visible", timeout: 60000 });
-        await confirmBtn.click();
+        const dismissBtn = page.locator('#openConfirmation button[data-bs-dismiss="modal"], #openConfirmation button.close').first();
+        if (await dismissBtn.count()) {
+            await dismissBtn.click().catch(() => { });
+            await page.waitForTimeout(300);
+        }
     } catch { }
+
+    await waitForLoaderToFinish(page);
     logStep("submit: done", 1);
 }
 
 async function readEprInvoiceNumber(page) {
-    const input = page.locator("#invoiceNumberCopy").first();
-    if (await input.count()) {
-        try {
-            const val = (await input.inputValue()).trim();
-            if (val) return val;
-        } catch { }
+    // Look for the EPR Invoice Number input field at bottom of form
+    // Try multiple selectors for the EPR number input
+    const selectors = [
+        'input[name="invoiceNumberCopy"]',
+        '#invoiceNumberCopy',
+        'input[readonly][value]',
+    ];
+    for (const sel of selectors) {
+        const input = page.locator(sel).first();
+        if (await input.count()) {
+            const val = (await input.inputValue().catch(() => "")).trim();
+            if (val && /^\d+$/.test(val)) return val;
+        }
     }
+
+    // Fallback: extract from the toast text
+    const toast = await readToastTextWithRetry(page, 4, 300);
+    if (toast) {
+        const match = toast.match(/Invoice\s*Id\s*(?:is\s*)?[:\s]*(\d+)/i);
+        if (match && match[1]) return match[1].trim();
+    }
+
+    // Fallback: look for EPR Invoice Number label + adjacent value
     const label = page.locator("text=/EPR\\s*Invoice\\s*Number/i").first();
     if (await label.count()) {
-        const container = label.locator("xpath=ancestor-or-self::*[self::div or self::span or self::p][1]");
-        const text = (await container.innerText().catch(() => "")) || "";
-        if (/confirm entered details/i.test(text)) return "";
-        const match = text.match(/EPR\s*Invoice\s*Number\s*[:\-]?\s*([A-Za-z0-9\-\/]+)/i);
-        if (match && match[1]) return match[1].trim();
-        const sibling = label.locator("xpath=following::span[1] | following::div[1] | following::p[1]").first();
-        const sibText = (await sibling.innerText().catch(() => "")).trim();
-        if (/confirm entered details/i.test(sibText)) return "";
-        if (sibText) return sibText;
+        const parent = label.locator("xpath=ancestor::div[1]");
+        const input2 = parent.locator("input").first();
+        if (await input2.count()) {
+            const val = (await input2.inputValue().catch(() => "")).trim();
+            if (val) return val;
+        }
     }
+
     return "";
 }
 
@@ -471,20 +697,45 @@ async function waitForEprInvoiceNumber(page, timeoutMs = 20000) {
     const start = Date.now();
     logStep("wait EPR invoice: start", 1);
     while (Date.now() - start < timeoutMs) {
-        const modal = page.locator(".modal-dialog, .modal-content").first();
-        if (await modal.count()) {
-            const confirmBtn = modal.getByRole("button", { name: "Confirm", exact: true }).first();
-            if (await confirmBtn.count()) {
-                await confirmBtn.click().catch(() => { });
-                await modal.waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
-            }
-        }
         const val = await readEprInvoiceNumber(page);
         if (val) return val;
-        await page.waitForTimeout(300);
+        await page.waitForTimeout(500);
     }
     logStep("wait EPR invoice: timeout", 1);
     return "";
+}
+
+async function closeFormModal(page) {
+    // Click the "Close" button at the bottom-right of the Add Sales Details form
+    try {
+        const closeBtn = page.locator("button", { hasText: /^Close$/i }).first();
+        if (await closeBtn.count()) {
+            await closeBtn.scrollIntoViewIfNeeded();
+            await closeBtn.click();
+            logStep("form Close button clicked", 2);
+            await page.waitForTimeout(500);
+        }
+    } catch { }
+
+    // Dismiss any remaining modals via X buttons
+    try {
+        const modals = page.locator(".modal-dialog");
+        const count = await modals.count();
+        for (let i = count - 1; i >= 0; i--) {
+            const modal = modals.nth(i);
+            if (await modal.isVisible().catch(() => false)) {
+                const xBtn = modal.locator("button.close, button[data-bs-dismiss='modal']").first();
+                if (await xBtn.count()) {
+                    await xBtn.click().catch(() => { });
+                    await page.waitForTimeout(300);
+                }
+            }
+        }
+    } catch { }
+
+    // Wait for all modals to be gone
+    await page.locator(".modal-dialog").first().waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
+    logStep("all modals closed", 2);
 }
 
 // ── Navigation / reset ───────────────────────────────────────────────────────
@@ -546,12 +797,20 @@ async function resetToFreshPage(page) {
 
     const wb = new ExcelJS.Workbook();
     await wb.xlsx.readFile(EXCEL_PATH);
-    const ws = wb.getWorksheet(SHEET);
+    let ws = wb.getWorksheet(SHEET);
+    if (!ws) {
+        // Try trimmed matching (sheet names may have trailing spaces)
+        wb.eachSheet((sheet) => {
+            if (sheet.name.trim() === SHEET.trim()) ws = sheet;
+        });
+    }
     if (!ws) {
         throw new Error(`Sheet not found: ${SHEET}`);
     }
 
     const headerMap = getHeaderMap(ws);
+    ensureColumn(ws, headerMap, "EPR Invoice Number");
+    ensureColumn(ws, headerMap, "Status");
     const eprSet = buildEprSet(ws, headerMap);
     const headerList = getHeaderList(ws);
 
@@ -594,23 +853,25 @@ async function resetToFreshPage(page) {
             continue;
         }
 
-        // Read all fields from Excel
-        const regType = getVal(row, headerMap, "Registration Type*");
-        const entityType = getVal(row, headerMap, "Entity Type*");
-        const entityName = getVal(row, headerMap, "Name of the Entity*");
-        const address = getVal(row, headerMap, "Address*");
-        const state = getVal(row, headerMap, "State*");
-        const mobile = getVal(row, headerMap, "Mobile Number*");
-        const plasticMaterial = getVal(row, headerMap, "Plastic Material Type*");
-        const plasticCategory = getVal(row, headerMap, "Category of Plastic*");
-        const financialYear = getVal(row, headerMap, "Financial Year*");
-        const gst = getVal(row, headerMap, "GST*");
-        const bankAccount = getVal(row, headerMap, "Bank Account No*");
-        const ifsc = getVal(row, headerMap, "IFSC Code*");
-        const gstPaid = getVal(row, headerMap, "GST Paid*");
-        const gstInvoice = getVal(row, headerMap, "GST E-Invoice Number*");
-        const quantity = getVal(row, headerMap, "Total Plastic Quantity (Tons)*");
-        const recycledPlastic = getVal(row, headerMap, "% of Recycled Plastic Content*");
+        // Read fields from Excel (actual column names)
+        const regType = getVal(row, headerMap, "REGISTRATION TYPE");
+        const entityType = getVal(row, headerMap, "ENTITY TYPE");
+        const entityName = getVal(row, headerMap, "ENTITY");
+        const gst = getVal(row, headerMap, "GST NO");
+        const state = getVal(row, headerMap, "STATE");
+        const plasticType = getVal(row, headerMap, "PLASTIC TYPE");
+        const category = getVal(row, headerMap, "CATEGORY");
+        const recycledContent = getVal(row, headerMap, "RECYCLED CONTENT %");
+        const quantity = getVal(row, headerMap, "Sum of QTY MT");
+        const gstPaid = getVal(row, headerMap, "Sum of GST PAID");
+        const invoiceNo = getVal(row, headerMap, "INVOICE No");
+        const bankAccount = getVal(row, headerMap, "BANK ACCOUNT NO");
+        const ifsc = getVal(row, headerMap, "IFSC");
+
+        // Fields not in Excel
+        const financialYear = "2025-26";
+        const addressDefault = CONFIG.address;
+        const mobileDefault = CONFIG.mobileNumber;
 
         try {
             console.log(`Row ${r} starting...`);
@@ -620,58 +881,58 @@ async function resetToFreshPage(page) {
             await page.waitForTimeout(500);
             await waitForLoaderToFinish(page);
 
-            // 1. Registration Type
+            // 1. Registration Type (dropdown)
             logStep("fill Registration Type", 1);
             await selectNgSelectByLabel(page, "Registration Type", regType);
             await page.waitForTimeout(300);
 
-            // 2. Entity Type
+            // 2. Entity Type (always fill)
             logStep("fill Entity Type", 1);
             await selectNgSelectByLabel(page, "Entity Type", entityType);
             await page.waitForTimeout(500);
             await waitForLoaderToFinish(page);
 
-            // 3. Name of the Entity (appears after Entity Type is selected)
-            logStep("fill Name of the Entity", 1);
-            await pickEntityName(page, entityName);
+            // 3. Name of the Entity — iterate options until State + GST match Excel
+            logStep("fill Name of the Entity (matching State + GST)", 1);
+            await pickEntityWithStateMatch(page, entityName, state, gst);
             await waitEntityAutofill(page);
 
-            // 4. Address
-            logStep("fill Address", 1);
-            await fillByName(page, "address", address);
+            // ── Pre-filled fields: only fill if empty ──
 
-            // 5. State
-            logStep("fill State", 1);
-            await selectNgSelectByLabel(page, "State", state);
+            // 4. Address (pre-filled from entity)
+            logStep("check Address", 1);
+            await fillByNameIfEmpty(page, "address", addressDefault);
 
-            // 6. Mobile Number
-            logStep("fill Mobile Number", 1);
-            await fillByName(page, "mobile_number", mobile);
+            // 5. Mobile Number (pre-filled from entity)
+            logStep("check Mobile Number", 1);
+            await fillByNameIfEmpty(page, "mobile_number", mobileDefault);
 
-            // 7. Plastic Material Type
+            // ── Always fill from Excel ──
+
+            // 6. Plastic Material Type
             logStep("fill Plastic Material Type", 1);
-            await selectNgSelectByLabel(page, "Plastic Material Type", plasticMaterial);
+            await selectNgSelectByLabel(page, "Plastic Material Type", plasticType);
             await page.waitForTimeout(300);
 
-            // 8. Category of Plastic
+            // 7. Category of Plastic (CAT 2 → CAT II mapping)
             logStep("fill Category of Plastic", 1);
-            await selectNgSelectByLabel(page, "Category of Plastic", plasticCategory);
+            await selectNgSelectByLabel(page, "Category of Plastic", mapCategory(category));
 
-            // 9. Financial Year
+            // 8. Financial Year (from config)
             logStep("fill Financial Year", 1);
             await selectNgSelectByLabel(page, "Financial Year", financialYear);
 
-            // 10. GST
-            logStep("fill GST", 1);
-            await fillByName(page, "gst_no", gst);
+            // 9. GST (already matched during entity selection, verify)
+            logStep("verify GST", 1);
+            await verifyAndFixInput(page, "gst_no", gst);
 
-            // 11. Bank Account No
+            // 10. Bank Account No
             logStep("fill Bank Account No", 1);
-            await fillByName(page, "account_no", bankAccount);
+            await fillByNameIfEmpty(page, "account_no", bankAccount);
 
             // 12. IFSC Code
             logStep("fill IFSC Code", 1);
-            await fillByName(page, "ifsc", ifsc);
+            await fillByNameIfEmpty(page, "ifsc", ifsc);
 
             // 13. GST Paid / Total GST Paid
             logStep("fill GST Paid", 1);
@@ -679,7 +940,7 @@ async function resetToFreshPage(page) {
 
             // 14. GST E-Invoice Number
             logStep("fill GST E-Invoice Number", 1);
-            await fillByName(page, "gst_invoice", gstInvoice);
+            await fillByName(page, "gst_invoice", invoiceNo);
 
             // 15. Total Plastic Quantity (Tons)
             logStep("fill Quantity", 1);
@@ -687,7 +948,7 @@ async function resetToFreshPage(page) {
 
             // 16. % of Recycled Plastic Content
             logStep("fill Recycled Plastic %", 1);
-            await fillByName(page, "recycled_plastic", recycledPlastic);
+            await fillByName(page, "recycled_plastic", recycledContent);
 
             // Submit and confirm
             await clickSubmitAndConfirm(page);
@@ -750,7 +1011,7 @@ async function resetToFreshPage(page) {
                 await page.waitForTimeout(300);
             }
             await waitForLoaderToFinish(page);
-            await closeModalIfOpen(page);
+            await closeFormModal(page);
             await page.waitForTimeout(500);
         }
     }

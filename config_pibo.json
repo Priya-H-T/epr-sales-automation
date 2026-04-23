@@ -1,7 +1,7 @@
 {
-  "inputExcel": "",
-  "sheetName": "",
-  "outputExcel": "",
+  "inputExcel": "C:\\Users\\Lenovo\\epr-sales-automation\\AEGIOS.xlsx",
+  "sheetName": "PIVOT FOR ENTRIES",
+  "outputExcel": "AEGIOS - UFLEX SALES 25-26_output.xlsx",
   "max_rows": 0,
   "storageState": "storageState_pibo.json"
 }
