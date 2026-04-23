@@ -597,7 +597,7 @@ async function pickEntityWithStateMatch(page, entityNameValue, expectedState, ex
 
         logStep(`option ${attempt + 1}/${count}: state="${filledState}" gst="${filledGst}"`, 2);
 
-        const stateMatch = !expState || filledState.includes(expState) || expState.includes(filledState);
+        const stateMatch = !expState || filledState === expState;
         const gstMatch = !expGst || filledGst === expGst;
 
         if (stateMatch && gstMatch) {
@@ -706,76 +706,18 @@ async function submitAndCaptureResult(page) {
     // Determine success/failure from toast
     const isSuccess = /success/i.test(toastText) && !/error/i.test(toastText);
 
-    // Close the form modal
-    await closeFormModal(page);
+    // Refresh the page to close all modals cleanly
+    await closeAllModals(page);
 
     return { eprInvoice, toastText, isSuccess };
 }
 
-async function closeFormModal(page) {
-    logStep("closing modal: start", 2);
-
-    // 1. Try clicking the "Close" button at bottom-right of the form
-    try {
-        const closeBtn = page.locator("button", { hasText: /^Close$/i }).first();
-        if (await closeBtn.count()) {
-            await closeBtn.scrollIntoViewIfNeeded().catch(() => { });
-            await closeBtn.click();
-            logStep("Close button clicked", 2);
-            await page.waitForTimeout(500);
-        }
-    } catch { }
-
-    // 2. If modal still visible, click the X button at top-right
-    try {
-        const modalVisible = await page.locator(".modal-dialog").first().isVisible().catch(() => false);
-        if (modalVisible) {
-            const xBtn = page.locator(".modal-header button.close, .modal-header button[aria-label='Close']").first();
-            if (await xBtn.count()) {
-                await xBtn.click().catch(() => { });
-                logStep("X button clicked", 2);
-                await page.waitForTimeout(500);
-            }
-        }
-    } catch { }
-
-    // 3. If still visible, try pressing Escape
-    try {
-        const stillVisible = await page.locator(".modal-dialog").first().isVisible().catch(() => false);
-        if (stillVisible) {
-            await page.keyboard.press("Escape");
-            logStep("Escape pressed", 2);
-            await page.waitForTimeout(500);
-        }
-    } catch { }
-
-    // 4. Dismiss any remaining backdrop/modals
-    try {
-        const modals = page.locator(".modal.show, .modal-dialog");
-        const count = await modals.count();
-        for (let i = count - 1; i >= 0; i--) {
-            const modal = modals.nth(i);
-            if (await modal.isVisible().catch(() => false)) {
-                const btn = modal.locator("button.close, button[data-bs-dismiss='modal'], button[aria-label='Close']").first();
-                if (await btn.count()) {
-                    await btn.click().catch(() => { });
-                    await page.waitForTimeout(300);
-                }
-            }
-        }
-    } catch { }
-
-    // 5. Wait for all modals gone
-    await page.locator(".modal-dialog").first().waitFor({ state: "hidden", timeout: 5000 }).catch(() => { });
-    // Remove leftover backdrop
-    await page.evaluate(() => {
-        document.querySelectorAll(".modal-backdrop").forEach(el => el.remove());
-        document.body.classList.remove("modal-open");
-        document.body.style.removeProperty("overflow");
-        document.body.style.removeProperty("padding-right");
-    }).catch(() => { });
-
-    logStep("closing modal: done", 2);
+async function closeAllModals(page) {
+    logStep("refresh page to close modals", 2);
+    await page.goto(PIBO_URL, { waitUntil: "domcontentloaded" });
+    await page.waitForTimeout(2000);
+    await waitForLoaderToFinish(page);
+    logStep("page refreshed, ready for next row", 2);
 }
 
 // ── Navigation / reset ───────────────────────────────────────────────────────
@@ -1074,10 +1016,8 @@ async function resetToFreshPage(page) {
                 console.log("Page closed. Stopping.");
                 break;
             }
-            // Ensure modal is closed even if error happened before submitAndCaptureResult
-            await waitForLoaderToFinish(page);
-            await closeFormModal(page);
-            await page.waitForTimeout(500);
+            // Refresh page to ensure clean state for next row
+            await closeAllModals(page);
         }
     }
 
