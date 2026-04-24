@@ -1,8 +1,8 @@
 {
-  "inputExcel": "CHIRPAL UNREGISTERD PWP Sale For Automation PP.xlsx",
-  "sheetName": "Main Sheet",
-  "outputExcel": "CHIRPAL UNREGISTERD PWP Sale For Automation PP_unregistered_output.xlsx",
+  "inputExcel": "C:\\Users\\hp\\Documents\\GitHub\\epr-sales-automation\\Processed_Domestic_Granules PWP Sale For Automation.xlsx ",
+  "sheetName": "Unregistered",
+  "outputExcel": "C:\\Users\\hp\\Documents\\GitHub\\epr-sales-automation\\Processed_Domestic_Granules PWP Sale For Automation_output1.xlsx",
   "max_rows": 0,
   "storageState": "storageState_unregistered.json",
-  "plasticType": "PP"
+  "plasticType": "PET"
 }

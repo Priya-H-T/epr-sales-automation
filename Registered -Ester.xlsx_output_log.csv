@@ -1,0 +1,3 @@
+datetime,row,e_invoice_number,sales_date,quantity_sold_mt,registration_type,entity_name,seller_gst,buyer_gst,epr_invoice_number,status,message
+2026-04-24T13:30:46.461Z,2,,,,,,,,,Failed,Missing option for Registration Type
+2026-04-24T13:30:59.714Z,4,,,,,,,,,Failed,Missing option for Registration Type

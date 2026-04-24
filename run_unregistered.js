@@ -453,11 +453,11 @@ async function ensureSalesFormReady(page) {
     return false;
 }
 
-// Step 1: Select CAT-II row checkbox in top table (optionally by Plastic Type)
+// Step 1: Select CAT-I row checkbox in top table (optionally by Plastic Type)
 async function selectCat2Row(page, plasticTypeText) {
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
     let catRow = page.locator("tbody#ScrollableSimpleTableBody tr", {
-        has: page.locator('span[title="CAT-II"]'),
+        has: page.locator('span[title="Pellets-(Containers < 0.9 L)"]'),
     });
 
     if (plasticTypeText) {
@@ -513,7 +513,7 @@ async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
             await page.waitForTimeout(500);
         }
     }
-    throw lastErr || new Error("Failed to select CAT-II row");
+    throw lastErr || new Error("Failed to select CAT-I row");
 }
 
 // Step 2: ng-select by label text (no need formcontrolname)
@@ -906,12 +906,12 @@ async function waitEntityAutofill(page) {
         try {
             console.log(`Row ${r} starting...`);
 
-            logStep("select CAT-II: start", 1);
-            await selectCat2RowWithRetry(page, CONFIG.plasticType || "PP");
-            logStep("select CAT-II: done", 1);
+            logStep("select CAT-I: start", 1);
+            await selectCat2RowWithRetry(page, CONFIG.plasticType || "PET");
+            logStep("select CAT-I: done", 1);
 
             logStep("fill qty: start", 1);
-            if (!(await ensureQtyInputVisible(page, CONFIG.plasticType || "PP"))) {
+            if (!(await ensureQtyInputVisible(page, CONFIG.plasticType || "PET"))) {
                 throw new Error("qty_product_sold not visible");
             }
             await fillBySelector(page, 'input[name="qty_product_sold"]', formatQty(qtySold));

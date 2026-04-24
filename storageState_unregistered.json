@@ -1,0 +1,49 @@
+{
+  "cookies": [
+    {
+      "name": "login-token",
+      "value": "a4c7e2eb48584daab97ded72b53ead7b",
+      "domain": "eprplastic.cpcb.gov.in",
+      "path": "/epr",
+      "expires": 1777044873.952656,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://eprplastic.cpcb.gov.in",
+      "localStorage": [
+        {
+          "name": "isBorderRounded2",
+          "value": "undefined"
+        },
+        {
+          "name": "isBorderRounded",
+          "value": "undefined"
+        },
+        {
+          "name": "mediaBreakPoint",
+          "value": "xl"
+        },
+        {
+          "name": "userDetails",
+          "value": "{\"full_name\":\"sardar sunder singh\",\"company_name\":\"ESTER INDUSTRIES LTD.\",\"email\":\"sardar.singh@ester.in\",\"profile_url\":\"\",\"user_id\":432,\"user_type\":\"PWP\",\"user_role_id\":15,\"user_role_name\":\"PWP\",\"login_type\":\"PWP\",\"route\":\"/epr/pwp-dashboard\",\"type\":\"V2\",\"redirection_url\":\"\"}"
+        },
+        {
+          "name": "financialYear",
+          "value": "2026-27"
+        },
+        {
+          "name": "facility_type",
+          "value": "1"
+        },
+        {
+          "name": "process_code",
+          "value": "4"
+        }
+      ]
+    }
+  ]
+}

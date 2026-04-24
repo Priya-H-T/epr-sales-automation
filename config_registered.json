@@ -3,6 +3,6 @@
   "sheetName": "Registered",
   "outputExcel": "C:\\Users\\hp\\Documents\\GitHub\\epr-sales-automation\\Processed_Domestic_Granules PWP Sale For Automation_registered_output.xlsx",
   "max_rows": 0,
-  "storageState": "storageState_registered.json",
+  "storageState": "storageState_unregistered.json",
   "plasticType": "PET"
 }
