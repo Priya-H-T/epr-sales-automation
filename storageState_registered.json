@@ -2,10 +2,10 @@
   "cookies": [
     {
       "name": "login-token",
-      "value": "6945f511d9d84804863d2339ab6f136d",
+      "value": "e059ac53d60c403a838729edd02103a5",
       "domain": "eprplastic.cpcb.gov.in",
       "path": "/epr",
-      "expires": 1769869981.09301,
+      "expires": 1777034817.450055,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Strict"
@@ -29,11 +29,11 @@
         },
         {
           "name": "userDetails",
-          "value": "{\"full_name\":\"ARUN GOEL\",\"company_name\":\"POLYPLEX CORPORATION LTD\",\"email\":\"epr-bajpurrecycler@polyplex.com\",\"profile_url\":\"\",\"user_id\":3733,\"user_type\":\"PWP\",\"user_role_id\":15,\"user_role_name\":\"PWP\",\"login_type\":\"PWP\",\"route\":\"/epr/pwp-dashboard\",\"type\":\"V2\",\"redirection_url\":\"\"}"
+          "value": "{\"full_name\":\"sardar sunder singh\",\"company_name\":\"ESTER INDUSTRIES LTD.\",\"email\":\"sardar.singh@ester.in\",\"profile_url\":\"\",\"user_id\":432,\"user_type\":\"PWP\",\"user_role_id\":15,\"user_role_name\":\"PWP\",\"login_type\":\"PWP\",\"route\":\"/epr/pwp-dashboard\",\"type\":\"V2\",\"redirection_url\":\"\"}"
         },
         {
           "name": "financialYear",
-          "value": "2025-26"
+          "value": "2026-27"
         },
         {
           "name": "facility_type",
@@ -41,7 +41,7 @@
         },
         {
           "name": "process_code",
-          "value": "R2"
+          "value": "4"
         }
       ]
     }

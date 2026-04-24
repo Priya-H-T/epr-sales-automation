@@ -375,10 +375,10 @@ async function ensureSalesFormReady(page) {
 }
 
 async function selectCat2Row(page, plasticTypeText) {
-    logStep("select CAT-II row: start", 1);
+    logStep("select CAT-I row: start", 1);
     await page.waitForSelector("#ScrollableSimpleTableBody", { timeout: 60000 });
     let catRow = page.locator("tbody#ScrollableSimpleTableBody tr", {
-        has: page.locator('span[title="CAT-II"]'),
+        has: page.locator('span[title="Pellets-(Containers < 0.9 L)"]'),
     });
 
     if (plasticTypeText) {
@@ -393,20 +393,20 @@ async function selectCat2Row(page, plasticTypeText) {
     await checkbox.scrollIntoViewIfNeeded();
     await checkbox.click({ force: true });
     await page.waitForSelector('input[name="qty_product_sold"]', { timeout: 30000 });
-    logStep("select CAT-II row: done", 1);
+    logStep("select CAT-I row: done", 1);
 }
 
 async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
     let lastErr = null;
     for (let i = 0; i < attempts; i++) {
         try {
-            logStep(`select CAT-II retry ${i + 1}/${attempts}`, 1);
+            logStep(`select CAT-I retry ${i + 1}/${attempts}`, 1);
             await ensureSalesFormReady(page);
             await selectCat2Row(page, plasticTypeText);
             return true;
         } catch (e) {
             lastErr = e;
-            logStep(`select CAT-II failed: ${String(e?.message || e)}`, 1);
+            logStep(`select CAT-I failed: ${String(e?.message || e)}`, 1);
             await waitForLoaderToFinish(page);
             await page.locator("#refersh_data").first().click().catch(() => { });
             const didReset = await clickResetAndConfirm(page);
@@ -419,7 +419,7 @@ async function selectCat2RowWithRetry(page, plasticTypeText, attempts = 3) {
     await page.waitForTimeout(300);
         }
     }
-    throw lastErr || new Error("Failed to select CAT-II row");
+    throw lastErr || new Error("Failed to select CAT-I row");
 }
 
 async function selectNgSelectByLabel(page, labelText, optionText) {
